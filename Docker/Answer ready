@@ -43,3 +43,17 @@ Docker Registry – Stores and distributes container images.
 This architecture allows Docker to be fast, lightweight, and highly portable across environments.”
 ___________________________________________________________________________________________________________________________________
 5.Docker workflow?
+docker flfow
+
+Docker workflow starts by writing a Dockerfile to define the app environment and dependencies, then building a Docker image from it. Next, the container is created and started using this image, which runs the
+isolated instance of the application. This container can be managed, stopped, and scaled, 
+enabling consistent deployment across all environments. The image can also be pushed to registries for sharing and reuse, ensuring efficient CI/CD pipelines
+_______________------------------------------------------------------------------________________________________________________________________________________
+docker architecture:-----CHR---CLIENT-run,build,push,pull--sends to docker demon in ----,HOST---,REGISTRY----images store
+
+Docker follows a client-server architecture consisting of three main components: the Docker Client, Docker Daemon, and Docker Registry. The Docker Client is the 
+command-line tool that sends commands to the Docker Daemon, which runs as a background service managing Docker objects like containers, images, networks, and volumes.
+The Docker Daemon communicates with the OS kernel to create and run containers. Docker Registry stores Docker images that can be pulled and deployed by the daemon, 
+enabling consistent 
+application delivery across environments. This architecture enables efficient container management, scalability, and portability in modern DevOps workflows.
+
