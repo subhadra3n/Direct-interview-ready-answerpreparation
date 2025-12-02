@@ -43,15 +43,25 @@ Docker Registry – Stores and distributes container images.
 This architecture allows Docker to be fast, lightweight, and highly portable across environments.”
 ___________________________________________________________________________________________________________________________________
 5.Docker workflow?
-docker flfow
-“Docker flow starts with creating a Dockerfile, which defines the application environment and dependencies.
-We use the  docker build command to create a Docker image from this Dockerfile.
 
-Once the image is ready, we use docker run command to create and start a container, which is a lightweight and isolated runtime instance of the application.
-The image can be pushed to a Docker registry like ECR for sharing and reuse.
-Finally, containers can be managed, scaled, and deployed across different environments, ensuring consistent application delivery.”
+“Docker flow starts with creating a Dockerfile, which defines the application environment and dependencies.
+We use the command docker build to create a Docker image from this Dockerfile.
+
+Once the image is ready, we use docker run to create and start a container, which is a lightweight and isolated runtime instance of the application.
+The image can be pushed to a Docker registry like Docker Hub for sharing and reuse.
+
+
 _______________------------------------------------------------------------------________________________________________________________________________________
 docker architecture:-----CHR---CLIENT-run,build,push,pull--sends to docker demon in ----,HOST---,REGISTRY----images store
+
+
+“Docker follows a client–server architecture consisting of three main components: the Docker Client, Docker Daemon, and Docker Registry.
+The Docker Client is the command-line tool that sends requests to the Docker Daemon. The Docker Daemon (dockerd) runs in the background and is responsible for building images,
+creating containers, and managing Docker objects like networks and volumes.
+
+The daemon interacts with the OS kernel (using namespaces and cgroups) to create and run isolated containers.
+Docker Registries store Docker images, which the daemon can pull and run to ensure consistent deployments across environments.
+Finally, containers can be managed, scaled, and deployed across different environments, ensuring consistent application delivery.”
 
 Docker follows a client-server architecture consisting of three main components: the Docker Client, Docker Daemon, and Docker Registry. The Docker Client is the 
 command-line tool that sends commands to the Docker Daemon, which runs as a background service managing Docker objects like containers, images, networks, and volumes.
@@ -59,11 +69,5 @@ The Docker Daemon communicates with the OS kernel to create and run containers. 
 enabling consistent 
 application delivery across environments. This architecture enables efficient container management, scalability, and portability in modern DevOps workflows.
 _____________
-“Docker follows a client–server architecture consisting of three main components: the Docker Client, Docker Daemon, and Docker Registry.
-The Docker Client is the command-line tool that sends requests to the Docker Daemon. The Docker Daemon (dockerd) runs in the background and is responsible for building images,
-creating containers, and managing Docker objects like networks and volumes.
 
-The daemon interacts with the OS kernel (using namespaces and cgroups) to create and run isolated containers.
-Docker Registries store Docker images, which the daemon can pull and run to ensure consistent deployments across environments.
 
-This architecture enables efficient container management, portability, and scalability, making Docker ideal for modern DevOps workflows.”
