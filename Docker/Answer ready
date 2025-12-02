@@ -15,3 +15,30 @@ It is built using a Dockerfile and acts as the template for creating containers.
 Container:
 “A Docker container is a running instance of a Docker image. It runs the actual application and can store runtime or temporary data.
 Containers are isolated, lightweight, and portable.”
+______________________________________________________________________________
+3,What is Docker ?
+Docker is a containerization platform that provides easy way to containerize your applications,
+which means, using Docker you can build container images, run the images to create containers and also push these containers to container regestries such as DockerHub
+________________________________________________________________________________________
+4.Docker architecture?
+“Docker follows a client–server architecture.
+The Docker Client is what we use to run commands like docker build, docker run, and docker push.
+These commands are sent to the Docker Daemon (dockerd), which is the main engine responsible for building images, running containers, managing networks, volumes, and
+the entire container lifecycle.
+
+Docker stores and pulls images from a Docker Registry—either Docker Hub or a private registry.
+When a container is launched, the daemon pulls the image (if not present), creates the container using storage drivers, sets up networking, and starts the process inside the container.
+
+The key components are:
+
+Docker Client – Sends API requests.
+
+Docker Daemon – Builds, runs, and manages containers.
+
+Docker Images – Read-only templates for containers.
+
+Docker Containers – Running, isolated application environments.
+
+Docker Registry – Stores and distributes container images.
+
+This architecture allows Docker to be fast, lightweight, and highly portable across environments.”
