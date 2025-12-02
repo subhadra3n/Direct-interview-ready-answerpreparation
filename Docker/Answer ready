@@ -44,10 +44,12 @@ This architecture allows Docker to be fast, lightweight, and highly portable acr
 ___________________________________________________________________________________________________________________________________
 5.Docker workflow?
 docker flfow
+“Docker flow starts with creating a Dockerfile, which defines the application environment and dependencies.
+We use the  docker build command to create a Docker image from this Dockerfile.
 
-Docker workflow starts by writing a Dockerfile to define the app environment and dependencies, then building a Docker image from it. Next, the container is created and started using this image, which runs the
-isolated instance of the application. This container can be managed, stopped, and scaled, 
-enabling consistent deployment across all environments. The image can also be pushed to registries for sharing and reuse, ensuring efficient CI/CD pipelines
+Once the image is ready, we use docker run command to create and start a container, which is a lightweight and isolated runtime instance of the application.
+The image can be pushed to a Docker registry like ECR for sharing and reuse.
+Finally, containers can be managed, scaled, and deployed across different environments, ensuring consistent application delivery.”
 _______________------------------------------------------------------------------________________________________________________________________________________
 docker architecture:-----CHR---CLIENT-run,build,push,pull--sends to docker demon in ----,HOST---,REGISTRY----images store
 
