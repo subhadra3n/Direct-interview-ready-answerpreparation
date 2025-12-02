@@ -4,6 +4,11 @@ ________________________________________
 what is virtualization?
 “Virtualization is a technology that allows multiple virtual machines to run on a single physical server by abstracting and sharing hardware resources.
 It improves resource utilization, provides isolation between applications, and reduces overall infrastructure costs.”
+__________________________________________________________________
+what is vm
+
+ A VM is a virtual computer, that runs on a top of a physical server using a hypervisor
+It allows multiple OS to run independently on the same hardware.
 _________________________________________________________________________________________________________________________________
 1. Virtual Machines (VMs)
 VMs are virtualize the entire hardware stack using a hypervisor.
