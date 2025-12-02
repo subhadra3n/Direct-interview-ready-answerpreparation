@@ -1,11 +1,11 @@
 1. Virtual Machines (VMs)
 VMs are virtualize the entire hardware stack using a hypervisor.
  each VM runs a full operating system with its own kernel on top of the host OS. This  makes VMs heavier, slower to start (minutes),
-and they consume significantly more CPU, RAM, and storage. However, they provide maximum security isolation because the OS kernels are completely separated.
+and they consume significantly more CPU, RAM, and storage.
 
 2.2. Containers
-Containers virtualize only the operating system, specifically the user space. They share the host OS kernel and isolate applications at the process level using technologies like  namespaces.
-This architecture makes containers extremely lightweight, fast to start (seconds), and highly efficient in resource usage. They are the ideal choice for modern microservices and rapid deployment
+Containers virtualize only the operating system. They share the host OS kernel and isolate applications at the process level.
+This makes containerslightweight, fast to start (seconds), and highly efficient in resource usage. They are the ideal choice for modern microservices and rapid deployment
 ________________________________________________________________________________________________________________________________________________
 2.what is d/f b/w image and container
 Image:
