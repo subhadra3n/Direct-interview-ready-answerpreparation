@@ -58,4 +58,12 @@ command-line tool that sends commands to the Docker Daemon, which runs as a back
 The Docker Daemon communicates with the OS kernel to create and run containers. Docker Registry stores Docker images that can be pulled and deployed by the daemon, 
 enabling consistent 
 application delivery across environments. This architecture enables efficient container management, scalability, and portability in modern DevOps workflows.
+_____________
+“Docker follows a client–server architecture consisting of three main components: the Docker Client, Docker Daemon, and Docker Registry.
+The Docker Client is the command-line tool that sends requests to the Docker Daemon. The Docker Daemon (dockerd) runs in the background and is responsible for building images,
+creating containers, and managing Docker objects like networks and volumes.
 
+The daemon interacts with the OS kernel (using namespaces and cgroups) to create and run isolated containers.
+Docker Registries store Docker images, which the daemon can pull and run to ensure consistent deployments across environments.
+
+This architecture enables efficient container management, portability, and scalability, making Docker ideal for modern DevOps workflows.”
