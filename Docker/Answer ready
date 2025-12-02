@@ -5,7 +5,7 @@ and they consume significantly more CPU, RAM, and storage.
 
 2.2. Containers
 Containers virtualize only the operating system. They share the host OS kernel and isolate applications at the process level.
-This makes containerslightweight, fast to start (seconds), and highly efficient in resource usage. They are the ideal choice for modern microservices and rapid deployment
+This makes containerslightweight, fast to start (seconds), and less resource usage. They are the ideal choice for modern microservices and rapid deployment
 ________________________________________________________________________________________________________________________________________________
 2.what is d/f b/w image and container
 Image:
