@@ -17,8 +17,7 @@ Container:
 Containers are isolated, lightweight, and portable.”
 ______________________________________________________________________________
 3,What is Docker ?
-Docker is a containerization platform that provides easy way to containerize your applications,
-which means, using Docker you can build container images, run the images to create containers and also push these containers to container regestries such as DockerHub
+ Docker is a containerization platform, that containerize the image of the applications along with their dependencies, making them lightweight, portable, and environment-independent.
 ________________________________________________________________________________________
 4.Docker architecture?
 “Docker follows a client–server architecture.
@@ -42,3 +41,5 @@ Docker Containers – Running, isolated application environments.
 Docker Registry – Stores and distributes container images.
 
 This architecture allows Docker to be fast, lightweight, and highly portable across environments.”
+___________________________________________________________________________________________________________________________________
+5.Docker workflow?
