@@ -1,0 +1,2 @@
+FROM-------
+RUN------Excutes the commands during the build process
