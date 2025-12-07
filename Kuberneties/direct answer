@@ -6,3 +6,13 @@ If the traffic exceeds the capacity even after reaching max replicas, Kubernetes
 performance issues like latency and failed requests.
 That’s why we use Cluster Autoscaler, VPA or multi-region scaling in production environments.”
 -----(Vertical Pod Autoscaler)-------increase resources per pod
+
+____________________________________________________________________________________
+why we go for deployment:
+1-Real-world explanation
+
+If your application gets updated from v1 to v2:
+
+👉 ReplicaSet cannot update version
+👉 Deployment updates pods without downtime, creates a new ReplicaSet internally, and rolls back if something breaks
+ReplicaSet ensures the required number of Pods are running, while Deployment sits on top of ReplicaSet and adds rolling updates, rollbacks, and release strategies.
