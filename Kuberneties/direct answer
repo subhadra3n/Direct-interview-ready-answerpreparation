@@ -1,1 +1,8 @@
+What if traffic keeps increasing beyond what max replicas can handle?
 
+
+“HPA scales the replicas only between min and max values.
+If the traffic exceeds the capacity even after reaching max replicas, Kubernetes will not scale further and the application will start experiencing 
+performance issues like latency and failed requests.
+That’s why we use Cluster Autoscaler, VPA or multi-region scaling in production environments.”
+-----(Vertical Pod Autoscaler)-------increase resources per pod
