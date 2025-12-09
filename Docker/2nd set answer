@@ -1,0 +1,7 @@
+Container port is the internal port where the application runs. Host port is the external port exposed to the outside world. Container port usually
+remains fixed based on the application, while the host port can be different and we choose it based on availability.
+
+WHAT i sd/f b/w docker run and create
+
+docker create only creates the container but doesn’t start it. docker run creates and starts the container in a single step,
+that’s why docker run is commonly used.
