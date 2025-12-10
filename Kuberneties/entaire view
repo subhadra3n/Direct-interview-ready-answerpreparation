@@ -1,0 +1,95 @@
+1.POD------yaml file
+2.static pod---deploy on same node
+____________________________________________________
+2.services-------to expose application-------i.Node port, ii.cluster ip, iii.LB, iv.Ingress
+________________________________________________________________________________________________
+
+3.Replication controller-----only equality based selector
+_______________________________
+4.Replica set----both equality & set based selector-----match labels, match expressions:key,,value,operator
+___________________________________
+
+5.Deployments------rollback  strategy
+__________________________________________-
+6.Deamon set---------deploy pod in all nodes-------no of nodes=no of pods deploy i.e od deploy on each node 
+__________________________________________________________________________________
+7.HPA----mini replicas, max replicas-----based on metrics--cpu, memory
+____________________________________________________________________________________
+8.labels & selectors----------based on these it will selector particular svc, deploy, & pods to scale it automatically
+_______________________________________
+9.Request, Limit----------Request should be less than limit------limit is high, that should be match b/w replicas has mentioned you
+
+____________________________________________________________________________
+10.DB-------PVC-----------deployment------env, volume mounts-name,path, volumes---name, pvcname
+pvc--------selected/matched based on access modes & capacity of storage
+
+_______________________________________________________________________________________________________
+11.Dynamic volumes--------storage class based onthat------pv will create automatically with matched pvs
+pv & pvc----------one-one relation ship
+___________________________________________________________________________
+12.Livesness -------http:, path, entrypoint, port, initial delay sec, perdioc seconds, failure threshold
+
+  Readiness probes
+  _____________________________________________________________________________________________________________
+  13.Node selector----basic scheduling-------
+  i.node selector:
+     disk=ssd
+
+  __________________________
+  13.ii.node affinity-------advanced scheduling:
+     selectors:
+       node affinity:-------preferred---check if not go with other option, requires-compulsary
+       ____________
+        affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: region
+            operator: In
+            values:
+            - ap-south-1
+          - key: zone
+            operator: In
+            values:
+            - ap-south-1c
+            ____________________------------
+
+13.iii.----pod Affinity:
+ affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app
+            operator: In
+            values:
+            - frontend
+        topologyKey: "kubernetes.io/hostname
+        ________________________________________________________________________
+        13.iv----pod antiaffinity:
+        affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app
+            operator: In
+            values:
+            - frontend
+        topologyKey: "kubernetes.io/hostname"
+
+
+
+-----------------------------------------         _________________________________
+14.taints & tolerations
+Taints--------applicable to only nodes
+kubectl taints nodes (node-name) key,value,operation:no shedule
+
+Tolerations--applicable to Pod---write under spec
+key:
+value:
+operator:
+effect:
+__________________________________________________________________________
+15.
