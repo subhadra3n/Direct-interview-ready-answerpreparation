@@ -54,6 +54,22 @@ ___________________________________________________________________________
             values:
             - ap-south-1c
             ____________________------------
+Node affinity ensures that pods are scheduled on specific nodes based on node labels.
+
+Node affinity uses node labels?
+✅ YES
+_________________________________________________
+scheduler checks all nodes
+
+Filters nodes with label env=prod
+
+Picks the best node based on resources
+
+Schedules the pod
+
+If no node matches → pod Pending
+
+___________________________________________________________________________________________________________-
 
 13.iii.----pod Affinity:
  affinity:
@@ -66,11 +82,18 @@ ___________________________________________________________________________
             values:
             - frontend
         topologyKey: "kubernetes.io/hostname
+__________________________________________________________--
+| topologyKey                   | Meaning     |
+| ----------------------------- | ----------- |
+| kubernetes.io/hostname        | Same node   |
+| topology.kubernetes.io/zone   | Same AZ     |
+| topology.kubernetes.io/region | Same region |
+
         ________________________________________________________________________
         13.iv----pod antiaffinity:
         affinity:
     podAntiAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
+      requiredDuringSchedulingIgnoredDuringExecution:                  #Preferred(soft rule)
       - labelSelector:
           matchExpressions:
           - key: app
@@ -78,6 +101,26 @@ ___________________________________________________________________________
             values:
             - frontend
         topologyKey: "kubernetes.io/hostname"
+__________________________________________________________________
+vvimp:
+Pod affinity allows a pod to be scheduled near another pod based on pod labels and topology keys.
+
+Scheduler looks for backend pods
+
+Checks their labels
+
+Finds the node where backend pod is running
+
+Places frontend pod on the same topologyKey
+
+If not possible → pod stays Pending
+_________________________________________________________________________
+| Question                           | Answer |
+| ---------------------------------- | ------ |
+| Pod affinity matches node labels?  | ❌ NO   |
+| Pod affinity matches pod labels?   | ✅ YES  |
+| Node affinity matches node labels? | ✅ YES  |
+
 
 
 
@@ -91,6 +134,33 @@ key:
 value:
 operator:
 effect:
+___________________________________________________________________________________________________
+Taints , Tolerations vs Node Affinity:
+1.Node affinity is a pod’s preference to choose nodes, whereas taints and tolerations are a node’s way of rejecting pods.
+Node Affinity (Pod → Node)
+What it does
+
+Pod selects which nodes it wants
+
+Based on node labels
+________________________
+Taints & Tolerations (Node → Pod)
+Node affinity is like a pod requesting a node, whereas taints and tolerations are like a node allowing or denying pods.
+What it does
+
+Node repels pods
+
+Only pods with matching tolerations can run
+
+Example use case
+
+Reserve nodes only for database or critical workloads
+| Concept       | Easy Meaning                  |
+| ------------- | ----------------------------- |
+| Node Affinity | Pod says: *I want this node*  |
+| Taint         | Node says: *You cannot come*  |
+| Toleration    | Pod says: *I have permission* |
+
 __________________________________________________________________________
 15.vcardon, drain, uncardon:
 
