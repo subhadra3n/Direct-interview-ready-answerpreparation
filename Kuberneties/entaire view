@@ -135,7 +135,7 @@ value:
 operator:
 effect:
 ___________________________________________________________________________________________________
-Taints , Tolerations vs Node Affinity:
+Taints , Tolerations vs Node Affinity:Differences
 1.Node affinity is a pod’s preference to choose nodes, whereas taints and tolerations are a node’s way of rejecting pods.
 Node Affinity (Pod → Node)
 What it does
@@ -144,8 +144,14 @@ Pod selects which nodes it wants
 
 Based on node labels
 ________________________
-Taints & Tolerations (Node → Pod)
-Node affinity is like a pod requesting a node, whereas taints and tolerations are like a node allowing or denying pods.
+2.Taints & Tolerations (Node → Pod)
+
+Node affinity is like a pod requesting a specific node,
+whereas taints and tolerations are like a node allowing or denying pods based on taints.
+Tolerations on the pod must match the node’s taints for the pod to be scheduled.
+
+Node affinity is pod-driven scheduling, while taints and tolerations are node-driven access control.
+________________________-
 What it does
 
 Node repels pods
@@ -162,5 +168,7 @@ Reserve nodes only for database or critical workloads
 | Toleration    | Pod says: *I have permission* |
 
 __________________________________________________________________________
-15.vcardon, drain, uncardon:
+15.cardon, drain, uncardon:
+
+
 
