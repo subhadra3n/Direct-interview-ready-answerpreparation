@@ -1,5 +1,20 @@
 FROM-------
 RUN------Excutes the commands during the build process
 EXPOSE----- EXPOSE is used in a Dockerfile to specify the port on which the application inside the container will listen.
+CMD-----Exutes the instructions while creating Container
+
+| Scenario            | Result                                 |
+| ------------------- | -------------------------------------- |
+| Multiple CMD        | Last CMD executes                      |
+| Multiple ENTRYPOINT | Last ENTRYPOINT executes               |
+| ENTRYPOINT + CMD    | ENTRYPOINT runs, CMD acts as arguments |
+
+| Instruction | When it executes          |
+| ----------- | ------------------------- |
+| RUN         | During **image build**    |
+| CMD         | When **container starts** |
+| ENTRYPOINT  | When **container starts** |
+
+
 
 
