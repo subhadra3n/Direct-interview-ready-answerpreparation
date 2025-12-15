@@ -1,0 +1,317 @@
+## Kubernetes – Final Interview Revision Notes (L2 / Mid-Senior)
+
+---
+
+## 1. Pod
+
+* Smallest deployable unit in Kubernetes
+* Contains one or more containers sharing:
+
+  * Network namespace (same IP)
+  * Storage volumes
+* Defined using a YAML manifest
+
+### Static Pod
+
+* Managed directly by **kubelet**, not by API Server
+* Runs only on the **node where the manifest exists**
+* Not scheduled by Kubernetes scheduler
+* Used for control plane components
+
+---
+
+## 2. Services & Ingress
+
+### Service (Expose Applications Internally / Externally)
+
+Types:
+
+* **ClusterIP** – Default, internal-only access
+* **NodePort** – Exposes service on node IP and static port
+* **LoadBalancer** – Cloud-provider managed external LB
+
+> ⚠️ Ingress is **NOT a Service type**
+
+### Ingress
+
+* Layer 7 (HTTP/HTTPS) routing
+* Works **on top of Services**
+* Provides path-based and host-based routing
+
+---
+
+## 3. ReplicationController (Deprecated)
+
+* Maintains desired number of pod replicas
+* Supports **only equality-based selectors**
+* Replaced by **ReplicaSet**
+
+---
+
+## 4. ReplicaSet
+
+* Ensures desired number of pods are running
+* Supports:
+
+  * Equality-based selectors
+  * Set-based selectors (In, NotIn, Exists)
+* Used internally by Deployments
+
+---
+
+## 5. Deployment
+
+* Manages ReplicaSets
+* Supports:
+
+  * Rolling updates
+  * Rollbacks
+* Common update strategy: RollingUpdate
+
+Key parameters:
+
+* maxSurge
+* maxUnavailable
+
+---
+
+## 6. DaemonSet
+
+* Ensures **one pod per node**
+* Automatically schedules pods on new nodes
+* Common use cases:
+
+  * Logging agents
+  * Monitoring agents
+  * Networking components
+
+---
+
+## 7. Horizontal Pod Autoscaler (HPA)
+
+* Automatically scales pods based on metrics
+* Metrics:
+
+  * CPU
+  * Memory
+  * Custom metrics
+
+Requirements:
+
+* Metrics Server / Prometheus Adapter
+
+---
+
+## 8. Labels & Selectors
+
+* Used to group and identify Kubernetes objects
+* Services, ReplicaSets, and Deployments use selectors
+* Do **NOT** perform scaling by themselves
+
+---
+
+## 9. Resource Requests & Limits
+
+* **Requests** → used by scheduler
+* **Limits** → enforced by kubelet
+
+Rules:
+
+* Request ≤ Limit
+* CPU is throttled, memory is OOM-killed if exceeded
+
+---
+
+## 10. ConfigMap & Secret (MUST KNOW)
+
+### ConfigMap
+
+* Stores non-sensitive configuration
+* Mounted as:
+
+  * Environment variables
+  * Files in a volume
+
+### Secret
+
+* Stores sensitive data (base64 encoded)
+* Mounted same ways as ConfigMap
+
+---
+
+## 11. Storage Concepts
+
+### PersistentVolume (PV)
+
+* Cluster-level storage resource
+
+### PersistentVolumeClaim (PVC)
+
+* Request for storage by a pod
+
+Rules:
+
+* PVC binds to a single PV
+* Matching based on:
+
+  * Access mode
+  * Storage size
+
+### Dynamic Provisioning
+
+* Uses StorageClass
+* PV created automatically
+
+---
+
+## 12. StatefulSet (VERY IMPORTANT)
+
+* Used for **stateful applications (Databases)**
+* Features:
+
+  * Stable pod identity
+  * Stable storage
+  * Ordered deployment & termination
+
+Examples:
+
+* MySQL, PostgreSQL, MongoDB
+
+---
+
+## 13. Liveness & Readiness Probes
+
+### Liveness Probe
+
+* Checks if container is alive
+* Failing probe → container restarted
+
+### Readiness Probe
+
+* Checks if container is ready to receive traffic
+* Failing probe → removed from Service endpoints
+
+---
+
+## 14. Scheduling Basics
+
+### NodeSelector
+
+* Simple key-value scheduling
+* Limited functionality
+
+### Node Affinity
+
+* Advanced scheduling based on node labels
+* Types:
+
+  * requiredDuringSchedulingIgnoredDuringExecution (Hard)
+  * preferredDuringSchedulingIgnoredDuringExecution (Soft)
+
+---
+
+## 15. Pod Affinity & Anti-Affinity
+
+* Pod affinity matches **pod labels**, not node labels
+* Used to place pods close to or away from each other
+
+Topology Keys:
+
+* kubernetes.io/hostname → same node
+* topology.kubernetes.io/zone → same AZ
+
+---
+
+## 16. Taints & Tolerations
+
+### Taint (Node)
+
+* Prevents pods from scheduling
+
+Command:
+
+```
+kubectl taint nodes <node-name> key=value:NoSchedule
+```
+
+### Toleration (Pod)
+
+* Allows pod to tolerate a taint
+
+Rule:
+
+* Toleration must match taint key, value, and effect
+
+---
+
+## 17. Node Maintenance
+
+### Cordon
+
+* Mark node unschedulable
+
+### Drain
+
+* Evict pods safely
+* Honors PodDisruptionBudgets
+
+### Uncordon
+
+* Enable scheduling again
+
+---
+
+## 18. PodDisruptionBudget (PDB)
+
+* Ensures minimum availability during disruptions
+* Used with drain and autoscaling
+
+---
+
+## 19. Init Containers
+
+* Run before main containers
+* Used for:
+
+  * DB checks
+  * Configuration setup
+
+---
+
+## 20. Namespaces
+
+* Logical isolation of resources
+* Used for:
+
+  * Multi-team environments
+  * Resource quotas
+
+---
+
+## 21. Common Troubleshooting
+
+* Pod Pending → Check node resources / affinity
+* CrashLoopBackOff → Check logs & probes
+* ImagePullBackOff → Check image name / registry access
+
+Useful commands:
+
+```
+kubectl describe pod
+kubectl logs pod-name
+kubectl get events
+```
+
+---
+
+## FINAL INTERVIEW ONE-LINERS
+
+* Deployment manages ReplicaSets
+* StatefulSet is preferred for databases
+* Requests affect scheduling, limits affect execution
+* Node affinity attracts pods, taints repel pods
+* Liveness restarts containers, readiness controls traffic
+
+---
+
+✅ This document is sufficient for **final interview revision**.
