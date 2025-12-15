@@ -1,0 +1,155 @@
+Kubernetes Troubleshooting Commands (MUST MEMORIZE)
+1️⃣ Cluster & Nodes
+kubectl get nodes
+kubectl describe node <node-name>
+kubectl get componentstatuses
+
+
+Check:
+
+Node Ready / NotReady
+
+DiskPressure / MemoryPressure
+
+SchedulingDisabled
+
+2️⃣ Pod-Level Troubleshooting (MOST IMPORTANT)
+Pod Status
+kubectl get pods -A
+kubectl get pod <pod-name> -o wide
+
+Pod Details (First Command in Any Issue)
+kubectl describe pod <pod-name>
+
+
+Look for:
+
+Events
+
+Scheduling errors
+
+Image pull errors
+
+Probe failures
+
+3️⃣ Logs (Application Issues)
+kubectl logs <pod-name>
+kubectl logs <pod-name> --previous
+kubectl logs <pod-name> -c <container-name>
+
+
+Use when:
+
+CrashLoopBackOff
+
+App crashes
+
+DB connection issues
+
+4️⃣ Scheduling Issues (Pod Pending)
+kubectl describe pod <pod-name>
+kubectl get nodes
+kubectl describe node <node-name>
+kubectl get pvc
+
+
+Check:
+
+Resource availability
+
+Node affinity / taints
+
+PVC bound or not
+
+5️⃣ Image Issues
+kubectl describe pod <pod-name>
+kubectl get secret
+
+
+Check:
+
+Image name & tag
+
+imagePullSecrets
+
+Registry access
+
+6️⃣ Service & Networking Issues
+kubectl get svc
+kubectl describe svc <service-name>
+kubectl get endpoints <service-name>
+
+
+Check:
+
+Selector mismatch
+
+TargetPort mismatch
+
+Pod readiness
+
+7️⃣ Ingress Issues
+kubectl get ingress
+kubectl describe ingress <ingress-name>
+kubectl logs <ingress-controller-pod>
+
+
+Check:
+
+TLS config
+
+Path rules
+
+Backend service mapping
+
+8️⃣ Resource & Performance Issues
+kubectl top nodes
+kubectl top pods
+kubectl describe pod <pod-name>
+
+
+Check:
+
+CPU throttling
+
+Memory OOMKilled
+
+Missing requests
+
+9️⃣ HPA Issues
+kubectl get hpa
+kubectl describe hpa
+kubectl top pods
+
+
+Check:
+
+Metrics server
+
+CPU requests defined
+
+HPA min/max limits
+
+🔟 Storage Issues
+kubectl get pv
+kubectl get pvc
+kubectl describe pvc <pvc-name>
+
+
+Check:
+
+PVC Pending
+
+Access modes
+
+StorageClass
+
+1️⃣1️⃣ Namespace & Quota Issues
+kubectl get ns
+kubectl get resourcequota
+kubectl describe resourcequota
+
+1️⃣2️⃣ Node Maintenance
+kubectl cordon <node-name>
+kubectl drain <node-name> --ignore-daemonsets --delete-emptydir-data
+kubectl uncordon <node-name>
