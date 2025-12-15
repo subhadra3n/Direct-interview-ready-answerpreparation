@@ -1,7 +1,14 @@
 FROM-------
 RUN------Excutes the commands during the build process
 EXPOSE----- EXPOSE is used in a Dockerfile to specify the port on which the application inside the container will listen.
-CMD-----Exutes the instructions while creating Container
+CMD-----
+_____________________________________________________
+RUN → executes during image build
+
+CMD → executes during container start
+
+ENTRYPOINT → executes during container start
+__________________________________________________________
 
 | Scenario            | Result                                 |
 | ------------------- | -------------------------------------- |
@@ -14,6 +21,66 @@ CMD-----Exutes the instructions while creating Container
 | RUN         | During **image build**    |
 | CMD         | When **container starts** |
 | ENTRYPOINT  | When **container starts** |
+
+_________________________________________________________________________________
+docekr rm -f $(ps -aq) delete all containers
+docker rmi -f $(docker images -aq)
+docker build -t image-name -f MyDockerfile .------------run the docker file to create docker image
+__________________________________________
+check image layer------------
+docker history (con-id/img-id)
+___________________________
+reduce size of image
+use / write docker file with minimised lines
+"if we have multiple run instructions---use logical & operations and put all run commands in 1line separate with "&"
+
+_________________________________________________
+CMD(CAN excute latest commmand ) i.c can be overridden
+CMD ------excutes while creating container
+________________________________________________-
+Entry point---------not overriden
+Entrypoint--------Excutes while creating container
+______________________________________
+
+IQ] what is the difference between CMD and ENTRYPOINT?
+ANS:
+
+  --> CMD instructions are overriden while creating a container, But ENTRYPOINT instructions can't be overrriden while creating a container.
+  --> Both the instructions are used to start our container.
+_______________________________________________________________________________________________________
+
+IQ] can we keep both CMD and ENTRYPOINT instructions in a Dockerfile?
+
+Ans: Yes, But CMD instructions will not be executed if both are present, CMD instructions will be passed as an argument to the ENTRYPOINT.
+
+  EX: CMD ["ls"]
+      ENTRYPOINT ["echo", "Hello"]
+
+    --> It will be executed as below:
+       
+        /bin/echo Hello ls
+
+       output: Hello ls
+in a docker file
+
+CMD
+ENTRYPOINT
+How it will run?
+_______________
+ENTRYPOINT defines the fixed command, CMD provides default arguments.
+If both are present, CMD is treated as the arguments to ENTRYPOINT.
+CMD is overridden at runtime, ENTRYPOINT is not.
+_______________________________________________________
+Docker supports only one ENTRYPOINT — if multiple ENTRYPOINTs are written, only the last one is applied.
+_____________________________________________________________________
+what is d/f b/w ARG & ENV?
+ARG → Used during image build time only, NOT available in container.
+
+ENV → Used during both build and run time, available inside the running container.
+
+ARG is used for build-time variables and is not available after the image is built.
+ENV is used for run-time variables and remains available inside both the image and the running container.
+
 
 
 
