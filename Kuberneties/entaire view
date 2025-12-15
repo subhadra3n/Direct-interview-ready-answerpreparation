@@ -1,37 +1,66 @@
 1.POD------yaml file
 2.static pod---deploy on same node
+Static Pods are managed directly by kubelet and always run on the same node where their manifest exists (not managed by API server).
+
+👉 Interviewers expect: “not controlled by scheduler”
 ____________________________________________________
 2.services-------to expose application-------i.Node port, ii.cluster ip, iii.LB, iv.Ingress
+Correction (Very Important):
+
+❌ Ingress is NOT a Service type
+
+✅ Ingress is a separate resource that works on top of Services
+
+✔ Correct version:
+
+Services: ClusterIP, NodePort, LoadBalancer
+Ingress: HTTP/HTTPS routing layer on top of Services
 ________________________________________________________________________________________________
 
 3.Replication controller-----only equality based selector
 _______________________________
 4.Replica set----both equality & set based selector-----match labels, match expressions:key,,value,operator
+
 ___________________________________
 
 5.Deployments------rollback  strategy
+Deployments manage ReplicaSets and support rolling updates and rollbacks.
 __________________________________________-
-6.Deamon set---------deploy pod in all nodes-------no of nodes=no of pods deploy i.e od deploy on each node 
+6.Deamon set---------deploy pod in all nodes-------no of nodes=no of pods deploy i.e pod deploy on each node 
+DaemonSets ignore normal scheduling rules and do not require replicas.
 __________________________________________________________________________________
 7.HPA----mini replicas, max replicas-----based on metrics--cpu, memory
 ____________________________________________________________________________________
-8.labels & selectors----------based on these it will selector particular svc, deploy, & pods to scale it automatically
+8.labels & selectors----------Labels and selectors are used to group and identify resources (Pods, Services, ReplicaSets).
+
+
+🔧 Correction:
+
+Labels/selectors do not scale automatically
+
+Scaling is done by HPA or controller
+
+
 _______________________________________
 9.Request, Limit----------Request should be less than limit------limit is high, that should be match b/w replicas has mentioned you
 
 ____________________________________________________________________________
 10.DB-------PVC-----------deployment------env, volume mounts-name,path, volumes---name, pvcname
 pvc--------selected/matched based on access modes & capacity of storage
+Databases are recommended to use StatefulSets, not Deployments.
+DB + PVC + Deployment
 
 _______________________________________________________________________________________________________
 11.Dynamic volumes--------storage class based onthat------pv will create automatically with matched pvs
 pv & pvc----------one-one relation ship
+A PVC binds to one PV, but a PV can be reused after release (depending on reclaim policy).
 ___________________________________________________________________________
 12.Livesness -------http:, path, entrypoint, port, initial delay sec, perdioc seconds, failure threshold
 
   Readiness probes
+Liveness restarts containers, Readiness controls traffic flow.
   _____________________________________________________________________________________________________________
-  13.Node selector----basic scheduling-------
+  13.Node selector----basic scheduling-------NodeSelector is simple key-value matching and is limited compared to Node Affinity
   i.node selector:
      disk=ssd
 
@@ -127,7 +156,8 @@ _________________________________________________________________________
 -----------------------------------------         _________________________________
 14.taints & tolerations
 Taints--------applicable to only nodes
-kubectl taints nodes (node-name) key,value,operation:no shedule
+kubectl taint nodes <node-name> key=value:NoSchedule
+
 
 Tolerations--applicable to Pod---write under spec
 key:
