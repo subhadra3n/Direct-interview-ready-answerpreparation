@@ -1,0 +1,236 @@
+1.Image loop backoff
+2.Crash loop backoff
+3.Memory leak
+4.DB connection leak
+5.Secrets in logs
+6.Didn't Autoscale
+7.Node is not ready
+8.SSL certificate expiry
+9.Quota reached
+10.High latency
+_______________________________________________________
+Common Kubernetes Troubleshooting (Interview Revision)
+1️⃣ Pod Pending
+
+Meaning: Pod is created but not scheduled on any node
+
+Check:
+
+Insufficient node resources (CPU / Memory)
+
+NodeSelector / NodeAffinity mismatch
+
+Taints on node without matching tolerations
+
+PVC not bound to PV
+
+ResourceQuota exceeded
+
+Node in NotReady or SchedulingDisabled
+
+Commands:
+
+kubectl describe pod <pod-name>
+kubectl get nodes
+kubectl get pvc
+
+2️⃣ CrashLoopBackOff
+
+Meaning: Container starts and crashes repeatedly
+
+Check:
+
+Application crash (bad config / code issue)
+
+Wrong environment variables
+
+DB connection failure / connection leak
+
+Memory leak → OOMKilled
+
+Liveness probe misconfiguration
+
+Missing ConfigMap / Secret
+
+Port mismatch in app vs container spec
+
+Commands:
+
+kubectl logs <pod-name>
+kubectl logs <pod-name> --previous
+kubectl describe pod <pod-name>
+
+3️⃣ ImagePullBackOff / ErrImagePull
+
+Meaning: Image cannot be pulled
+
+Check:
+
+Wrong image name or tag
+
+Image does not exist in registry
+
+Missing or wrong imagePullSecrets
+
+Registry authentication failure
+
+Network / DNS issue on node
+
+Rate limit issues (Docker Hub)
+
+Commands:
+
+kubectl describe pod <pod-name>
+kubectl get secret
+
+4️⃣ OOMKilled
+
+Meaning: Container killed due to memory limit exceeded
+
+Check:
+
+Memory limit too low
+
+Application memory leak
+
+JVM heap size not aligned with container limit
+
+Commands:
+
+kubectl describe pod <pod-name>
+kubectl top pod
+
+5️⃣ Pod Not Ready
+
+Meaning: Pod is running but not receiving traffic
+
+Check:
+
+Readiness probe failure
+
+Application startup delay
+
+Dependency service not reachable
+
+Wrong service port / targetPort
+
+Commands:
+
+kubectl describe pod <pod-name>
+kubectl get endpoints <service-name>
+
+6️⃣ Service Not Reachable
+
+Meaning: Pod is running but service traffic fails
+
+Check:
+
+Service selector does not match pod labels
+
+TargetPort mismatch
+
+Pod not Ready
+
+NetworkPolicy blocking traffic
+
+Commands:
+
+kubectl get svc
+kubectl describe svc <svc-name>
+kubectl get endpoints <svc-name>
+
+7️⃣ HPA Not Scaling
+
+Meaning: Replicas do not increase/decrease
+
+Check:
+
+Metrics Server not running
+
+CPU requests not defined
+
+HPA min/max limits reached
+
+Application not generating load
+
+Commands:
+
+kubectl get hpa
+kubectl describe hpa
+kubectl top pods
+
+8️⃣ Node Not Ready
+
+Meaning: Node unavailable for scheduling
+
+Check:
+
+Kubelet stopped
+
+Disk pressure / memory pressure
+
+Network issues
+
+Cloud provider issues (EC2, VM failure)
+
+Commands:
+
+kubectl get nodes
+kubectl describe node <node-name>
+
+9️⃣ Quota Reached
+
+Meaning: Namespace resource limit exceeded
+
+Check:
+
+CPU / memory quota exhausted
+
+Pod / PVC count limit reached
+
+Commands:
+
+kubectl get resourcequota
+kubectl describe resourcequota
+
+🔟 High Latency / Performance Issues
+
+Check:
+
+Insufficient pod replicas
+
+Missing HPA
+
+CPU throttling due to low limits
+
+Network latency between services
+
+DB slowness
+
+1️⃣1️⃣ Secrets / Config Issues
+
+Check:
+
+Secret or ConfigMap missing
+
+Wrong key name
+
+Incorrect mount path
+
+Accidentally logging secrets in application logs
+
+1️⃣2️⃣ SSL / Certificate Issues
+
+Check:
+
+Expired SSL certificate
+
+Wrong certificate chain
+
+Ingress TLS misconfiguration
+
+Certificate renewal failure (Cert-Manager)
+
+⭐ Interview Golden Line:
+“First I check pod status, then describe, then logs, followed by node, service, and HPA depending on the issue.
+_______________________________________________________________________________________________________
