@@ -1,0 +1,106 @@
+1 & 2 is same---read any one--2 is beeter
+come to 3rd one
+
+Kubernetes Daily Usage Commands – Interview Ready
+1️⃣ Cluster & Nodes
+| Purpose                  | Command                             | Notes                                     |
+| ------------------------ | ----------------------------------- | ----------------------------------------- |
+| List nodes               | `kubectl get nodes`                 | Check node status (Ready/NotReady)        |
+| Detailed node info       | `kubectl describe node <node-name>` | View resources, taints, labels            |
+| Check cluster components | `kubectl get componentstatuses`     | API server, scheduler, controller-manager |
+
+2️⃣ Pods
+| Purpose                   | Command                                       | Notes                         |
+| ------------------------- | --------------------------------------------- | ----------------------------- |
+| List pods                 | `kubectl get pods -A`                         | Across all namespaces         |
+| List pods with node info  | `kubectl get pods -o wide`                    | Shows Node, IP                |
+| Detailed pod info         | `kubectl describe pod <pod-name>`             | Events, scheduling, probes    |
+| Logs (running pod)        | `kubectl logs <pod-name>`                     | For single container          |
+| Logs (specific container) | `kubectl logs <pod-name> -c <container-name>` | Multi-container pod           |
+| Logs (previous container) | `kubectl logs <pod-name> --previous`          | CrashLoopBackOff debugging    |
+| Exec into pod             | `kubectl exec -it <pod-name> -- /bin/bash`    | Debug container interactively |
+
+3️⃣ Deployments & ReplicaSets
+| Purpose             | Command                                      | Notes                        |
+| ------------------- | -------------------------------------------- | ---------------------------- |
+| List deployments    | `kubectl get deploy`                         | In default namespace         |
+| Describe deployment | `kubectl describe deploy <deployment-name>`  | Shows ReplicaSets, events    |
+| Scale deployment    | `kubectl scale deploy <name> --replicas=<n>` | Manual scaling               |
+| Rollout status      | `kubectl rollout status deploy/<name>`       | Waits for rollout completion |
+| Rollback deployment | `kubectl rollout undo deploy/<name>`         | Revert to previous version   |
+
+4️⃣ Services & Networking
+| Purpose          | Command                            | Notes                             |
+| ---------------- | ---------------------------------- | --------------------------------- |
+| List services    | `kubectl get svc`                  | ClusterIP, NodePort, LoadBalancer |
+| Describe service | `kubectl describe svc <svc-name>`  | Check endpoints, ports            |
+| Get endpoints    | `kubectl get endpoints <svc-name>` | Shows pods behind service         |
+
+5️⃣ Ingress
+| Purpose          | Command                                   | Notes                  |
+| ---------------- | ----------------------------------------- | ---------------------- |
+| List ingress     | `kubectl get ingress`                     | Shows rules, host/path |
+| Describe ingress | `kubectl describe ingress <ingress-name>` | Debug routing issues   |
+
+6️⃣ ConfigMaps & Secrets
+| Purpose            | Command                                                                    | Notes                     |
+| ------------------ | -------------------------------------------------------------------------- | ------------------------- |
+| List configmaps    | `kubectl get configmap`                                                    | Default namespace         |
+| Describe configmap | `kubectl describe configmap <name>`                                        | Check keys/values         |
+| List secrets       | `kubectl get secret`                                                       | Encoded in base64         |
+| Describe secret    | `kubectl describe secret <name>`                                           | Metadata only, not values |
+| Decode secret      | `kubectl get secret <name> -o jsonpath="{.data.<key>}" \| base64 --decode` | View actual secret        |
+
+7️⃣ Storage (PV / PVC)
+| Purpose      | Command                       | Notes                          |
+| ------------ | ----------------------------- | ------------------------------ |
+| List PV      | `kubectl get pv`              | Check capacity, status         |
+| List PVC     | `kubectl get pvc`             | Bound / Pending                |
+| Describe PVC | `kubectl describe pvc <name>` | Check PV binding & access mode |
+8️⃣ HPA (Autoscaling)
+| Purpose      | Command                       | Notes                               |
+| ------------ | ----------------------------- | ----------------------------------- |
+| List HPA     | `kubectl get hpa`             | Min / Max replicas, current metrics |
+| Describe HPA | `kubectl describe hpa <name>` | Check scaling events                |
+| Top pods     | `kubectl top pods`            | Resource usage per pod              |
+| Top nodes    | `kubectl top nodes`           | Resource usage per node             |
+
+9️⃣ Scheduling / Nodes
+| Purpose         | Command                                                                | Notes                  |
+| --------------- | ---------------------------------------------------------------------- | ---------------------- |
+| Cordon node     | `kubectl cordon <node-name>`                                           | Prevent new pods       |
+| Drain node      | `kubectl drain <node-name> --ignore-daemonsets --delete-emptydir-data` | Evict pods safely      |
+| Uncordon node   | `kubectl uncordon <node-name>`                                         | Allow scheduling again |
+| Get node labels | `kubectl get node <node-name> --show-labels`                           | For node affinity      |
+
+🔟 Taints & Tolerations
+| Purpose          | Command                                                | Notes                           |                       |
+| ---------------- | ------------------------------------------------------ | ------------------------------- | --------------------- |
+| List node taints | `kubectl describe node <node-name>                     | grep -i taint`                  | Check existing taints |
+| Add taint        | `kubectl taint nodes <node-name> key=value:NoSchedule` | Prevent pods without toleration |                       |
+| Remove taint     | `kubectl taint nodes <node-name> key:NoSchedule-`      | Remove taint                    |                       |
+
+1️⃣1️⃣ Namespaces
+| Purpose          | Command                                                   | Notes              |
+| ---------------- | --------------------------------------------------------- | ------------------ |
+| List namespaces  | `kubectl get ns`                                          | Check isolation    |
+| Create namespace | `kubectl create ns <name>`                                | Logical separation |
+| Use namespace    | `kubectl config set-context --current --namespace=<name>` | Switch context     |
+
+1️⃣2️⃣ General / Debug
+| Purpose          | Command                                                       | Notes                   |
+| ---------------- | ------------------------------------------------------------- | ----------------------- |
+| Check events     | `kubectl get events -A --sort-by=.metadata.creationTimestamp` | Last actions in cluster |
+| Explain resource | `kubectl explain <resource>`                                  | Helpful in interviews   |
+| Apply YAML       | `kubectl apply -f <file.yaml>`                                | Create/update resource  |
+| Delete resource  | `kubectl delete -f <file.yaml>`                               | Remove resource         |
+| Watch resources  | `kubectl get pods -w`                                         | Real-time monitoring    |
+
+_________________________________________________________________________________________________________________________________
+
+⭐ Interview Tip
+
+Memorize commands in clusters: pods, deployments, services, storage, nodes.
+During the interview, explain your steps while using commands:
+
+“First I describe the pod, then check logs, then verify node resources and service endpoints…”
