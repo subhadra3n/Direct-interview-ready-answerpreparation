@@ -49,6 +49,19 @@ ____________________________________________________________________________
 pvc--------selected/matched based on access modes & capacity of storage
 Databases are recommended to use StatefulSets, not Deployments.
 DB + PVC + Deployment
+pvc------------
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: app-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: gp3
+
 
 _______________________________________________________________________________________________________
 11.Dynamic volumes--------storage class based onthat------pv will create automatically with matched pvs
