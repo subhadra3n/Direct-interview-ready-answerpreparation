@@ -265,6 +265,12 @@ Pods can now be scheduled onto this Node again.
 | Evict Pods and Unschedulable | kubectl drain <node-name> --ignore-daemonsets --delete-emptydir-data |
 | Allow Node Scheduling Again  | kubectl uncordon <node-name>                                         |
 | Check Node Status            | kubectl get nodes                                                    |
+___________________________________________________________________________-
+RBAC
+
+__________________________________________________________________________________________
+RPOL
+
 
 
 
