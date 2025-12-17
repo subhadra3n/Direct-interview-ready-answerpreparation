@@ -1,0 +1,21 @@
+1.What is k8s & what is docker swarm, give me d/f
+2.what is arcgitecture of k8s
+3.what does api server,kubelet, controll manager, kubeproxy do
+4.what is node affinity, pod affinity, taint & tolerations
+5.what is node port, cluster ip, lb, ingress
+6.what is pv why we use it
+7.what is pod & pod life cycle
+8.what is ingress controller
+9.what types of services in k8s
+10.how one pod talks with other pod
+11.how pod health check done
+12.what is demon set
+13.what is manifest file & write manifest file
+14.what is namespcae , why we use it
+15.what is helm chart & uses?
+16ho pods communicate each other
+17.what are CRDS in k8s
+18.what is d/f b/w stateful set & stateleess set
+19.how implement security ink8s
+20.what is pod security policy
+21.what will do you application more secure.
