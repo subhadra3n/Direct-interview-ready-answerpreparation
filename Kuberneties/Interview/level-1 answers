@@ -22,6 +22,46 @@ It handles tasks such as deploying containers, scaling them up or down, load bal
 __________________________________________________________________________________________________________________
 2.k8s architecture?
 
+Kubernetes  follows a  master and worker node  architecture.
+(Master Node)
 
+The control plane manages the cluster and makes global decisions.
 
+API Server – Entry point of the cluster; handles all requests
 
+etcd – Key-value store that holds cluster state and configuration
+
+Scheduler – Assigns pods to worker nodes
+
+Controller Manager – Maintains desired state (replicas, nodes, etc.)
+A Kubernetes worker node has 4 main components:
+
+Kubelet – Communicates with the control plane and ensures pods are running
+
+Container Runtime – Runs the containers (Docker, containerd, CRI-O)
+
+Kube-proxy – Handles networking and service load balancing
+
+Pods – Smallest deployable unit that runs one or more containers
+______________________________________________
+API SERVER:
+The API Server is the main component of a Kubernetes cluster. It handles requests from users (e.g., kubectl commands) and other components.
+It processes commands like kubectl get pods or kubectl get nodes, interacts with etcd to retrieve or update the cluster state, and serves as 
+the central management point for the cluster.
+_________________________________________________________________________
+Schedular:
+The Scheduler is a master node component that assigns pods to worker nodes.
+It watches for newly created pods that have no assigned node and selects the most suitable node based on factors like resource availability, 
+CPU/memory requirements, affinity/anti-affinity rules, and taints/tolerations.
+Once a node is selected, the Scheduler updates the pod specification so the Kubelet on the chosen node can start the pod.
+________________________________________________________________________________________________________________________________
+Controll manager:
+The Controller Manager runs controller processes that maintain the desired state of the cluster.
+It monitors resources like nodes, pods, and replicas, and takes corrective actions—such as creating, updating, or deleting pods—if the current state differs 
+from the desired state.
+_______________________________________________________________________________________________________________________________________
+ETCD:
+etcd is a distributed key-value store that holds the entire cluster state and configuration data.
+It acts as the single source of truth for Kubernetes, allowing the control plane to store and retrieve cluster information reliably.
+_____________________________________________________________________________
+__________________________________________________________________________________________________________
