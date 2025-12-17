@@ -1,0 +1,19 @@
+1.what is k8s?
+Kubernetes (K8s) is an open-source container orchestration platform that manages containerized applications. It automates deployment, scaling,
+and operations by providing features such as auto-scaling, 
+self-healing, rolling updates, and automatic rollbacks, making applications easier to deploy and manage.
+____________________________________________________________________________________________________________________
+what is docekr swarm?
+Docker Swarm is a Docker orchestration platform that manages containerized applications across a cluster,
+providing scaling, load balancing, and high availability.
+__________________________________________________________________________________________-
+what is d/f b/w k8s & docker swarm
+
+Kubernetes (K8s) is an open source container orchestration platform that manages containerized applications. with advanced features like auto-scaling, 
+self-healing, and a rich ecosystem.
+Docker Swarm is Docker’s orchestration tool that is easy to set up and manage but it provides limited features. compared to k8s, 
+Docker swarm lacks in auto scaling & automatic rollbacks which can be performed in the k8s easily
+Kubernetes is the industry standard, while Docker Swarm is mainly used for smaller or simpler applications.
+
+
+
