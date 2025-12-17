@@ -46,7 +46,7 @@ Pods – Smallest deployable unit that runs one or more containers
 ______________________________________________
 API SERVER:
 The API Server is the main component of a Kubernetes cluster. It handles requests from users (e.g., kubectl commands) and other components.
-It processes commands like kubectl get pods or kubectl get nodes, interacts with etcd to retrieve or update the cluster state, and serves as 
+(It processes commands like kubectl get pods or kubectl get nodes-NOT REQ,) interacts with etcd to retrieve or update the cluster state, and serves as 
 the central management point for the cluster.
 _________________________________________________________________________
 Schedular:
