@@ -14,6 +14,14 @@ self-healing, and a rich ecosystem.
 Docker Swarm is Docker’s orchestration tool that is easy to set up and manage but it provides limited features. compared to k8s, 
 Docker swarm lacks in auto scaling & automatic rollbacks which can be performed in the k8s easily
 Kubernetes is the industry standard, while Docker Swarm is mainly used for smaller or simpler applications.
+____________________________________________________________________________________________________
+what is container orchestration ?
+Container orchestration is a process of  automatically  managing the containarized applications across multiple systems.
+
+It handles tasks such as deploying containers, scaling them up or down, load balancing, monitoring, and self-healing when containers fail.
+__________________________________________________________________________________________________________________
+2.k8s architecture?
+
 
 
 
