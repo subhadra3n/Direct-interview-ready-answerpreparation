@@ -51,9 +51,9 @@ the central management point for the cluster.
 _________________________________________________________________________
 Schedular:
 The Scheduler is a master node component that assigns pods to worker nodes.
-It watches for newly created pods that have no assigned node and selects the most suitable node based on factors like resource availability, 
-CPU/memory requirements, affinity/anti-affinity rules, and taints/tolerations.
-Once a node is selected, the Scheduler updates the pod specification so the Kubelet on the chosen node can start the pod.
+It watches for newly created pods that are not yet assigned to a node and selects the most suitable node based on factors
+like resource availability, CPU/memory requirements, affinity/anti-affinity rules, and taints/tolerations.
+Once a node is selected, the Scheduler updates the pod specification so the Kubelet on that node can start the pod.
 ________________________________________________________________________________________________________________________________
 Controll manager:
 The Controller Manager runs controller processes that maintain the desired state of the cluster.
@@ -62,6 +62,6 @@ from the desired state.
 _______________________________________________________________________________________________________________________________________
 ETCD:
 etcd is a distributed key-value store that holds the entire cluster state and configuration data.
-It acts as the single source of truth for Kubernetes, allowing the control plane to store and retrieve cluster information reliably.
+It allows the master node to store and retrieve cluster information reliably.
 _____________________________________________________________________________
 __________________________________________________________________________________________________________
