@@ -64,4 +64,40 @@ ETCD:
 etcd is a distributed key-value store that holds the entire cluster state and configuration data.
 It allows the master node to store and retrieve cluster information reliably.
 _____________________________________________________________________________
+_______________________________________________________________________________________________-
+Worker node componenets:
+
+Kubelet:
+Kubelet is an agent that runs on each worker node.
+It communicates with the master node to ensure that the containers mentioned in Pods are running and healthy on the node.
+Kubelet monitors pod status and reports it back to the API Server.
+________________________________________________________________
+kube proxy:
+Kube-proxy is a network component that runs on each worker node.
+It manages network communication for Pods, including service discovery and load balancing,
+by maintaining network rules and routing traffic to the appropriate container.
+_______________________________________________________________________________
+
+Pods:
+Pod is the smallest deployable unit in Kubernetes and can contain one or more containers that share storage, network, and specifications.
+Pods run on worker nodes, and Kubernetes manages their lifecycle, scaling, and scheduling
+__________________________________________________________
+Container runtime:
+Container Runtime is responsible for running containers inside Pods on a worker node.
+It pulls container images, starts and stops containers, and manages their execution. Common examples include Docker, containerd, and CRI-O.
+
 __________________________________________________________________________________________________________
+_____________________________________________________________________________________________________________
+POD life cycle:
+
+In Kubernetes, a Pod goes through several phases during its lifecycle.
+
+Pending – The Pod is accepted by the cluster but containers haven’t started yet.
+
+Running – The Pod is bound to a node and all containers are running.
+
+Succeeded – All containers have completed successfully and will not restart.
+
+Failed – All containers have terminated, with at least one failing.
+
+Unknown – The Pod state cannot be determined, usually due to node communication issues.
