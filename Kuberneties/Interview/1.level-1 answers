@@ -97,12 +97,12 @@ POD life cycle:
 
 In Kubernetes, a Pod goes through several phases during its lifecycle.
 
-Pending – The Pod is accepted by the cluster but containers haven’t started yet.
+Pending – “Pending means the Pod is created but its containers are not yet running.”
 
-Running – The Pod is bound to a node and all containers are running.
+Running – the Pod is scheduled to a node and its containers are running.”
 
-Succeeded – All containers have completed successfully and will not restart.
+Succeeded – All containers in the Pod have completed successfully and will not be restarted.”
 
-Failed – All containers have terminated, with at least one failing.
+Failed: All containers in the Pod have terminated, and at least one container has exited with a failure.”
 
 Unknown – The Pod state cannot be determined, usually due to node communication issues.
