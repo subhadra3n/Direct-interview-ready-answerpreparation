@@ -1,0 +1,39 @@
+Argo CD – Real-Time Project Explanation
+
+In our project, we used Argo CD as a GitOps-based Continuous Delivery tool to deploy applications to Kubernetes.
+All Kubernetes manifests and Helm charts were stored in a Git repository, which acted as the single source of truth.
+
+Argo CD was configured to continuously monitor the Git repository.
+Whenever a change was made—such as an image tag update, replica change, or configuration update—Argo CD automatically synchronized those changes to the Kubernetes 
+cluster. In critical environments like production, we used manual approval sync, while dev and QA used auto-sync.
+
+We managed multiple environments and multiple Kubernetes clusters (dev, QA, prod) using a single Argo CD instance. Each environment had a separate Argo CD application
+mapped to its respective Git path or branch.
+
+Argo CD provided a web-based UI where we could:
+
+Visually track application health and sync status
+
+Identify configuration drift
+
+Trigger manual syncs and rollbacks
+
+If someone made a manual change directly in the cluster, Argo CD detected the drift and reverted it back to the Git-defined state, ensuring consistency and auditability
+.
+
+For rollbacks, we simply reverted the Git commit, and Argo CD redeployed the previous stable version automatically.
+_______________________________________________________________________________________
+ARGOCD Architecture:
+Argo CD Components:
+
+argocd-server → Web UI + API.
+application-controller → Syncs Git with cluster.
+repo-server → Fetches Git repo, processes Helm/Kustomize.
+Redis → Cache for performance.
+
+__________________________________________How Argo CD Works **
+You define your Kubernetes YAML in Git.
+Argo CD pulls those files.
+It compares Git (desired state) vs Cluster (live state).
+If different → you sync manually or auto-sync.
+If auto-sync + self-heal → it updates automatically.
