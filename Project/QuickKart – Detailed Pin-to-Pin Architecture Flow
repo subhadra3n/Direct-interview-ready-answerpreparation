@@ -143,5 +143,7 @@ Databases are private, not internet-facing.
 
 CI/CD is fully automated with Jenkins + ECR + Helm/Kubectl.
 
+
+
 If you want, I can now draw this as a single-page end-to-end flow diagram showing VPC, Public/Private Subnets, NAT Gateway, ALB, EKS pods, CI/CD, monitoring, and scaling so it’s ready for interviews.
 
