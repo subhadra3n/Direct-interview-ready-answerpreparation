@@ -1,0 +1,67 @@
+1.Thank you for giving me this oppurtunity,
+2. my name is Subhadra, and I'm from Hyderabad. I’m currently working as a DevOps Engineer at Agile Ideas Pvt. Ltd., 
+with overall  4+ years of experience in the DevOps domain.
+
+3.Throughout, I’ve gained extensive knoweledge in streamlining software development and deployment processes, 
+along with automating infrastructure.
+
+4.Currently, I’m working on an QuickKart,eCommerce project that follows a microservices architecture with 55+ microservices. 
+My role involves supporting the catlog and notifications microservices
+
+
+o   I am responsible for monitoring infrastructure health by logging into the system and performing regular health checks.
+o	We use Prometheus to collect the metrics and Grafana to visuallize the application & infra health, integrated with Node Exporter and Blackbox, to track system metrics and application health.
+o	If any alerts or incidents occur, I analyze them and take appropriate action.
+o	& my next task is to -----
+2.	and we also 
+o	manage and maintain CI/CD pipelines, ensuring smooth deployment and delivery processes.
+o	I review and modify pipelines as per project requirements, ensuring reliability and performance.
+o	And For new projects, we write a declarative pipeline script to define and create the required stages."
+3.	multi-Cloud Infrastructure Management (AWS,Azure,GCP):
+          in this AWS, we 
+          
+           i    set up infrastructure for various envs such as dev, testing, staging, and production environments."
+          ii.Based on project requirements, we automate the installation and configuration of pre-required softwares using Ansible. In d/f environments
+         
+& we also work on automation 
+4.	
+As part of automation
+I have created scripts for tasks such as log rotation, cleaning  old backups,  monitoring disk space usage with automated alerts,.
+we also write a Python’s  automation scripts for cloud resource management, API interactions, and integration with infrastructure tools.
+
+
+
+5.In k8s, creating Kubernetes clusters and managing existing clusters to ensure high availability and stability. 
+I monitor pod health, troubleshoot failures, and provide a stable environment for users and clients.
+I also handle microservices deployments using YAML manifests and Helm charts, with ConfigMaps and Secrets for configuration, and use ClusterIP,
+LoadBalancer, and Ingress for service exposure. Autoscaling and rolling updates are configured to achcive high performance and zero downtime.
+
+6.Reporting & Client Updates:
+Additionally, I prepare monthly client reports that provides system reliability, security posture, performance metrics, and backup status.
+Thats all bout my profile thank you
+_________________________________________________________________________________________________________________________________________________
+
+About project
+1. Catalog Service
+
+Manages all product data (add, update, delete, fetch products).
+
+Other services or frontend call it via REST APIs to get product info.
+
+2. Notification Service
+
+Sends emails or push notifications (e.g., new product alerts).
+
+Other services call it synchronously via REST API when a notification is needed.
+_______           ______________
+Frontend / User Request
+         |
+         v
+   Catalog Service (REST API)
+         |
+         v
+Notification Service (REST API)
+______________
+“In QuickKart, our team supports the Catalog and Notification services.
+Catalog Service handles product information, and Notification Service sends alerts to users.
+Both services communicate via REST APIs and are deployed in EKS with Docker containers, CI/CD is managed by Jenkins, and auto-scaling is handled with HPA.”
