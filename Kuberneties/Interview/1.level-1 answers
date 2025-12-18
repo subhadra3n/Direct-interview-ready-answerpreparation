@@ -88,8 +88,9 @@ __________________________________________________________
 Container runtime:
 Container Runtime is responsible for running containers inside Pods on a worker node.
 
-It pulls container images, starts and stops containers, and manages their execution. Common examples include Docker, containerd, and CRI-O.
+It pulls container images, starts and stops containers, and manages their execution. 
 
+Common container runtimes include Docker, containerd, CRI-O,
 __________________________________________________________________________________________________________
 _____________________________________________________________________________________________________________
 POD life cycle:
