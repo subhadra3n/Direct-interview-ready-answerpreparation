@@ -1,0 +1,66 @@
+Project Flow diagram:
+
+Users
+  |
+  v
+Route 53 (DNS)
+  |
+  v
+Application Load Balancer (ALB)
+  |
+  v
+Kubernetes Ingress / API Gateway
+  |
+  v
+------------------------------------------------
+|            Amazon EKS Cluster                |
+|                                              |
+|  Order Service        Billing Service        |
+|  Payment Service      Catalog Service        |
+|  User Service         ... (55+ services)     |
+|                                              |
+|  (Docker Containers running as Pods)         |
+------------------------------------------------
+  |
+  v
+Databases (RDS / DynamoDB – per service)
+_____________________________________________________
+CI/CD Flow (Jenkins)
+
+Developer
+   |
+   v
+Git Repository
+   |
+   v
+Jenkins Pipeline
+   |
+   |-- Build & Test
+   |-- Docker Image Build
+   |-- Push to Amazon ECR
+   |
+   v
+Deploy to EKS (Helm / kubectl)
+
+________________________________________
+Async Communication Flow (Order → Billing)
+Order Service
+      |
+      v
+AWS SQS / SNS
+      |
+      v
+Billing Service
+
+_____________________________________________________
+Monitoring & Logging Flow
+EKS Cluster
+     |
+     v
+CloudWatch Logs & Metrics
+     |
+     v
+Prometheus  →  Grafana
+__________________________________
+“Traffic flows from users through Route 53 and ALB to EKS, where microservices run as containers. Jenkins handles CI/CD, images are stored in ECR, services communicate via SQS, 
+and monitoring is done using CloudWatch and Grafana.”
