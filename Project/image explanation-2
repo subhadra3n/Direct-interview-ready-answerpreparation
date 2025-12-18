@@ -1,0 +1,168 @@
+
+QuickKart – End-to-End Architecture Flow (Step by Step)
+STEP 1: User Access from Internet
+
+A user accesses the application using a browser or mobile app.
+
+The request goes through the Internet to reach AWS infrastructure.
+
+STEP 2: DNS Resolution (Route 53 – Logical Layer)
+
+The application domain (e.g., www.quickkart.com) is resolved using Amazon Route 53.
+
+Route 53 maps the domain name to the Application Load Balancer (ALB).
+
+👉 This ensures high availability and DNS-level routing.
+
+STEP 3: Traffic Enters VPC via Application Load Balancer
+
+The request enters the VPC and hits the ALB deployed in a Public Subnet.
+
+ALB:
+
+Terminates SSL (HTTPS)
+
+Performs health checks
+
+Distributes traffic across backend services
+
+👉 Only ALB is public-facing; backend is fully private.
+
+STEP 4: ALB Routes Traffic to EKS Services
+
+ALB forwards incoming traffic to Kubernetes Ingress / Services running inside the EKS Cluster.
+
+Traffic flows from:
+
+ALB (Public Subnet) → EKS Nodes (Private Subnet)
+
+STEP 5: EKS Cluster Handles the Request
+
+The EKS Cluster runs in Private Subnets.
+
+Inside EKS:
+
+Requests are routed to specific microservices
+
+Each microservice runs as one or more Pods
+
+👉 Microservices architecture ensures scalability and isolation.
+
+STEP 6: Pod-to-Pod Communication
+
+Microservices communicate internally using:
+
+Kubernetes Service Discovery
+
+Cluster networking (CNI)
+
+Example:
+
+Frontend Pod → Cart Service → Order Service → Payment Service
+
+STEP 7: Database Access
+
+Microservices securely connect to Databases (RDS / Aurora / DynamoDB).
+
+Databases are:
+
+In private subnets
+
+Accessible only via security groups
+
+👉 No direct public access to databases.
+
+STEP 8: Outbound Internet Access via NAT Gateway
+
+If Pods need external access (e.g.:
+
+Pulling images
+
+Calling third-party APIs
+
+OS/package updates)
+
+Traffic flows through:
+
+Pod → Private Subnet → NAT Gateway → Internet
+
+
+👉 NAT Gateway allows outbound-only internet access.
+
+STEP 9: CI/CD Pipeline Flow
+
+Developers push code to Code Repository (GitHub / GitLab).
+
+CI/CD tools (Jenkins / GitHub Actions / GitLab CI):
+
+Build Docker images
+
+Run tests & security scans
+
+Push images to Amazon ECR
+
+Deploy updates to EKS
+
+👉 This enables automated and consistent deployments.
+
+STEP 10: Auto Scaling
+
+Horizontal Pod Autoscaler (HPA):
+
+Scales Pods up/down based on CPU or memory
+
+Auto Scaling Group (ASG):
+
+Scales EKS worker nodes automatically
+
+👉 Application scales dynamically based on traffic.
+
+STEP 11: Monitoring & Logging
+
+Prometheus collects metrics from Pods & nodes
+
+Grafana visualizes dashboards
+
+Logs & metrics are shipped to CloudWatch
+
+👉 Ensures real-time observability.
+
+STEP 12: Alerts & Notifications
+
+Alerts are configured using:
+
+CloudWatch Alarms
+
+Prometheus Alertmanager
+
+Notifications sent via:
+
+SNS
+
+PagerDuty
+
+👉 Ops team is instantly notified on failures.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+_____________________________________________________________________________________________________________
+
+One-Line Interview Summary
+
+“User traffic comes through Route 53 to an ALB in a public subnet, which routes requests to microservices running on EKS in private subnets. The application scales 
+automatically using HPA and ASG,
+accesses databases securely, uses NAT Gateway for outbound traffic, and is fully monitored using Prometheus, Grafana, and CloudWatch with CI/CD-driven deployments.”
