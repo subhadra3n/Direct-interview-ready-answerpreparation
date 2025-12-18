@@ -69,13 +69,15 @@ Worker node componenets:
 
 Kubelet:
 Kubelet is an agent that runs on each worker node.
-It communicates with the master node to ensure that the containers mentioned in Pods are running and healthy on the node.
-Kubelet monitors pod status and reports it back to the API Server.
+It communicates with the k8s api server
+Kubelet ensures that the containers defined in Pod specifications are running and healthy on the node
+and it continuously reports pod and node status back to the API Server
+
 ________________________________________________________________
 kube proxy:
 Kube-proxy is a network component that runs on each worker node.
-It manages network communication for Pods, including service discovery and load balancing,
-by maintaining network rules and routing traffic to the appropriate container.
+It manages Pod network communication by implementing Kubernetes Services,enabling service discovery and load balancing.”
+Itfollows network rules and routes traffic to the appropriate Pods.”
 _______________________________________________________________________________
 
 Pods:
