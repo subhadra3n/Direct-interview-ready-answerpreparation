@@ -80,8 +80,9 @@ It manages Pod network communication by implementing Kubernetes Services,enablin
 Itfollows network rules and routes traffic to the appropriate Pods.”
 _______________________________________________________________________________
 
-Pods:
-Pod is the smallest deployable unit in Kubernetes and can contain one or more containers that share storage, network, and specifications.
+Pods:(snc)
+Pod is the smallest deployable unit in Kubernetes and that can hold can contain one or more containers 
+sharing same storage, network, and configuration.
 Pods run on worker nodes, and Kubernetes manages their lifecycle, scaling, and scheduling
 __________________________________________________________
 Container runtime:
