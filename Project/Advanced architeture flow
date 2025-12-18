@@ -1,0 +1,151 @@
+Our application is hosted on AWS within a VPC using public and private subnets.
+User traffic flows through Route 53 and an Application Load Balancer deployed in public subnets.
+The ALB routes traffic to Kubernetes Ingress, which forwards requests to microservices running as pods inside an EKS cluster in private subnets.
+Auto-scaling is handled using HPA based on CPU and memory metrics.
+Pods access the internet through a NAT Gateway for external communication.
+Jenkins handles CI/CD, builds Docker images, pushes them to ECR, and deploys to EKS.
+Monitoring is done using CloudWatch and Prometheus-Grafana.”
+_______________________________________________________________________________________________________
+Whiteboard Drawing Order (Very Important 🖊️)
+
+Draw VPC
+
+Split into Public & Private Subnets
+
+Add ALB + NAT Gateway in Public
+
+Add EKS Cluster + HPA in Private
+
+Add Jenkins → ECR
+
+Add Monitoring + SQS
+
+⭐ Interview Gold Keywords (Always Say These)
+
+Multi-AZ
+
+Private Subnets
+
+HPA Auto Scaling
+
+Rolling deployments
+
+Zero downtime
+
+Secure outbound via NAT Gateway
+
+
+_______________________________________________________________________________
+
+End-to-End Project Architecture Flow Diagram (AWS + Jenkins + EKS)
+
+Users / Internet
+       |
+       v
+   Route 53 (DNS)
+       |
+       v
+Application Load Balancer (Public Subnet)
+       |
+       v
+Kubernetes Ingress Controller
+       |
+       v
+-----------------------------------------------------
+|                Amazon EKS Cluster                 |
+|          (Private Subnets - Multi AZ)             |
+|                                                   |
+|  ------------------      ------------------       |
+|  | Order Service  |      | Billing Service|       |
+|  |  (Pods)        |      |   (Pods)        |       |
+|  ------------------      ------------------       |
+|        ↑    ↑                  ↑    ↑             |
+|        |    |                  |    |             |
+|       HPA  HPA                HPA  HPA            |
+|   (Auto-scale Pods based on CPU/Memory)           |
+|                                                   |
+|  Other Microservices (55+ total)                  |
+-----------------------------------------------------
+       |
+       v
+Databases (RDS / DynamoDB - Private Subnets)
+
+______________________________________________
+
+
+Outbound Internet Access (NAT Gateway Flow)
+
+EKS Pods (Private Subnet)
+        |
+        v
+     NAT Gateway (Public Subnet)
+        |
+        v
+Internet (External APIs, Patching, Downloads)
+____________________________________________________________
+CI/CD Flow (Jenkins – End to End)
+Developer
+   |
+   v
+Git Repository
+   |
+   v
+Jenkins (EC2 / Private Subnet)
+   |
+   |-- Build & Test
+   |-- Docker Image Build
+   |-- Push Image to Amazon ECR
+   |
+   v
+Deploy to EKS (Helm / kubectl)
+______________________________________________
+Container Image Flow
+Jenkins
+   |
+   v
+Amazon ECR
+   |
+   v
+EKS Worker Nodes pull images securely (IAM IRSA)
+
+_______________________________________
+Service Communication Flow
+Synchronous
+
+Order Service
+      |
+      v
+AWS SQS / SNS
+      |
+      v
+Billing Service
+
+________________________________________
+Asynchronous
+
+Order Service
+      |
+      v
+AWS SQS / SNS
+      |
+      v
+Billing Service
+
+_________________________________
+Monitoring & Logging Flow
+EKS Pods
+   |
+   v
+CloudWatch Logs
+   |
+   v
+Prometheus ----> Grafana
+___________________________________
+Security & Access
+IAM Roles (IRSA)
+Secrets Manager / Parameter Store
+RBAC
+TLS / HTTPS
+Security Groups & NACLs
+
+________________________________
