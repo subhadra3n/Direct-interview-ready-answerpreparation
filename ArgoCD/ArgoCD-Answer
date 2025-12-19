@@ -7,21 +7,24 @@ All Kubernetes manifests and Helm charts were stored in a Git repository, which 
 3.Whenever any changes occurs such as an image tag update, replica change, or configuration update—Argo CD automatically synchronized those changes to the Kubernetes 
 cluster. In critical environments like production, we used manual approval sync, while dev and QA used auto-sync.
 
-4.We managed multiple environments and multiple Kubernetes clusters (dev, QA, prod) using a single Argo CD instance. Each environment had a separate Argo CD application
-mapped to its respective Git path or branch.
+4. We used one Argo CD to manage multiple Kubernetes environments like dev, QA, and production.
 
-5.Argo CD provided a web-based UI where we could:
+Each environment had its own Argo CD application, and it was connected to a specific Git branch or folder.
 
-Visually track application health and sync status
+Argo CD gave us a web UI where we could easily:
 
-Identify configuration drift
+See whether the application was healthy or not
 
-Trigger manual syncs and rollbacks
+Check if the cluster and Git were in sync
 
-If someone made a manual change directly in the cluster, Argo CD detected the drift and reverted it back to the Git-defined state, ensuring consistency and auditability
-.
+Manually sync changes when needed
 
-For rollbacks, we simply reverted the Git commit, and Argo CD redeployed the previous stable version automatically.
+Rollback to a previous version if something went wrong
+
+If someone changed anything directly in the Kubernetes cluster, Argo CD automatically detected the difference and fixed it by restoring the Git version.
+This helped us keep everything consistent and controlled.
+
+For rollbacks, we just reverted the change in Git, and Argo CD automatically deployed the earlier stable version.
 _______________________________________________________________________________________
 ARGOCD Architecture:
 Argo CD Components:
