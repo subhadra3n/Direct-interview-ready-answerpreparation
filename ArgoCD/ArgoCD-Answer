@@ -1,16 +1,16 @@
 Argo CD – Real-Time Project Explanation
 
-In our project, we used Argo CD as a GitOps-based Continuous Delivery tool to deploy applications to Kubernetes.
+1.In our project, we used Argo CD as a GitOps-based Continuous Delivery tool to deploy applications to Kubernetes.
 All Kubernetes manifests and Helm charts were stored in a Git repository, which acted as the single source of truth.
 
-Argo CD was configured to continuously monitor the Git repository.
-Whenever a change was made—such as an image tag update, replica change, or configuration update—Argo CD automatically synchronized those changes to the Kubernetes 
+2.Argo CD was configured to continuously monitor the Git repository.
+3.Whenever any changes occurs such as an image tag update, replica change, or configuration update—Argo CD automatically synchronized those changes to the Kubernetes 
 cluster. In critical environments like production, we used manual approval sync, while dev and QA used auto-sync.
 
-We managed multiple environments and multiple Kubernetes clusters (dev, QA, prod) using a single Argo CD instance. Each environment had a separate Argo CD application
+4.We managed multiple environments and multiple Kubernetes clusters (dev, QA, prod) using a single Argo CD instance. Each environment had a separate Argo CD application
 mapped to its respective Git path or branch.
 
-Argo CD provided a web-based UI where we could:
+5.Argo CD provided a web-based UI where we could:
 
 Visually track application health and sync status
 
