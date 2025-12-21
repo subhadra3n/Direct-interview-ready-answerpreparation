@@ -6,6 +6,12 @@ kubectl api-resources
      kubectl get pods -n new------------it will display pods
      kubectl describe pod nginx-pod -n new------if pods in pending state/failed-------run this command
 
+    kubectl get pods -o wide -n new --------get node ip address.
+  
+    kubectl exec -it my-pod -n dev -- /bin/sh
+
+    
+
     ________________________________________________________
     these 5commands are vvimp
 _______________________________
