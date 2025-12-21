@@ -1,0 +1,9 @@
+     vi nginx-pod.yaml---------creating file--------add pod yaml file
+     kubectl apply -f nginx-pod.yaml---------run pod yaml file
+     kubectl create ns new ------------creating ns
+     kubectl get pods -n new------------it will display pods
+    kubectl describe pod nginx-pod -n new------if pods in pending state/failed-------run this command
+
+    ________________________________________________________
+    these 5commands are vvimp
+    
