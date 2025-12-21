@@ -8,4 +8,8 @@ kubectl api-resources
 
     ________________________________________________________
     these 5commands are vvimp
+_______________________________
+deleting pod:
+kubectl delete pods --all -n new
+
     
