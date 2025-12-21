@@ -1,0 +1,37 @@
+Launc ec2 instance ---Amazon linx
+name:eks_bootstarp_server
+8gb
+__________________________________
+aws --version
+aws-cli/1.18.147 Python/2.7.18 Linux/5.10.178-162.673.amzn2.x86_64 botocore/1.18.6
+_________________________
+
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+_______________________________________
+aws --version
+aws-cli/2.11.21 Python/3.11.3 Linux/5.10.178-162.673.amzn2.x86_64 exe/x86_64.amzn.2 prompt/off
+______________________________________________
+curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.26.4/2023-05-11/bin/linux/amd64/kubectl
+
+____________________________________________________________
+chmod+x kubectl
+mv kubectl /usr/local/bin
+kubectl version
+____________________________________
+
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+sudo mv /tmp/eksctl /usr/local/bin
+eksctl version
+______________________________________________________
+add roles
+____________________
+attach roles
+_____________________
+eksctl create cluster --name my-demo-cluster \
+   --region ap-south-1 \
+--node-type t3.micro \
+--nodes-min 2 \
+--nodes-max 3
