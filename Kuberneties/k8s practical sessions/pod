@@ -12,4 +12,8 @@ _______________________________
 deleting pod:
 kubectl delete pods --all -n new
 
+delete namespcae:
+kubectl delete namespace new
+
+
     
