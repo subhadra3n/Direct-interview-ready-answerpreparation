@@ -30,8 +30,10 @@ add roles
 ____________________
 attach roles
 _____________________
-eksctl create cluster --name my-demo-cluster \
-   --region ap-south-1 \
---node-type t3.micro \
---nodes-min 2 \
---nodes-max 3
+eksctl create cluster \
+  --name my-demo-cluster \
+  --region ap-south-1 \
+  --node-type t3.small \
+  --nodes-min 2 \
+  --nodes-max 3
+
