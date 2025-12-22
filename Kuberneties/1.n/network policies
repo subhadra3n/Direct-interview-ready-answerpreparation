@@ -25,7 +25,9 @@ metadata:
   name: test-network-policy
   namespace: prod
 spec:
-  podSelector:
+  podSelector:                             #spec.podSelector → Target Pods (Mandatory)  This defines which pods the policy is applied to
+                                                                                              🔹 Without this, the policy has no target
+                                                                                               🔹 This is always required
     matchLabels:
       app: springapp
   policyTypes:
@@ -40,7 +42,7 @@ spec:
     - namespaceSelector:
         matchLabels:
           project: myproject
-    - podSelector:
+    - podSelector:                         #ingress.from.podSelector / egress.to.podSelector--------------which pods are allowed to send or receive traffic.
         matchLabels:
           role: frontend
     ports:
