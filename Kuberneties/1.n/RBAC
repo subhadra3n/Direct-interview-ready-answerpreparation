@@ -1,0 +1,14 @@
+Role 
+Role binding
+Cluster role
+Cluster role binding
+_____________________________________________________________
+Authentication:
+user login/credentials
+
+
+Authorization:
+
+Permission check
+Policies / Roles
+Access control
