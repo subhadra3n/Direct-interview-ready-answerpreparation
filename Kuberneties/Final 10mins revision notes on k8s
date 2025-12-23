@@ -303,6 +303,50 @@ kubectl get events
 ```
 
 ---
+##22.nodes-------cluster autoscaling:
+EKS Cluster Auto scaler
+======================
+definition:
+Even though we define CPU and memory requests and limits for pods, Kubernetes can schedule a pod only if there is enough capacity on existing worker nodes.
+If all nodes are full, the pod goes into a pending state.
+Cluster Autoscaler solves this by automatically adding new worker nodes so that pending pods can be scheduled.
+Similarly, when nodes become underutilized, it removes them to optimize cost.”
+
+The Cluster Autoscaler in Amazon EKS (Elastic Kubernetes Service) automatically adjusts the size of your EKS cluster based on the demands of your workloads. 
+It helps manage the scaling of worker nodes in your cluster, adding nodes when there are pending pods that cannot be scheduled due to insufficient resources and 
+removing nodes when they are underutilized.
+
+practical way:
+“In our EKS production cluster, we enabled Cluster Autoscaler with managed node groups.
+During peak traffic, new pods became pending, and Cluster Autoscaler automatically added EC2 worker nodes.
+After traffic reduced, unused nodes were terminated to reduce AWS cost.”
+
+“Cluster Autoscaler watches pending pods and talks to AWS ASG to scale nodes.”
+___________________________________________________________________
+
+
+
+
+Cluster Autoscaler scales ONLY IF:
+
+Pods are Pending
+
+Reason is Insufficient CPU/Memory
+
+Pod can run on a new node
+
+🚫 What Cluster Autoscaler Does NOT Do
+
+❌ Does not scale pods (HPA does)
+
+❌ Does not work without ASG / Managed Node Group
+
+❌ Does not scale instantly (takes a few minutes)
+
+
+
+
+
 
 ## FINAL INTERVIEW ONE-LINERS
 
