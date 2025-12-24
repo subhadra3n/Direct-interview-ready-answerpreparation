@@ -324,7 +324,24 @@ After traffic reduced, unused nodes were terminated to reduce AWS cost.”
 “Cluster Autoscaler watches pending pods and talks to AWS ASG to scale nodes.”
 ___________________________________________________________________
 
+___________________________________________________________________
+“When we create an EKS cluster or node group, min and max values are configured only as boundaries for scaling.
+Kubernetes itself does not increase or decrease nodes based on pod demand.
+Without Cluster Autoscaler, the cluster will always stay at the desired node count, and pods will remain in a pending state if resources are insufficient.
+Cluster Autoscaler is required to actively monitor pending pods and instruct the Auto Scaling Group to add or remove nodes within the defined min and max limits.”
 
+Min = 2, Max = 4
+Running nodes = 2
+
+Pods increase 📈
+↓
+Nodes full ❌
+↓
+Pods Pending ⏳
+↓
+No Cluster Autoscaler ❌
+↓
+No new nodes added
 
 
 Cluster Autoscaler scales ONLY IF:
@@ -342,7 +359,22 @@ Pod can run on a new node
 ❌ Does not work without ASG / Managed Node Group
 
 ❌ Does not scale instantly (takes a few minutes)
+___________________
+what if max limit is reached?
+we continuously monitor node, pod, and cluster-level
+metrics to identify capacity issues and decide when to increase the maximum node limit or apply alternate scaling strategies.”
 
+
+“While continuously monitoring the cluster, if traffic increases and the max node limit is reached, we proactively increase the maximum node limit so Cluster Autoscaler can scale further.
+Additionally, we handle extreme spikes using alternate methods like HPA tuning, pod priority & preemption, resource optimization, and larger instance types to ensure critical workloads
+are scheduled.”
+eksctl scale nodegroup \
+  --cluster my-cluster \
+  --name my-nodegroup \
+  --nodes-min 2 \
+  --nodes-max 8
+
+____________________________________________________________________________________________________________________________________________
 
 
 
