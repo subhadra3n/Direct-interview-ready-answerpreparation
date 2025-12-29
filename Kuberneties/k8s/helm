@@ -20,3 +20,48 @@ upgraded the release on each commit. This gave us faster, consistent, and rollba
 and secure secrets management.
 
 So overall, Helm reduces complexity, enforces consistency, improves scalability, and makes Kubernetes deployments production-ready.”
+
+______________________________________________________________________________________________________________________________________________________
+A typical Helm chart structure looks like this:
+
+jio-stg-om-chart/
+  ├── Chart.yaml        # Metadata about the chart
+  ├── values.yaml       # Default configuration values for templates
+  ├── charts/           # Subcharts (if any)
+  └── templates/        # Template files for Kubernetes resources
+      ├── deployment.yaml   
+      ├── service.yaml
+      └── pv.yaml
+_____________________________________________________________________________________
+ Values.yaml 
+---------------
+
+You can customize deployments by creating your own values.yaml file, overriding default values in the chart:
+
+stgvalues.yaml
+----
+replicaCount: 2
+image:
+  repository: my-repo/my-app
+  tag: "1.0.0"
+service:
+  type: LoadBalancer
+  port: 80
+request:
+ cpu: 1
+ memory: 12Gi
+
+prod-values.yaml
+-----
+
+replicaCount: 5
+image:
+  repository: my-repo/my-app-prod
+  tag: "1.1.0"
+service:
+  type: LoadBalancer
+  port: 80
+request:
+ cpu: 8
+ memory: 128Gi
+
