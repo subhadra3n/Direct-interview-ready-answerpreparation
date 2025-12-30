@@ -1,0 +1,63 @@
+1. "What is the difference between helm upgrade --install and just helm install?"
+The Intent: They want to know if you understand automation and CI/CD pipelines.
+
+The Answer: "In a CI/CD pipeline, we usually use helm upgrade --install. This command is idempotent: if the release doesn't exist, it installs it; 
+  if it already exists, it upgrades it. This prevents the pipeline from failing if the app is already there."
+
+2. "If a Helm deployment fails, does it automatically roll back?"
+The Intent: This is a trick question to see if you’ve actually used it in production.
+
+The Answer: "By default, no. If a deployment fails, Helm marks the release as FAILED. To make it roll back automatically, you have to use the --atomic 
+  flag or the --cleanup-on-fail flag during the upgrade command. Otherwise, you have to trigger a helm rollback manually."
+
+3. "Where does Helm store its release information?"
+The Intent: They are checking if you understand the Helm 3 architecture (which no longer uses a Tiller database).
+
+The Answer: "In Helm 3, release information is stored as Secrets (or optionally ConfigMaps) directly within the Kubernetes cluster in the same namespace as the 
+  release.
+  This is why we don't need a separate database or server-side component like Tiller anymore."
+
+Bonus: A "Real-World" Scenario Question
+"How do you manage secrets (like database passwords) in a Helm Chart? Do you put them in values.yaml?"
+
+The Expert Answer: "No, putting plain-text secrets in values.yaml is a security risk since that file is usually committed to Git. Instead, I use tools like
+  Helm Secrets
+  (with SOPS), HashiCorp Vault, or I pass the secrets as environment variables during the deployment using --set from a secure CI/CD runner."
+
+One last thing to prepare:
+Would you like me to explain the Dry Run and Debug commands? These are the "lifesavers" you mention when an interviewer asks, "How do you troubleshoot a
+  chart that won't 
+  install?"
+
+  1. The "Pre-flight" Check: Dry Run
+Before you actually send anything to the cluster, you want to see if the YAML generates correctly.
+
+The Command: helm install --dry-run --debug [release-name] [chart]
+
+What it does: It renders the templates locally and prints out the resulting YAML without actually creating any resources in Kubernetes.
+
+Why mention it: It shows you are careful. You use this to check for syntax errors or to see if your values.yaml are being injected into the right places.
+
+2. The "Post-mortem" Check: Helm Get
+If a deployment happened but the configuration looks wrong, you need to see what Helm thinks it deployed.
+
+The Command: helm get manifest [release-name]
+
+What it does: It pulls the actual rendered YAML that is currently running in the cluster.
+
+Why mention it: Sometimes values.yaml and the template logic clash. This command helps you see the "final truth" of what was sent to the Kubernetes API.
+
+Putting it all together: The Troubleshooting Workflow
+If I were in your shoes, I’d summarize the troubleshooting process like this:
+
+"When a chart isn't behaving as expected, I follow a three-step process:
+
+First, I use helm lint to check for any formatting or best-practice violations.
+
+Next, I run a --dry-run --debug install. This lets me see the rendered YAML without affecting the cluster.
+
+If it's already deployed, I use helm get manifest to verify exactly what was sent to the cluster and compare it against my expectations."
+
+Final "Gold Star" Tip: helm list
+Always remember that helm list -A shows you all releases across all namespaces. It’s the first command most engineers run when they jump onto a new cluster to 
+see what’s actually running.
