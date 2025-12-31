@@ -1,0 +1,41 @@
+🟩 SERVICE-RELATED COMMANDS
+List services
+kubectl get svc
+kubectl get svc -A
+kubectl get svc -o wide
+
+Service details
+kubectl describe svc <service-name>
+
+Get service YAML
+kubectl get svc <service-name> -o yaml
+
+Create / delete service
+kubectl apply -f service.yaml
+kubectl delete svc <service-name>
+
+Port-forward service
+kubectl port-forward svc/<service-name> 8080:8080
+
+🟨 POD ↔ SERVICE TROUBLESHOOTING COMMANDS (VERY IMPORTANT)
+Check pod labels
+kubectl get pods --show-labels
+
+Check service selectors
+kubectl describe svc <service-name>
+
+Verify endpoints (KEY command 🔑)
+kubectl get endpoints <service-name>
+
+
+✔ If endpoints exist → service is correctly connected to pods
+❌ No endpoints → label mismatch
+
+🟥 NODEPORT / ACCESS CHECKS
+Get Node IP
+kubectl get nodes -o wide
+
+Access app
+http://<Node-IP>:<NodePort>
+
+⭐ Interview-Ready Summary (2 lines)
