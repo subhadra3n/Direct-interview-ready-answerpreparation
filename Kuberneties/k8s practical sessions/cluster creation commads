@@ -1,3 +1,10 @@
+
+security groups:
+port:30080
+8080
+
+
+__-------------------------------------------
 Launc ec2 instance ---Amazon linx
 t3.micro
 name:eks_bootstarp_server
