@@ -38,4 +38,7 @@ eksctl create cluster \
   --node-type t3.small \
   --nodes-min 2 \
   --nodes-max 3
+___________________________________
 
+for deleting the cluster:
+eksctl delete cluster my-demo-cluster --region ap-south-1
