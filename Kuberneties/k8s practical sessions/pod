@@ -9,6 +9,8 @@ kubectl api-resources
     kubectl get pods -o wide -n new --------get node ip address.
   
     kubectl exec -it my-pod -n dev -- /bin/sh
+_____________________________________
+kubectl get svc
 
     
 
