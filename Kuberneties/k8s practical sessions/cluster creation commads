@@ -19,7 +19,7 @@ ______________________________________________
 curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.26.4/2023-05-11/bin/linux/amd64/kubectl
 
 ____________________________________________________________
-chmod+x kubectl
+chmod +x kubectl
 sudo mv kubectl /usr/local/bin
 kubectl version
 ____________________________________
