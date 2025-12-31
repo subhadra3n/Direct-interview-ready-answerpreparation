@@ -1,4 +1,5 @@
 Launc ec2 instance ---Amazon linx
+t3.micro
 name:eks_bootstarp_server
 8gb
 __________________________________
