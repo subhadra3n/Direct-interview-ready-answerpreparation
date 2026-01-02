@@ -1,0 +1,49 @@
+Pod:
+Pod is a smallest deployable unit---that holds 1 or multiple containers
+
+charaterstics:
+Pod IP can change
+
+Containers restart inside the same Pod
+
+If Pod is rescheduled → new node, new IP
+__________________________
+pod-----inside-----container
+we never know on which node container is placed--but we know on which node pod is placed-----Containers are NOT scheduled individually.
+
+Scheduler → schedules Pod → Pod runs on a Node
+Kubelet (on that node) → starts ALL containers inside the Pod
+If you know the Pod’s node, you automatically know where all its containers are running
+______________________________________________________________
+Networking Behavior of a Pod
+
+A Pod gets ONE unique IP address.
+
+All containers inside the Pod share:
+
+Same Pod IP
+
+Same network namespace
+
+Same port space
+________________________________________________________________--
+Scaling Behavior
+
+Pods cannot scale containers independently.
+
+Scaling happens at Pod level:
+
+Deployment/ReplicaSet creates more Pods
+
+Each Pod has its own containers
+__________________________----
+
+Failure Behavior
+
+If one container fails:
+
+Kubernetes may restart only that container
+
+If Pod fails or node fails:
+
+Entire Pod is recreated
