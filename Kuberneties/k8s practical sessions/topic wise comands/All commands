@@ -1,0 +1,43 @@
+kubectl api-resources
+kubectl apply
+kubectl autoscale
+kubectl annotate
+
+kubectl create
+kubectl config
+kubectl cluster-info
+kubectl cp
+
+kubectl describe
+kubectl delete
+
+kubectl edit
+kubectl expose
+kubectl exec
+
+kubectl get
+
+kubectl logs
+
+kubectl port-forward
+kubectl rollout
+kubectl run
+
+kubectl scale
+kubectl top
+kubectl
+___________________________________________
+kubectl get
+kubectl get pods -o wide
+kubectl get svc
+kubectl get nodes
+
+kubectl explain pod
+kubectl diff -f file.yaml
+
+kubectl cordon <node>
+kubectl drain <node>
+kubectl uncordon <node>
+
+kubectl auth can-i create pods
+kubectl api-versions
