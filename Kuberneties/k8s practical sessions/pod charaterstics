@@ -1,4 +1,30 @@
-User creates Pod YAML
+NAME    READY   STATUS    RESTARTS   AGE   IP               NODE                                           NOMINATED NODE   READINESS GATES
+nginx   1/1     Running   0          29m   192.168.55.247   ip-192-168-57-70.ap-south-1.compute.internal   <none>           <none>
+
+___________________----
+
+
+IP → 192.168.55.247
+
+✔ Pod IP
+
+Assigned by CNI (Calico / Flannel / Weave)
+
+Used for Pod-to-Pod communication
+
+Changes when pod is recreated
+
+🟢 NODE → ip-192-168-57-70...
+
+✔ Node name
+
+This is the EC2 instance
+
+The pod is running on this node
+
+Node has its own private IP
+
+___________________----User creates Pod YAML
 ↓
 kubectl apply
 ↓
