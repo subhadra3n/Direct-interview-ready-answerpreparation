@@ -1,3 +1,17 @@
+User creates Pod YAML
+↓
+kubectl apply
+↓
+Scheduler selects a node
+↓
+Pod is placed on that node
+↓
+All containers start together
+↓
+Pod gets ONE IP address
+↓
+Containers communicate via localhost
+________________________________________________________________________
 Pod:
 Pod is a smallest deployable unit---that holds 1 or multiple containers
 
