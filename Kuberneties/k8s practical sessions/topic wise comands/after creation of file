@@ -1,0 +1,15 @@
+Hit these commands:
+
+   1. kubectl create ns prod
+    2.vi svc.yaml
+     3.kubectl apply -f svc.yaml -n prod
+     4.kubectl get pod -n prod
+     5.kubectl get svc -n prod
+     6.kubectl get pod -n prod -o wide
+    7.kubectl get pod -n prod --show-labels
+     
+     8.kubectl get svc -n prod --show-labels
+     9.kubectl describe svc javawebappsvc -n prod
+     10.kubectl exec -it javawebapp -n prod -- /bin/bash
+     
+  11.  kubectl get nodes
