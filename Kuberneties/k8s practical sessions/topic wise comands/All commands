@@ -41,3 +41,6 @@ kubectl uncordon <node>
 
 kubectl auth can-i create pods
 kubectl api-versions
+________________________________________
+kubectl describe pod-name -n prod -- /bin/bash
+check -ip addres----------hostname -I
