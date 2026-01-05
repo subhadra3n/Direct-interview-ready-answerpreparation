@@ -13,3 +13,5 @@ Hit these commands:
      10.kubectl exec -it javawebapp -n prod -- /bin/bash
      
   11.  kubectl get nodes
+
+#when labels & selectors matched from pod to particular service-------then Endpoints created -------with that we  can access the application in internet
