@@ -20,8 +20,10 @@ P1 is handled immediately with mitigation, failover, or rollback, P2 is investig
 __________________________________________________________________________________________________
 
 what type of issue we grt in prod & how we resolve them?
-“In production, we typically get alerts for availability, latency, resource usage, application errors, and infrastructure issues. When an L2 alert occurs, I first acknowledge it in PagerDuty, 
-validate the impact by checking metrics and logs, execute mitigation steps such as restarting pods, scaling resources, or rolling back deployments, and finally perform a root cause analysis to prevent recurrence.”
+“In production, we typically get alerts for availability, latency, resource usage, application errors, and infrastructure issues. When an L2 alert occurs,
+I first acknowledge it in PagerDuty, 
+validate the impact by checking metrics and logs, execute mitigation steps such as restarting pods, scaling resources, or rolling back deployments, 
+and finally perform a root cause analysis to prevent recurrence.”
 ___________________________________________________________________________________
 
 | Type of Alert              | Example                                 | Cause / Notes                              |
