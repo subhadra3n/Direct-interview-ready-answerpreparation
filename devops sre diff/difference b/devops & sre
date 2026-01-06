@@ -12,6 +12,12 @@ tasks:
 resolve production incident tickets, perform root cause analysis, Optimize auto-scaling and resource usage,
 support deployments, and continuously improve reliability through automating repetitive tasks .”
 _________________________________________________________________________
+“In Kubernetes/AWS production, P1 incidents are critical outages affecting all users, like API gateway down or all pods crashing. P2 incidents are partial 
+degradations affecting some users, such as high CPU on nodes or slow APIs. P3 incidents are minor, low-impact issues like non-critical cron job failures. 
+P1 is handled immediately with mitigation, failover, or rollback, P2 is investigated and mitigated, and P3 is scheduled for resolution and documented.”
+
+
+__________________________________________________________________________________________________
 
 what type of issue we grt in prod & how we resolve them?
 “In production, we typically get alerts for availability, latency, resource usage, application errors, and infrastructure issues. When an L2 alert occurs, I first acknowledge it in PagerDuty, 
