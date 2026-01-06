@@ -18,3 +18,120 @@ what type of issue we grt in prod & how we resolve them?
 validate the impact by checking metrics and logs, execute mitigation steps such as restarting pods, scaling resources, or rolling back deployments, and finally perform a root cause analysis to prevent recurrence.”
 ___________________________________________________________________________________
 
+| Type of Alert              | Example                                 | Cause / Notes                              |
+| -------------------------- | --------------------------------------- | ------------------------------------------ |
+| **Availability / Uptime**  | Service down, 5xx errors                | Pod crash, server down, network issue      |
+| **Performance / Latency**  | API latency > 500ms                     | Slow database queries, overloaded pods     |
+| **Resource Utilization**   | CPU > 80%, Memory > 75%, Disk full      | Need scaling, memory leak, runaway process |
+| **Application Errors**     | High error rate, exceptions             | Code bug, misconfiguration                 |
+| **Infrastructure / Node**  | Node unreachable, disk I/O high         | Node failure, network issue                |
+| **Security / Compliance**  | Unauthorized access attempts            | Failed login, misconfigured firewall       |
+| **Custom Business Alerts** | Orders failing, payment gateway timeout | Application-level logic failure            |
+__________________________________________________________________________________
+Perform voice pipeline checks (SIP/STT/TTS/WebSockets) and ensure call-flow reliability:
+How You Ensure Call-Flow Reliability
+Step 1: Health Checks
+
+Verify SIP servers are reachable, registered, and responding
+
+Test STT/TTS services for latency and accuracy
+
+Ensure WebSocket connections are stable
+
+Step 2: Automated Testing
+
+Run synthetic calls (real-time scripts) to simulate call flows
+
+Validate audio quality, transcription accuracy, and TTS playback
+
+Step 3: Monitoring & Alerts
+
+Monitor key metrics:
+
+Call success/failure rate
+
+Latency (end-to-end)
+
+Audio quality (jitter, packet loss)
+
+WebSocket disconnects
+
+Tools: Grafana, Prometheus, CloudWatch, ELK
+
+Step 4: Incident Handling
+
+On alert (failed call or pipeline error):
+
+Check SIP registration logs
+
+Test STT/TTS services individually
+
+Check WebSocket connectivity
+
+Restart service pods or scale resources if needed
+
+Step 5: Continuous Improvement
+
+Optimize STT/TTS models and service resources
+
+Automate health-check scripts
+
+Tune SIP server configs for reliability
+
+Ensure high availability with failover setup
+
+3️⃣ Example Interview Answer
+
+“I perform end-to-end voice pipeline checks, including SIP, STT, TTS, and WebSocket services, to ensure call-flow reliability. I monitor key metrics such as call success
+rates, latency, and audio quality, respond to pipeline alerts by investigating logs and restarting or scaling services if needed, and continuously improve the system through automation and failover mechanisms.”
+________________________________________________________
+Update runbooks, documentation, and post-incident reports
+| Item                                 | Purpose                                                                                                          |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| **Runbooks**                         | Step-by-step guides for handling known incidents or tasks (helps on-call engineers resolve issues quickly)       |
+| **Documentation**                    | System designs, configurations, deployment steps, or SOPs (helps teams onboard and maintain systems efficiently) |
+| **Post-Incident Reports (PIR/RCAs)** | Analyze incidents, identify root causes, and recommend preventive actions to avoid recurrence                    |
+___________________
+“I update runbooks, documentation, and post-incident reports to ensure team knowledge is current. After incidents, I document the root cause, mitigation steps,
+and preventive actions, update operational guides accordingly, and share them with the team to improve incident response and system reliability.”
+______________________________________________________________________________
+Ensure compliance with SOC2 and HIPAA standards, following secure handling of PHI data:
+
+| Term      | Explanation                                                                                                               |
+| --------- | ------------------------------------------------------------------------------------------------------------------------- |
+| **SOC 2** | Service Organization Control standard for data security, availability, processing integrity, confidentiality, and privacy |
+| **HIPAA** | Health Insurance Portability and Accountability Act — ensures protection of PHI (Protected Health Information)            |
+| **PHI**   | Sensitive personal health information that must be securely stored, transmitted, and accessed                             |
+Goal: Protect sensitive data, comply with regulations, and prevent breaches.
+How It’s Achieved (Step-by-Step)
+
+Access Control
+
+Enforce least-privilege access via IAM, RBAC
+
+Audit all access to PHI data
+
+Encryption
+
+Encrypt data at rest (S3, databases) and in transit (TLS/HTTPS, VPNs)
+
+Monitoring & Logging
+
+Log all access to sensitive data
+
+Monitor for suspicious activity
+
+Process & Policy
+
+Follow documented procedures for handling PHI
+
+Conduct regular audits and reviews for SOC2/HIPAA compliance
+
+Incident Response
+
+Detect and respond to security incidents quickly
+
+Report breaches according to regulatory requirements
+______
+“I ensure compliance with SOC2 and HIPAA by enforcing secure handling of PHI data, including least-privilege access, encryption of data at rest and in transit,
+monitoring all access, and following documented procedures. I also participate in audits and ensure that incident response aligns with regulatory requirements.”
