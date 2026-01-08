@@ -1,0 +1,19 @@
+1."In our project, we use Ansible for configuration management and automation tasks like installing packages, managing users, updating configurations, 
+and restarting services across multiple servers at the same time.
+
+2. Ansible is agentless — so we don’t need to install any extra software on the target machines. It only requires SSH access and Python, 
+which makes it lightweight and easy to use.
+3.We always ensure that our playbooks are idempotent,so  they can be executed multiple times without causing unwanted changes
+if the system is already in the desired state.
+
+4.For security, we use Ansible valut to store sensitive data and encrypt them during deployments
+5.Regarding inventory management, we use both static and dynamic inventories:
+
+Static Inventory for lower environments (like dev/test), where we manually maintain list of  ips or hostnames  in a file like hosts.ini 
+
+Dynamic Inventory in production, where we integrate with AWS inventory plugins or inventory scripts to automatically fetch EC2 instances 
+
+dynamically using tags and instance states.
+
+ Ansible plays very important role for configuration management,it  helped us to reduce manual effort, speeds up deployments, and 
+improve consistency across environments
