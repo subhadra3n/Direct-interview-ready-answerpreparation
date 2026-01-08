@@ -1,3 +1,8 @@
+Structure to create LB-------
+1.create Target group------add listners then it route traffic to instances
+
+
+________________________________________________________________________________________
 What is LB?
 A Load Balancer in AWS is a service that automatically distributes incoming application traffic across multiple targets 
 (like EC2 instances, containers, or IPs) across one or more Availability Zones. It helps achieve high availability, fault tolerance, and horizontal scalability.
