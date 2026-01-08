@@ -1,0 +1,29 @@
+Argo CD:
+our project, we used Argo CD  to Continously deploy applications to Kubernetes.
+All Kubernetes manifests and Helm charts were stored in Git, (which acted as the single source of truth.)
+
+2.Argo CD was configured to continuously monitor the Git repository.
+
+3..We used a single Argo CD instance to manage multiple Kubernetes environments like dev, QA, and production.
+Each environment had its own Argo CD application, connected to a specific Git branch or folder.
+
+
+
+4Whenever there were changes such as image tag updates, replica count changes, or configuration updates,
+Argo CD automatically synced those changes to the Kubernetes cluster.
+5.If someone made manual changes directly in the Kubernetes cluster, Argo CD detected the drift and reverted it back to the Git-defined state,
+ensuring consistency and control.
+
+
+.Argo CD provided a web-based UI where we could:
+
+i.Track application health
+
+ii.Check whether Git and the cluster were in sync
+
+iii.Manually trigger syncs when required
+
+iv.Rollback to a previous version if something went wrong
+
+
+6.For rollbacks, we simply reverted the Git commit, and Argo CD automatically redeployed the previous stable version.
