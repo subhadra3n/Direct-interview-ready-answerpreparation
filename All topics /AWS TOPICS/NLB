@@ -1,6 +1,6 @@
 Structure to create LB-------
 1.create Target group------add listners then it route traffic to instances
-
+2.Create LB and attach the Target groups in it
 
 ________________________________________________________________________________________
 What is LB?
