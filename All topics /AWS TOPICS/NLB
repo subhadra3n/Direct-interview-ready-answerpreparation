@@ -1,0 +1,45 @@
+What is LB?
+A Load Balancer in AWS is a service that automatically distributes incoming application traffic across multiple targets 
+(like EC2 instances, containers, or IPs) across one or more Availability Zones. It helps achieve high availability, fault tolerance, and horizontal scalability.
+It also improves performance and reliability by evenly distributing traffic and automatically handling failures.
+__________________________________
+Types of AWS Load Balancers
+Application Load Balancer (ALB)
+
+Works at Layer 7 (HTTP/HTTPS)
+Supports host-based and path-based routing
+Good for web apps, REST APIs, microservices
+Network Load Balancer (NLB)
+
+Works at Layer 4 (TCP)
+Very high performance, low latency
+Suitable for real-time apps, gaming, VoIP
+____________________________
+scaling ec2 instances--------
+i.Horizontal scaling------it scales the no of instances
+Horizontal scaling is used to automatically adjust the number of EC2 instances based on traffic or load by using Auto Scaling Groups.
+It improves availability and fault tolerance by distributing traffic across multiple instances.
+
+ii.Vertical scaling---it scales the resources for an existing instance
+Vertical scaling (scaling up or down) involves increasing or decreasing the resources of an existing EC2 instance, such as CPU, memory, or storage.
+
+For example, you can increase the instance size (e.g., from t2.micro → t3.large).
+
+This usually requires stopping the instance before changing the instance type.
+
+Vertical scaling increases the capacity of a single instance, unlike horizontal scaling which adds more instances.
+________________________________________________________
+What is ALB?
+ALB is an AWS service that operates at Layer 7 (physical Layer) of the  OSI model and routes HTTP and HTTPS traffic to targets such as EC2 instances, 
+IP addresses, or ECS.
+based on content-based rules, such as URL path, host headers, or HTTP methods
+
+It also supports features like SSL termination, sticky sessions, and WebSocket connections.
+
+
+_____________________________________________________________________
+What is NLB?
+NLB is an AWS service that operates at Layer 4 (Transport Layer) of the  OSI model and routes TCP (and optionally UDP) traffic to targets such as EC2 instances, 
+IP addresses, or ECS.
+Designed to handle millions of requests per second with very low latency.
+Ideal for real-time applications, gaming, streaming, or low-latency microservices.
