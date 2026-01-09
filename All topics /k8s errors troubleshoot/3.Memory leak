@@ -1,0 +1,31 @@
+what is memory leak
+Memory leak happens when an application keeps using memory but does not release it,
+
+Troubleshooting Steps:
+1.Check pod status & Describe the pod to check for events
+Look for OOMKilled(out of memory) or frequent restarts.
+
+2.Check container logs-----Look for memory allocation errors.
+
+3.Check memory usage---------kubectl top pod <pod-name> --containers
+
+4.Check application metrics
+
+Use Prometheus, Grafana, or app-specific metrics.
+
+Look at heap memory, garbage collection, and object counts.
+5.Check resource limits--------Ensure limits are sufficient.
+6.Fix application code
+
+Release unused objects
+
+Optimize caching
+7.Redeploy pod-----by using command
+kubectl delete pod <pod-name>
+kubectl rollout restart deployment <deployn name>
+
+| Command                                                | Why we use it                                                                       |
+| ------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| `kubectl delete pod <pod-name>`                        | Delete a single pod to force Kubernetes to recreate it using existing spec          |
+| `kubectl rollout restart deployment <deployment-name>` | Restart all pods in a deployment in a controlled rolling fashion                    |
+| Both                                                   | Used to redeploy pods after fixing errors, updating configs, or applying new images |
