@@ -1,4 +1,4 @@
-Argo CD:
+1--------Argo CD:
 our project, we used Argo CD  to Continously deploy applications to Kubernetes.
 All Kubernetes manifests and Helm charts were stored in Git, (which acted as the single source of truth.)
 
@@ -27,3 +27,42 @@ iv.Rollback to a previous version if something went wrong
 
 
 6.For rollbacks, we simply reverted the Git commit, and Argo CD automatically redeployed the previous stable version.
+______________--
+2--------------we have Argocd right, we have ECR Right whenever you push the Image to Eck, How does ArgoCD will notify, How does ArgoCD gets to know. 
+there is a Image change & how does ArgoCD gets to gets to know. It needs to deploy on the top of which tubernetes?
+------
+Argo CD watches Git, not container registries.
+
+So Argo CD only knows about changes if the Git repository is updated.
+__________
+
+
+If you want Argo CD to monitor ECR automatically:
+
+Install Image Updater:
+
+Argo CD Image Updater (Optional)
+
+Argo CD has a companion called Argo CD Image Updater.
+
+It monitors container registries like ECR.
+
+When a new image tag appears:
+
+It updates the Git repository automatically.
+
+Then Argo CD sees the Git change and syncs it to Kubernetes.
+_____________
+Where does Argo CD deploy?
+
+Argo CD deploys to the Kubernetes cluster it is connected to.
+
+When creating an Argo CD Application, you define:
+
+Target cluster (can be dev, QA, or production)
+
+Target namespace
+
+So the workflow is always: Git → Argo CD → Kubernetes cluster
+___________
+
