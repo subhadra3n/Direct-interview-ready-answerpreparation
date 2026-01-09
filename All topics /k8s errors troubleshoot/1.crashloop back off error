@@ -1,0 +1,41 @@
+1.Crashloop back off
+crashloop back off happens when a container repeateldly crashes Kubernetes keeps trying to restart it. 
+it occurs due to
+wrong commands,  failing liveness or readiness probes, resource limits being exceeded or application erroes
+
+Troubleshoot CrashLoopBackOff
+
+1.check with pod status & describe the pod by using 
+commands kubectl get pods
+          kubectl describe pod <pod-name> to know 
+Events,
+Exit code
+Last state
+Reason(OOMKilled, Error etc)
+
+2.check conatiner logs
+by using comamnd-------kubectl logs <pod-name>
+                to check
+Application error
+DB connection failures
+port binding
+permission denied error
+missing env variables
+
+3.now verify application configuration---by login in to the pod-----
+kubectl exec -it <pod-name> --bin/bash
+4.check liveness & Readiness probes---------Ensure probe paths, ports, and timings are correct.(
+
+  Events section at the bottom
+
+You will see messages like:
+
+Liveness probe failed
+Readiness probe failed
+Startup probe failed
+
+  ________________________________________________________________________________________________
+  5.check resource limits----------Verify CPU and memory requests/limits are sufficient.(Resource limits can be checked using kubectl describe pod and kubectl top pod comman)
+6.check image & startup commands-----------Confirm the correct image, tag, entrypoint, and command are used.
+  (Image and startup commands can be verified using kubectl describe pod or kubectl get pod -o yaml by checking the image, command, and args fields.)
+  fix issue & redeploy.
