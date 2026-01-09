@@ -1,0 +1,88 @@
+1️⃣ Argo CD Dashboard Overview
+
+When you open the Argo CD UI (usually via https://<argocd-server>), you get a web-based interface that shows the state of your applications and 
+Kubernetes clusters.
+
+2️⃣ Key Sections / Views
+a) Applications List
+
+Shows all Argo CD applications you’ve created.
+
+Columns typically include:
+
+App Name
+
+Health Status (Healthy, Degraded, Progressing)
+
+Sync Status (Synced, OutOfSync)
+
+Cluster / Namespace the app is deployed to
+
+You can click an application to see detailed info.
+
+b) Application Details
+
+When you open an app:
+
+Tree View of Resources: Shows all Kubernetes resources (Deployments, Services, ConfigMaps, Secrets, Pods, etc.) deployed by this application in a
+hierarchical view.
+
+Sync Status:
+
+Synced → live cluster matches Git
+
+OutOfSync → live cluster differs from Git
+
+Health Status:
+
+Healthy → pods running and ready
+
+Degraded → pods failed or resources not ready
+
+Progressing → deployment in progress
+
+c) Sync Options
+
+Manual Sync: Apply the current Git state to the cluster.
+
+Auto-Sync: You can enable auto-sync to automatically deploy Git changes.
+
+Rollback: Revert to a previous application version.
+
+d) History / Revision
+
+Shows past syncs with:
+
+Git commit SHA
+
+Time of deployment
+
+Sync status
+
+Allows rollback to a previous commit if needed
+
+e) Logs & Events
+
+Shows events for deployments like pods failing, rolling updates, or sync operations.
+
+Helps troubleshoot why a resource is out of sync or degraded.
+
+f) Cluster & Repo Management
+
+From the dashboard, you can also manage:
+
+Clusters connected to Argo CD
+
+Repositories Argo CD is monitoring
+
+g) Optional: Image Updater / Notifications
+
+If integrated with Argo CD Image Updater, you can see which images are outdated or updated.
+
+Notifications (Slack, Teams, Email) can be configured for sync and health events.
+
+✅ Interview-Friendly Summary
+
+The Argo CD dashboard shows a list of applications with their health and sync status, provides a tree view of deployed resources, shows deployment history and 
+revisions, allows manual or automatic syncs, enables rollbacks, and gives access to logs/events for troubleshooting. It also allows managing connected clusters and 
+Git repositories, giving a full view of the Kubernetes deployments managed via GitOps.
