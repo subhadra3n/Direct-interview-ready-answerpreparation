@@ -1,3 +1,24 @@
+Argo CD is installed in the Kubernetes cluster (usually in its own namespace):
+kubectl create namespace argocd
+argocd deploy in k8s cluster-------by default it monitor same cluster
+if d/f cluster monitor------argocd cluster add <CONTEXT_NAME>
+_________argocd app create myapp \
+  --repo https://github.com/your-org/your-app-repo.git \
+  --path k8s/ \
+  --dest-server https://kubernetes.default.svc \
+  --dest-namespace my-namespace \
+  --sync-policy automated
+___________________________--by this command we can add git repo to monitor & cluster name etc
+This deploys all Argo CD components:
+
+------argocd-server (API and UI)
+
+------argocd-repo-server (Git integration)
+
+-----argocd-application-controller (syncs apps)
+
+-----argocd-dex-server (optional for SSO/auth)
+_____________---------------------------------------------------------
 1--------Argo CD:
 our project, we used Argo CD  to Continously deploy applications to Kubernetes.
 All Kubernetes manifests and Helm charts were stored in Git, (which acted as the single source of truth.)
