@@ -1,5 +1,5 @@
 what is memory leak
-Memory leak happens when an application keeps using memory but does not release it,
+Memory leak happens when an application keeps using memory but does not release it, eventually causing the container to be killed (OOMKilled).
 
 Troubleshooting Steps:
 1.Check pod status & Describe the pod to check for events
