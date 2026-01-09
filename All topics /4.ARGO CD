@@ -9,7 +9,7 @@ Each environment had its own Argo CD application, connected to a specific Git br
 
 
 
-4Whenever there were changes such as image tag updates, replica count changes, or configuration updates,
+4.when we enable the autosync policy, Whenever there were changes such as image tag updates, replica count changes, or configuration updates,
 Argo CD automatically synced those changes to the Kubernetes cluster.
 5.If someone made manual changes directly in the Kubernetes cluster, Argo CD detected the drift and reverted it back to the Git-defined state,
 ensuring consistency and control.
