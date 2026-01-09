@@ -1,4 +1,24 @@
-1️⃣ Argo CD Dashboard Overview
+what we call kubernetes cluster in Argocd ?
+In Argo CD, a Kubernetes cluster is referred to as a “managed cluster”.
+-----List clusters in Argo CD CLI:
+argocd cluster list
+----Add a new Kubernetes cluster to Argo CD:
+# Uses kubeconfig context to register cluster
+argocd cluster add <CONTEXT_NAME>
+Check in the dashboard:
+
+In the Argo CD UI, managed clusters appear under Settings → Clusters.
+
+You can see:
+
+Cluster name
+
+Server URL
+
+Connection status
+
+__________________________________________________________________________
+____________________________1️⃣ Argo CD Dashboard Overview
 
 When you open the Argo CD UI (usually via https://<argocd-server>), you get a web-based interface that shows the state of your applications and 
 Kubernetes clusters.
