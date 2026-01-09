@@ -1,1 +1,37 @@
+CrashLoopBackOff = container starts but keeps crashing  ( Pod starts and crashes)
+ImagePullBackOff = container never starts because image cannot be pulled (Pod never starts)
+_________________________________________________________________________________________________________
 
+What is imagepullbackoff?
+ImagePullBackOff happens when Kubernetes is unable to pull the container image from the container registry and keeps retrying .   (with a back-off delay).
+it occurs due to:
+
+
+Wrong image name or tag
+
+Image not available in registry
+
+Authentication failure (private registry)
+
+Missing imagePullSecrets
+
+Network/DNS issues
+
+Troubleshooting:
+1.Check pod status & describe the pod
+Check Events for:
+Image not found
+Unauthorized
+ErrImagePull
+
+2.Verify image name & tag
+kubectl get pod <pod-name> -o yaml
+
+3.Check imagePullSecrets (private registry)
+kubectl get pod <pod-name> -o yaml
+kubectl get secret
+
+4,Check registry access / network
+kubectl describe node <node-name>
+
+5.Fix image or secret and restart it
