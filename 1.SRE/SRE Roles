@@ -1,9 +1,36 @@
 1.What type of incidents we manage.
 2.what are your daily tasks
-3.
+3.how many releases happens in a week/month?
 
 
 _______________________________________________________________
+3.how many releases happens-in a week/month?
+“In our team, we follow a continuous delivery model, so releases are quite frequent.”
+
+On average, we do around 5 to 15 releases per week.
+Small bug fixes and configuration changes are released daily through our automated CI/CD pipelines.
+
+For major features, we usually plan 1 or 2 structured releases per week.
+Before production, we deploy to staging, run validations, and then push using canary or blue-green deployments.
+
+If there is any production issue, we also do hotfix releases immediately to minimize business impact.
+
+Because we follow small, incremental releases,
+
+risk is low
+
+rollback is easy
+
+and recovery is faster.
+___________________________________________________________________________________________________
+
+
+
+
+
+
+
+
 storing telling answer, below one gives if incident occurs how we solve them:
 
 1.what type of incidents we manage?
