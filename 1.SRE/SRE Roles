@@ -6,7 +6,7 @@
 _______________________________________________________________
 storing telling answer, below one gives if incident occurs how we solve them:
 
-
+1.what type of incidents we manage?
 We manage incidents across infrastructure, application, deployment, and security layers.
 
 For example:
@@ -38,6 +38,98 @@ We also fix expired SSL certificates and rotated secrets breaking service commun
 
 
 “Our main focus is quick detection, impact reduction, root cause analysis, and preventive measures.”
+__________________________________________________
+Daily roles
+
+I check monitoring dashboards in Prometheus and Grafana to make sure all services are healthy.
+I review any alerts from PagerDuty and fix critical issues.
+
+if there is an incident, I investigate logs and metrics.
+For example, if pods get OOMKilled, I tune HPA, resize resources, and scale nodes or pods.
+
+during deployments, I monitor canary releases.
+If I see 5xx errors, I rollback quickly and work with developers to fix the issue.
+
+I automate repetitive tasks using scripts and Terraform.
+
+after every major incident, I perform Root Cause Analysis (RCA) –
+I document what happened, why it happened, impact, action items, and preventive measures.
+
+I review performance, capacity, and cost to keep systems optimized.
+
+I handle security tasks like secret rotation, RBAC reviews, and WAF monitoring for  protects web applications by filtering malicious traffic and preventing common attacks.
+
+Finally, I  update runbooks with troubleshooting steps, alert handling procedures, rollback processes, RCA templates, and lessons learned from past incidents.”
+_____________--
+RCA template---- for ref:
+1) Incident Summary
+
+What happened?
+
+Date & time
+
+Affected services
+
+Severity (P1/P2)
+
+2) Impact
+
+Users impacted
+
+Downtime duration
+
+Business impact
+
+3) Timeline
+
+Detection time
+
+Alert triggered
+
+Actions taken
+
+Resolution time
+
+4) Root Cause
+
+Technical reason
+
+Why it happened
+
+Contributing factors
+
+5) Resolution
+
+How we fixed it
+
+Rollback / patch details
+
+6) Preventive Actions
+
+Monitoring improvements
+
+Automation
+
+Process changes
+
+7) Lessons Learned
+
+What went well
+
+What to improve
+
+8) Owners & Deadlines
+
+Action items
+
+Responsible person
+
+ETA
+_____________________________________________________________-
+Interview one-liner
+
+“An RCA template is a structured document we use after incidents to capture root cause, impact, resolution, and preventive actions.”
+________________________________________________________________________
 
 
 
