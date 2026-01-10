@@ -1,0 +1,113 @@
+1.What type of incidents we manage.
+2.what are your daily tasks
+3.
+
+
+_______________________________________________________________
+storing telling answer, below one gives if incident occurs how we solve them:
+
+
+We manage incidents across infrastructure, application, deployment, and security layers.
+
+For example:
+we get incident tickets like
+👉 Capacity issues –
+We frequently handle OOM kills, high CPU usage, and disk full alerts in Kubernetes.
+When this happens, we analyze pod metrics in Prometheus, check logs, resize resources, and  HPA tuning,scale nodes or pods to stabilize the system.
+
+👉 Cloud outages –
+We have managed AZ failures and DNS issues (Route53/CoreDNS).
+In such cases, we perform traffic failover, update routing policies, and validate health checks to restore availability.
+
+👉 Bad deployments –
+Sometimes a canary or production release causes high 5xx errors or latency.
+We immediately rollback, disable feature flags, analyze logs, fix the root cause, and redeploy safely.
+
+👉 Traffic spikes (Thundering Herd) –
+We’ve handled sudden surges that overwhelmed databases and caches.
+We implemented rate limiting, connection pooling, and cache optimization to stabilize traffic.
+
+👉 Application failures –
+We troubleshoot cascading failures between microservices.
+We tune timeouts, add circuit breakers, and improve service dependencies.
+
+👉 Security incidents –
+We mitigate DDoS attacks and WAF blocks.
+We also fix expired SSL certificates and rotated secrets breaking service communication.
+
+
+
+“Our main focus is quick detection, impact reduction, root cause analysis, and preventive measures.”
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+____________________________________________--
+(this is little more expla---not req)
+1.What type of incidents we manage.?
+
+1) Capacity & Infrastructure Incidents
+
+OOM & Resource Exhaustion
+
+Pods getting OOMKilled, CPU throttling, disk reaching 100%.
+
+Actions: Right-sizing resources, HPA tuning, node scaling, log cleanup, PVC expansion.
+
+Cloud & Network Outages
+
+Availability Zone failures, ELB health issues, DNS problems (Route53/CoreDNS).
+
+Actions: Traffic failover, updating health checks, validating routing policies.
+
+2) Deployment & Traffic Incidents
+
+Bad Releases
+
+Canary or production deployments causing 5xx errors, latency spikes.
+
+Actions: Rollbacks, feature flag disable, root cause analysis.
+
+Thundering Herd Problem
+
+Sudden spike in DB connections or cache misses overwhelming backend.
+
+Actions: Rate limiting, connection pooling, cache warming.
+
+3) Application Performance Issues
+
+Cascading Failures
+
+One microservice failure impacting multiple downstream services.
+
+Actions: Circuit breakers, timeout tuning, bulkhead pattern.
+
+Database Locks & Thread Starvation
+
+Row locks, thread pool exhaustion blocking transactions.
+
+Actions: Query optimization, index tuning, increasing pool limits.
+
+4) Security & Connectivity Incidents
+
+Traffic Anomalies / DDoS
+
+Sudden malicious traffic spikes.
+
+Actions: WAF rules, IP blocking, autoscaling.
+
+Credential & Certificate Failures
+
+Expired SSL certs, rotated secrets breaking communication.
+
+Actions: Secret rotation, cert automation (ACM/Cert-Manager).
