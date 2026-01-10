@@ -4,3 +4,12 @@ I’ve also built scheduled jobs to perform automated database backups, log rota
 health checks, and canary deployments. Additionally, I’ve automated infrastructure
 provisioning using Terraform, including scaling EC2/EKS resources based on metrics. All these jobs reduce manual intervention, improve uptime, and ensure faster delivery.
 ”
+Think SRE jobs = CI/CD + Maintenance + Cloud Infra + Recovery/Monitoring.
+
+CI/CD jobs → code pipelines
+
+Maintenance jobs → cron, backups
+
+Cloud jobs → infra provisioning
+
+Recovery jobs → automated healing
