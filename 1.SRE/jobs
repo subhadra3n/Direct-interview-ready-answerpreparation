@@ -1,0 +1,6 @@
+what jobs you have created:
+“I’ve created CI/CD jobs in GitLab for building, testing, and deploying applications automatically to AWS environments. 
+I’ve also built scheduled jobs to perform automated database backups, log rotation, and cleanup tasks. In Kubernetes, I created jobs for database migration, 
+health checks, and canary deployments. Additionally, I’ve automated infrastructure
+provisioning using Terraform, including scaling EC2/EKS resources based on metrics. All these jobs reduce manual intervention, improve uptime, and ensure faster delivery.
+”
