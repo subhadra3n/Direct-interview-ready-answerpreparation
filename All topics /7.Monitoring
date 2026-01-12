@@ -1,24 +1,52 @@
 Monitoring:
-In our project, we use Prometheus to collect metrics and Grafana to visualize application and infrastructure health, 
-mainly focusing on Kubernetes and AWS environments. This setup gives us real-time, end-to-end visibility.
+In our project, we use Prometheus to collect metrics and Grafana to visualize application and infrastructure health, mainly focusing on Kubernetes environments. This setup gives us real-time, end-to-end visibility across the platform.
 
-Metrics Collection:
-Prometheus gathers data from Kubernetes nodes (using kube-state-metrics and node-exporter), application endpoints (/metrics), and 
-cloud resources like EC2 and Docker (via exporters). We track CPU, memory, disk I/O, network, pod health, and key app metrics like latency and 
-error rates.
+Metrics Collection
 
-Visualization:
-Grafana connects to Prometheus and provides interactive dashboards for infrastructure, clusters, and apps. These dashboards help teams spot issues 
-quickly and monitor performance over time.
+Prometheus gathers metrics from:
 
-Alerting:
-Alerts are set up in Prometheus for things like high CPU or memory, crash loops, or latency spikes. Prometheus Alertmanager sends
-notifications to Slack, email, or PagerDuty—so the right people can act fast.
+Kubernetes nodes using node-exporter
 
-AWS Integration:
-(For AWS services (like EC2, RDS, ELB), we use CloudWatch alongside Prometheus for extra metrics, logs, and alarms—especially where exporters aren’t
-available.) not req
+Cluster objects using kube-state-metrics
 
-AWS Integration: "For AWS-managed services like RDS, ELB, and NAT Gateways, where we cannot install agents, we use CloudWatch along with Prometheus.
-We use the CloudWatch Exporter to pull these 'black-box' metrics into our Prometheus ecosystem. This allows us to correlate 
-application-level logs and metrics with underlying AWS infrastructure health—especially for monitoring database connections and load balancer 5XX errors."
+Application endpoints exposed via /metrics
+
+We monitor:
+
+CPU, memory, disk I/O, and network usage
+
+Pod and node health
+
+Application metrics like latency, throughput, and error rates
+
+Visualization
+
+Grafana is integrated with Prometheus to create:
+
+Cluster-level dashboards
+
+Application performance dashboards
+
+Resource utilization views
+
+These dashboards help teams quickly identify issues and track performance trends over time.
+
+Alerting
+
+We configure alert rules in Prometheus for:
+
+High CPU or memory usage
+
+Pod crash loops
+
+Latency spikes and error rate increases
+
+Alerts are routed through Alertmanager and sent to:
+
+Slack
+
+Email
+
+PagerDuty
+
+This ensures the right team gets notified immediately for faster incident response.
