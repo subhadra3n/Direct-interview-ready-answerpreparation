@@ -7,7 +7,8 @@ A subnet is a logical subdivision of a VPC’s IP address range, placed within a
 used to organize resources, control traffic, and launch instances securely.
 _____________________
 what is public subnet
-public subnet has internet access through IGW
+public subnet has direct internet access through IGW,
+Instances launched in a public subnet can send and receive traffic from the internet IGW, typically used for web servers, bastion hosts, or load balancers.
 __________________
 what is private subnet
 private sunet access internet through NAT gateway
