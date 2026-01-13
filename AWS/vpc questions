@@ -11,8 +11,8 @@ public subnet has direct internet access through IGW,
 Instances launched in a public subnet can send and receive traffic from the internet IGW, typically used for web servers, bastion hosts, or load balancers.
 __________________
 what is private subnet
-private sunet access internet through NAT gateway
-_______________
+private subnet in vpc doesn't have direct,Instances in a private subnet access the internetthrough a NAT Gateway or NAT instance in a public subnet. 
+_______________________
 what is IGW
 IGW is attached to a VPC and, together with route tables, enables public subnets to send and receive traffic from the internet.
 _______________________________---
@@ -21,3 +21,38 @@ A NAT allows instances in private subnets to access the internet without exposin
 _____________
 what is route table
 “A route table tells a subnet where to send its traffic.”
+___________________________________________
+Security Group (SG)
+
+Virtual firewall attached to instances; controls inbound & outbound traffic.
+
+Network ACL (NACL)
+
+Subnet-level firewall; stateless; controls inbound/outbound traffic.
+CIDR (Classless Inter-Domain Routing)
+
+Defines IP address range of a VPC or subnet (e.g., 10.0.0.0/16).
+
+Availability Zone (AZ)
+
+Isolated data center within a region; used for high availability.
+
+Elastic IP (EIP)
+
+Static public IPv4 for instances in public subnet.
+
+VPC Peering
+
+One-to-one VPC-to-VPC connection in same region.
+
+Transit Gateway (TGW)
+
+Hub to connect multiple VPCs or on-prem networks; supports cross-region & multi-account.
+
+VPC Endpoint / PrivateLink
+
+Private connection from VPC to AWS services without internet.
+
+Elastic Load Balancer (ELB/ALB/NLB)
+
+Distributes traffic across instances; can be public or internal.
