@@ -1,8 +1,23 @@
+
+
+when to use vpn & direct connect\
+Use Direct Connect as primary
+👉 Use VPN as backup
+
+This gives:
+
+High reliability
+
+Failover protection
+
+
+
+________________________________________
 vpc is regional wide-------same vpc across all AZs
 
 we use multiple azs for subnet level & resource level 
 ___________________
-mumbai- ap-south-1--region
+mumbai- ap-south-1--region-----newvpc applicable to all azs, but subnets, resources are d/f
 ap-south-1a--------azs
 ap-south-1b---------azs
 ap-south-1c--------azs
@@ -19,3 +34,130 @@ us-east--2a---azs
 us-east--2b---azs
 us-east--2c---azs
 _________________________________________________________________________
+1.scenario1-------vpc is same for 2 azs but subnets is d/f
+Same VPC = automatically connected
+Control access using Security Groups
+______________________
+2.d/f vpc====vpc1, vpc2------h1, h2 subnets
+"Since VPC-1 and VPC-2 are different, they are isolated.
+I created VPC peering, or transist gateway , updated route tables, and security groups
+to allow communication between h1 and h2."
+___________________________________
+3.vpc1-------10.0.0.0/16------in ap-south-1a
+subnet1---10.0.0.0/24
+vpc2--10.0.0.0/16---------in ap-south-1b
+subnet2------10.0.1.0/24
+
+Different CIDR = connect
+Same CIDR = redesign
+______________________________________
+VPC-1 → 10.0.0.0/16
+VPC-2 → 172.16.0.0/16   ✅
+connect
+___________________
+vpc1--------10.0.0.0/16
+subnet----10.0.1.0/24  in ap-south1a
+subnet---10.0.2.0/24-------in ap-south1b
+inside of subnets application how they connect each other?
+"Different AZ but same VPC = FULL connectivity" ✅
+_________________________________________
+vpc1--------10.0.0.0/16
+subnet----10.0.1.0/24  in ap-south1a
+vpc1--------19.0.0.0/16
+subnet---19.0.1.0/24-------in ap-south1b
+inside of subnets application how they connect each other?
+Same VPC → auto connect
+Different VPC → PEERING or Transist gateway
+___________________________________
+vpc1--------10.0.0.0/16
+subnet----10.0.1.0/24  in ap-south1a
+vpc2--------19.0.0.0/16
+subnet---19.0.1.0/24-------in ap-south1b
+vpc3--------20.0.0.0/16
+subnet---20.0.1.0/24-------in ap-south1b
+inside of subnets application how they connect each other?
+"Since we have multiple VPCs, I used Transit Gateway in hub-and-spoke model.
+Attached all VPCs, updated routes and security groups
+to enable private connectivity."
+2 VPC → Peering
+3+ VPC → Transit Gateway
+1️⃣ Create TGW in each region
+2️⃣ Attach local VPCs
+3️⃣ Peer TGWs across regions
+4️⃣ Update route tables
+TGW (ap-south-1)
+        |
+        |  TGW Peering
+        |
+TGW (us-east-1)
+        |
+        |  TGW Peering
+        |
+TGW (us-west-1)
+___________
+
+TGW (ap-south-1)
+        |
+        |  TGW Peering
+        |
+TGW (us-east-1)
+        |
+        |  TGW Peering
+        |
+TGW (us-west-1)
+
+______________________________________________________
+___________________________________
+vpc1--------10.0.0.0/16
+subnet----10.0.1.0/24  in ap-south1a
+vpc2--------19.0.0.0/16
+subnet---19.0.1.0/24-------in us-east1b
+vpc3--------20.0.0.0/16
+subnet---20.0.1.0/24-------in us-west1b
+inside of subnets application how they connect each other?
+VPCs are in different regions, I used Transit Gateway with inter-region peering.
+I attached each VPC to its regional TGW, peered TGWs, and updated route tables.
+This enables private, secure cross-region communication.
+| Scenario                | Solution          |
+| ----------------------- | ----------------- |
+| Same VPC                | Auto route        |
+| Diff VPC (same region)  | Peering           |
+| Diff VPC (multi region) | **TGW + Peering** |
+_____________________________________________________
+
+vpc1--------10.0.0.0/16
+subnet----10.0.1.0/24  in ap-south1a------subhadra account
+vpc2--------19.0.0.0/16
+subnet---19.0.1.0/24-------in us-east1b--------praveen account
+vpc3--------20.0.0.0/16
+subnet---20.0.1.0/24-------in us-west1b------pavan account
+inside of subnets application how they connect each other?
+
+
+(Transit Gateway (TGW) + Cross-Account + Inter-Region Peering)
+Cross-account permissions
+
+Add IAM policy to allow:
+
+TGW sharing
+
+Peering acceptance
+
+(Using AWS RAM – Resource Access Manage
+"Since the VPCs are in different accounts and regions,
+I used Transit Gateway with cross-account sharing and inter-region peering.
+Each VPC attaches to its regional TGW,
+TGWs are peered, route tables updated,
+and security groups allow traffic."
+______________________________________
+Hybrid connectivity (On-Prem → AWS)
+
+Scenario:
+Company data center needs to talk to AWS VPC.
+connect through:
+Site-to-Site VPN
+
+Direct Connect
+_______________________
+
+
