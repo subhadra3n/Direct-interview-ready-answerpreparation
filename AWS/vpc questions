@@ -1,0 +1,22 @@
+what is vpc-----
+vpc is a virtual private clould------
+It is a logically isolated private network in AWS where you can launch and manage cloud resources securely.
+_______________________
+what is subnet
+A subnet is a logical subdivision of a VPC’s IP address range, placed within a specific Availability Zone, 
+used to organize resources, control traffic, and launch instances securely.
+_____________________
+what is public subnet
+public subnet has internet access through IGW
+__________________
+what is private subnet
+private sunet access internet through NAT gateway
+_______________
+what is IGW
+IGW is attached to a VPC and, together with route tables, enables public subnets to send and receive traffic from the internet.
+_______________________________---
+What is NAT
+A NAT allows instances in private subnets to access the internet without exposing them to inbound internet traffic.
+_____________
+what is route table
+“A route table tells a subnet where to send its traffic.”
