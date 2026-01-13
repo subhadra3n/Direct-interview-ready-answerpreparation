@@ -10,6 +10,13 @@ High reliability
 
 Failover protection
 
+Same VPC        → Auto connect
+2 VPCs          → Peering
+3+ VPCs         → Transit Gateway
+Multi region    → TGW + peering
+Multi account   → TGW + RAM
+Hybrid          → VPN / Direct Connect
+Same CIDR       → ❌ No connection
 
 
 ________________________________________
@@ -160,4 +167,24 @@ Site-to-Site VPN
 Direct Connect
 _______________________
 
+| Scenario               | Where resources are | How they connect           | Key keyword     |
+| ---------------------- | ------------------- | -------------------------- | --------------- |
+| Same VPC, same AZ      | Same subnet         | Auto (local route)         | Default routing |
+| Same VPC, diff AZ      | Diff subnets        | Auto (10.0.0.0/16 → local) | No gateway      |
+| Diff VPC, same region  | Separate VPCs       | **VPC Peering**            | One-to-one      |
+| Diff VPC, multi region | Different regions   | **TGW + Peering**          | Inter-region    |
+| 3+ VPCs                | Multiple VPCs       | **Transit Gateway**        | Hub-spoke       |
+| Multi account VPCs     | Diff accounts       | **TGW + RAM**              | Enterprise      |
+| Same CIDR VPCs         | Overlapping IP      | ❌ Not possible             | Redesign        |
+| Hybrid (On-prem → AWS) | DC → AWS            | **VPN / DX**               | Hybrid          |
+| Quick low cost         | Small setup         | **VPN**                    | Temporary       |
+| High bandwidth         | Enterprise          | **Direct Connect**         | Dedicated       |
+| Private AWS access     | No internet         | **VPC Endpoints**          | PrivateLink     |
+| NAT cost high          | Private subnets     | Use endpoints              | Cost opt        |
+| Security inspection    | Firewall VPC        | TGW routing                | Inspection      |
+| DR multi-region        | Primary + DR        | Route53 + TGW              | Failover        |
+| No flat network        | Zero trust          | SG to SG                   | Micro-seg       |
+| Shared infra           | Multi teams         | Shared VPC                 | RAM             |
+| DNS cross VPC          | Private zones       | Resolver                   | DNS             |
+| ALB for multi VPC      | Shared LB           | TGW + IP targets           | Central LB      |
 
