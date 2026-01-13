@@ -1,0 +1,21 @@
+vpc is regional wide-------same vpc across all AZs
+
+we use multiple azs for subnet level & resource level 
+___________________
+mumbai- ap-south-1--region
+ap-south-1a--------azs
+ap-south-1b---------azs
+ap-south-1c--------azs
+Hyderabad-ap-south 2----region
+ap-south---2a---azs
+ap-south---2b--azs
+_________________________
+virgina---us-east-1---region
+us-east-1a---azs
+us-east--1b--azs
+___________---
+calfonila---us-east-2---region
+us-east--2a---azs
+us-east--2b---azs
+us-east--2c---azs
+_________________________________________________________________________
