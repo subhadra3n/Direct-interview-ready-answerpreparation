@@ -1,52 +1,97 @@
-Monitoring:
-In our project, we use Prometheus to collect metrics and Grafana to visualize application and infrastructure health, mainly focusing on Kubernetes environments. This setup gives us real-time, end-to-end visibility across the platform.
 
-Metrics Collection
 
-Prometheus gathers metrics from:
+In our project, we use Prometheus to collect metrics and Grafana to visualize application and infrastructure health, 
+mainly focusing on Kubernetes and AWS environments. 
+Metrics Collection:
+Prometheus gathers data from Kubernetes nodes (using kube-state-metrics and node-exporter), application endpoints (/metrics), and 
+cloud resources like EC2 and Docker (via exporters). We track CPU, memory, disk I/O, network, pod health, and key app metrics like latency and 
+error rates.
 
-Kubernetes nodes using node-exporter
+Visualization:
+Grafana connects to Prometheus and provides  dashboards for infrastructure, clusters, and apps. These dashboards help teams spot issues 
+quickly and monitor performance over time.
 
-Cluster objects using kube-state-metrics
+Alerting:
+Alerts are set up in Prometheus for things like high CPU or memory, crash loops, or latency spikes. Prometheus Alertmanager sends
+notifications to Slack, email, or PagerDuty—so the right people can act fast.
 
-Application endpoints exposed via /metrics
 
-We monitor:
-
-CPU, memory, disk I/O, and network usage
-
-Pod and node health
-
-Application metrics like latency, throughput, and error rates
-
-Visualization
-
-Grafana is integrated with Prometheus to create:
-
-Cluster-level dashboards
-
-Application performance dashboards
-
-Resource utilization views
-
-These dashboards help teams quickly identify issues and track performance trends over time.
-
-Alerting
-
-We configure alert rules in Prometheus for:
-
-High CPU or memory usage
-
-Pod crash loops
-
-Latency spikes and error rate increases
-
-Alerts are routed through Alertmanager and sent to:
-
-Slack
-
-Email
-
-PagerDuty
 
 This ensures the right team gets notified immediately for faster incident response.
+____________________
+dashboard queries:
+
+1.Node / Infrastructure Metrics
+CPU Usage %
+100 - (avg by (instance) (
+rate(node_cpu_seconds_total{mode="idle"}[5m])
+) * 100)
+___________________________--
+2.Memory Usage %
+(node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes)
+/ node_memory_MemTotal_bytes * 100
+____________________________________________
+3.Disk Usage %
+100 - (
+node_filesystem_avail_bytes{mountpoint="/"} 
+/ node_filesystem_size_bytes{mountpoint="/"} * 100
+)
+______________________________________________
+4.Network Traffic (RX/TX)
+rate(node_network_receive_bytes_total[5m])
+rate(node_network_transmit_bytes_total[5m])
+_______________________________________
+5.Kubernetes Metrics
+Pod Status
+kube_pod_status_phase
+
+Pod Restarts
+increase(kube_pod_container_status_restarts_total[5m])
+
+Running Pods
+count(kube_pod_status_phase{phase="Running"})
+
+Pending Pods
+count(kube_pod_status_phase{phase="Pending"})
+
+Pod CPU Usage
+sum by (pod) (
+rate(container_cpu_usage_seconds_total[5m])
+)
+
+Pod Memory Usage
+sum by (pod) (
+container_memory_working_set_bytes
+)
+
+Node Not Ready
+kube_node_status_condition{condition="Ready",status="false"}
+
+🚀 Application Metrics
+Request Rate
+sum(rate(http_requests_total[5m]))
+
+Error Rate
+sum(rate(http_requests_total{status=~"5.."}[5m]))
+
+Latency (95th percentile)
+histogram_quantile(0.95,
+sum(rate(http_request_duration_seconds_bucket[5m])) by (le)
+)
+
+☁ AWS Metrics (CloudWatch Exporter)
+EC2 CPU Utilization
+aws_ec2_cpuutilization_average
+
+ALB Request Count
+aws_applicationelb_request_count_sum
+
+RDS CPU
+aws_rds_cpuutilization_average
+
+⚠ Alert Useful Queries
+High CPU
+100 - avg(rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100 > 80
+
+Pod CrashLoop
+increase(kube_pod_container_status_restarts_total[5m]) > 3
