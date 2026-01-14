@@ -1,5 +1,4 @@
 
-
 In our project, we use Prometheus to collect metrics and Grafana to visualize application and infrastructure health, 
 mainly focusing on Kubernetes and AWS environments. 
 Metrics Collection:
@@ -11,6 +10,19 @@ Visualization:
 Grafana connects to Prometheus and provides  dashboards for infrastructure, clusters, and apps. These dashboards help teams spot issues 
 quickly and monitor performance over time.
 
+Alerting:
+Alerts are set up in Prometheus for things like high CPU or memory, crash loops, or latency spikes. based on alert rules,
+which handles grouping, duplication & routing, 
+based on seviarity 
+critical production issues, alerts - are routed to:--pager duty
+warning alerts --are routed to:-email
+info alerts--are routed to:-slack
+Alertmanager integrates with Slack via Webhooks, Email via SMTP, and PagerDuty via API integration keys.
+Prometheus Alertmanager sends
+notifications to Slack, email, or PagerDuty—so the right people can act fast.
+
+
+This integrated approach helps us detect problems early, reduce downtime, and deliver stable performance for all environments.
 Alerting:
 Alerts are set up in Prometheus for things like high CPU or memory, crash loops, or latency spikes. Prometheus Alertmanager sends
 notifications to Slack, email, or PagerDuty—so the right people can act fast.
