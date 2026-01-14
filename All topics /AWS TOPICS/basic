@@ -1,0 +1,7 @@
+What is Cloud Computing?
+Cloud computing is the on-demand delivery of IT resources via the internet, with pay-as-you-go pricing. Instead of buying, owning,
+and maintaining physical data centers and servers, organizations can access technology services such as compute power, storage, and databases from a cloud provider.
+______________________________
+Public Cloud	Resources are owned by a cloud provider and shared across multiple tenants.	Hosting websites, startups
+Private Cloud	Used exclusively by one organization, can be on-premise or hosted.	Finance, healthcare systems
+Hybrid Cloud	Combines public and private cloud for flexibility.	Enterprises with compliance and scalability
