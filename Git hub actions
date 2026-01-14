@@ -1,0 +1,118 @@
+GITHUB Actions code
+
+
+name: End-to-End CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+env:
+  APP_NAME: my-app
+  AWS_REGION: ap-south-1
+  ECR_REPO: my-app
+  IMAGE_TAG: ${{ github.sha }}
+
+jobs:
+  cicd:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1️⃣ Checkout Code
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # 2️⃣ Setup Java
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    # 3️⃣ Compile
+    - name: Compile Code
+      run: mvn clean compile
+
+    # 4️⃣ Unit Tests
+    - name: Run Unit Tests
+      run: mvn test
+
+    # 5️⃣ SonarQube Scan
+    - name: SonarQube Scan
+      run: |
+        mvn sonar:sonar \
+        -Dsonar.projectKey=my-project \
+        -Dsonar.host.url=${{ secrets.SONAR_URL }} \
+        -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+
+    # 6️⃣ OWASP Dependency Check
+    - name: OWASP Dependency Check
+      run: |
+        mvn org.owasp:dependency-check-maven:check
+
+    # 7️⃣ Build JAR/WAR
+    - name: Build Artifact
+      run: mvn package -DskipTests
+
+    # 8️⃣ Trivy Scan - Artifact
+    - name: Trivy File Scan
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: fs
+        scan-ref: target/
+
+    # 9️⃣ Push Artifact to Nexus
+    - name: Push to Nexus
+      run: |
+        mvn deploy \
+        -Dnexus.username=${{ secrets.NEXUS_USER }} \
+        -Dnexus.password=${{ secrets.NEXUS_PASS }}
+
+    # 🔟 Configure AWS
+    - name: Configure AWS
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+
+    # 1️⃣1️⃣ Login to ECR
+    - name: Login to Amazon ECR
+      uses: aws-actions/amazon-ecr-login@v2
+
+    # 1️⃣2️⃣ Docker Build
+    - name: Build Docker Image
+      run: |
+        docker build -t $ECR_REPO:$IMAGE_TAG .
+        docker tag $ECR_REPO:$IMAGE_TAG \
+        ${{ secrets.ECR_URL }}/$ECR_REPO:$IMAGE_TAG
+
+    # 1️⃣3️⃣ Trivy Scan - Image
+    - name: Trivy Image Scan
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: ${{ secrets.ECR_URL }}/$ECR_REPO:$IMAGE_TAG
+        format: table
+        exit-code: 0
+
+    # 1️⃣4️⃣ Push Image to ECR
+    - name: Push to ECR
+      run: |
+        docker push ${{ secrets.ECR_URL }}/$ECR_REPO:$IMAGE_TAG
+
+    # 1️⃣5️⃣ Setup Kubectl
+    - name: Setup Kubectl
+      uses: azure/setup-kubectl@v4
+
+    # 1️⃣6️⃣ Configure Kubeconfig
+    - name: Configure K8s
+      run: |
+        echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig
+        export KUBECONFIG=$PWD/kubeconfig
+
+    # 1️⃣7️⃣ Deploy to Kubernetes
+    - name: Deploy to K8s
+      run: |
+        kubectl set image deployment/my-app \
+        my-app=${{ secrets.ECR_URL }}/$ECR_REPO:$IMAGE_TAG
