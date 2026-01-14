@@ -2,8 +2,8 @@
 In our project, we use Prometheus to collect metrics and Grafana to visualize application and infrastructure health, 
 mainly focusing on Kubernetes and AWS environments. 
 Metrics Collection:
-Prometheus gathers data from Kubernetes nodes (using kube-state-metrics and node-exporter), application endpoints (/metrics), and 
-cloud resources like EC2 and Docker (via exporters). We track CPU, memory, disk I/O, network, pod health, and key app metrics like latency and 
+Prometheus gathers data from Kubernetes nodes (using kube-state-metrics and node-exporter), applications via metrics endpoints, and 
+cloud resources like EC2 and Docker using exporters. We track CPU, memory, disk I/O, network, pod health, and key app metrics like latency and 
 error rates.
 
 Visualization:
