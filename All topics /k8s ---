@@ -1,0 +1,19 @@
+d/f of rolling updates & rollbacks
+
+-------Rolling updates:
+rolling updates gradually replace the pods without users facing any downtime
+
+Rooling backs------
+if new version failes, Roll back to previous version if something goes wrong
+
+
+
+kubectl rollout history deployment/myapp
+kubectl rollout undo deployment/myapp
+kubectl rollout undo deployment/myapp --to-revision=2
+kubectl rollout status deployment/myapp
+kubectl get pods
+
+_______________________
+helm history myapp
+helm rollback myapp 3
