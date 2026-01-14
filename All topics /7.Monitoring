@@ -23,10 +23,6 @@ notifications to Slack, email, or PagerDuty—so the right people can act fast.
 
 
 This integrated approach helps us detect problems early, reduce downtime, and deliver stable performance for all environments.
-Alerting:
-Alerts are set up in Prometheus for things like high CPU or memory, crash loops, or latency spikes. Prometheus Alertmanager sends
-notifications to Slack, email, or PagerDuty—so the right people can act fast.
-
 
 
 This ensures the right team gets notified immediately for faster incident response.
