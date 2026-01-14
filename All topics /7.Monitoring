@@ -11,8 +11,8 @@ Grafana connects to Prometheus and provides  dashboards for infrastructure, clus
 quickly and monitor performance over time.
 
 Alerting:
-Alerts are set up in Prometheus for things like high CPU or memory, crash loops, or latency spikes. based on alert rules,
-which handles grouping, duplication & routing, 
+Alerts are set up in Prometheus for things like high CPU or memory, crash loops, or latency spikes.
+These alerts are sent to Alertmanager, which handles grouping, deduplication, and routing based on 
 based on seviarity 
 critical production issues, alerts - are routed to:--pager duty
 warning alerts --are routed to:-email
