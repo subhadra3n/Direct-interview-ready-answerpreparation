@@ -1,0 +1,111 @@
+In production, we perform regular health checks both manually and via automated monitoring.
+Daily, we verify node status, pod health, events, resource usage, services, and storage.
+We monitor dashboards and alerts from Prometheus/Grafana, Slack, or PagerDuty to detect issues like CrashLoopBackOff, high CPU, or pod failures.
+Automated scripts and cronjobs help to perform these checks timely and log results.
+If an alert is triggered, we investigate using kubectl describe and kubectl logs, classify severity, mitigate, and document incidents in an RCA template.
+Weekly and monthly, we review capacity, backups, security patches, and perform DR drills to ensure cluster reliability.
+
+
+
+1️⃣ Daily Health Checks
+| Task                  | Command                                                         | Purpose                                                    |
+| --------------------- | --------------------------------------------------------------- | ---------------------------------------------------------- |
+| Node status           | `kubectl get nodes`                                             | All nodes should be `Ready`                                |
+| Component status      | `kubectl get componentstatus`                                   | API server, scheduler, controller                          |
+| Pods status           | `kubectl get pods -A`                                           | Look for `CrashLoopBackOff`, `Pending`, `ImagePullBackOff` |
+| Pod events            | `kubectl get events -A --sort-by='.metadata.creationTimestamp'` | Check recent failures                                      |
+| Resource usage        | `kubectl top nodes` / `kubectl top pods -A`                     | Detect CPU / memory spikes                                 |
+| Services & endpoints  | `kubectl get svc -A` / `kubectl get endpoints -A`               | Ensure services are reachable                              |
+| Storage               | `kubectl get pv` / `kubectl get pvc -A`                         | Check bound status & capacity                              |
+| Logs sampling         | `kubectl logs <pod>` / `kubectl logs <pod> --previous`          | Inspect application behavior                               |
+| Monitoring dashboards | Grafana / Prometheus                                            | Validate key metrics                                       |
+| Alerts                | Slack / PagerDuty / Email                                       | Detect issues early                                        |
+_____________________________________________________________________________
+Weekly Checks
+| Task              | Purpose                           |
+| ----------------- | --------------------------------- |
+| Cluster capacity  | Ensure enough headroom            |
+| Event review      | Identify recurring issues         |
+| Unused resources  | Delete old pods, PVCs, PVs        |
+| Security review   | CIS Benchmark / kube-bench        |
+| Deployment review | Validate recent CI/CD deployments |
+____________________________________________________________
+3️⃣ Monthly Checks
+| Task                            | Purpose                               |
+| ------------------------------- | ------------------------------------- |
+| DR drills / backup verification | etcd & PV backups functional          |
+| Kubernetes version upgrades     | Minor / patch updates                 |
+| Security patching               | Nodes, kubelet, container runtime     |
+| Resource planning               | Autoscaling & scaling strategy review |
+
+_________________________________________________________
+CrashLoopBackOff / Incident Investigation
+Check pod status
+kubectl get pods -n <namespace>
+Describe pod
+bash
+Copy code
+kubectl describe pod <pod-name> -n <namespace>
+Check logs
+bash
+Copy code
+kubectl logs <pod-name> -n <namespace>
+kubectl logs <pod-name> -n <namespace> --previous
+Restart pod if needed
+bash
+Copy code
+kubectl delete pod <pod-name> -n <namespace>
+Scale deployment
+bash
+Copy code
+kubectl scale deployment <deployment-name> --replicas=<n> -n <namespace>
+_________________________
+Automated Health Checks:
+#!/bin/bash
+NAMESPACE=prod
+
+echo "Checking pod status"
+kubectl get pods -n $NAMESPACE | grep -E "CrashLoopBackOff|Error|ImagePullBackOff"
+
+echo "Checking node status"
+kubectl get nodes | grep NotReady
+______________________________
+Schedule as cronjob
+0 * * * * /usr/local/bin/check-k8s-health.sh >> /var/log/k8s-health.log 2>&1
+_________________________________________
+Slack notification example
+
+PODS=$(kubectl get pods -n prod | grep CrashLoopBackOff)
+if [ ! -z "$PODS" ]; then
+  curl -X POST -H 'Content-type: application/json' \
+  --data '{"text":"🚨 Alert: Pods in CrashLoopBackOff:\n'"$PODS"'"}' \
+  https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXX
+fi
+____________________________________
+Incident Management & RCA Workflow
+
+| Step                 | Action                                                    |
+| -------------------- | --------------------------------------------------------- |
+| 1. Alert received    | Slack / PagerDuty / Grafana                               |
+| 2. Identify pod      | `kubectl get pods`, `kubectl describe pod`                |
+| 3. Check logs        | `kubectl logs --previous`                                 |
+| 4. Classify severity | Sev-1: Critical, Sev-2: Degraded, Sev-3: Minor            |
+| 5. Mitigation        | Scale pods, restart pod, rollback deployment, fix configs |
+| 6. RCA documentation | Record root cause, resolution, lessons learned            |
+| 7. Action items      | Update runbook, fix CI/CD pipeline, add alerts            |
+______________________________________________
+Key Kubernetes Commands Quick Reference
+| Task               | Command                                                         |
+| ------------------ | --------------------------------------------------------------- |
+| Get nodes          | `kubectl get nodes`                                             |
+| Get pods           | `kubectl get pods -A`                                           |
+| Describe pod       | `kubectl describe pod <pod-name> -n <namespace>`                |
+| Logs               | `kubectl logs <pod-name> -n <namespace>`                        |
+| Logs previous      | `kubectl logs <pod-name> -n <namespace> --previous`             |
+| Scale deployment   | `kubectl scale deployment <dep> --replicas=<n> -n <namespace>`  |
+| Delete pod         | `kubectl delete pod <pod-name> -n <namespace>`                  |
+| Check events       | `kubectl get events -A --sort-by='.metadata.creationTimestamp'` |
+| Resource usage     | `kubectl top nodes` / `kubectl top pods -A`                     |
+| Services           | `kubectl get svc -A`                                            |
+| Persistent Volumes | `kubectl get pv` / `kubectl get pvc -A`                         |
+
