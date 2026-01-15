@@ -1,0 +1,16 @@
+k8 pod life cycle:
+1.When we apply kubectl apply -f file.yaml, the request is sent to the Kubernetes API server.
+2.The API server validates the request and stores the pod object in ETCD
+3.Initially, the pod remains in Pending state because no node is assigned.
+4.The scheduler then watches for unscheduled pods and selects the best node based on
+CPU & memory availability
+
+Node taints and tolerations
+
+Affinity/anti-affinity rules
+
+Resource requests & limits
+5.It then selects the best suitable node and updates the Pod object with the node name.
+This updated information is again saved back to ETCD via the API server.
+6.The kubelet running on that node detects the scheduled pod, calls the container runtime, pulls the image, and starts the container.
+the entire pod lifecycle state is continuously updated and stored in ETCD.
