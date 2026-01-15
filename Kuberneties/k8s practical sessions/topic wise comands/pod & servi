@@ -1,3 +1,5 @@
+/maven-web-application
+
 POD-RELATED COMMANDS
 List pods
 kubectl get pods
