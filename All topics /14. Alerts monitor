@@ -1,0 +1,95 @@
+How we managed the incidents
+In production, we receive alerts through Slack or PagerDuty configured from Prometheus Alertmanager.
+The alert contains pod name and namespace.
+
+After receiving the alert, I log into the bastion server, check the pod status using kubectl, describe the pod to see events, and analyze container logs.
+
+Based on logs, I identify root cause and apply fix.
+
+__________________________________________________
+Kubernetes Production Incidents
+1️⃣ Application Pod Crash (CrashLoopBackOff)
+
+App crashes due to:
+
+Wrong env variables
+
+DB connection failure
+
+Code bug
+
+Impact: Service unavailable
+
+2️⃣ Node NotReady
+
+Node goes down due to:
+
+Disk full
+
+Network issue
+
+Kernel panic
+
+Impact: Pods evicted
+
+3️⃣ High CPU / Memory usage
+
+Sudden traffic spike
+
+Memory leak in app
+
+Impact:
+
+Pod throttling
+
+OOMKilled
+
+4️⃣ Image Pull Failure
+
+Wrong image tag
+
+DockerHub limit
+
+Private registry auth issue
+
+5️⃣ Service Down
+
+Wrong selector
+
+Port mismatch
+
+Network policy blocking
+
+6️⃣ ETCD latency / failure
+
+Disk IO issue
+
+Snapshot failure
+
+Impact: Cluster unstable
+
+7️⃣ Ingress not routing traffic
+
+TLS cert expired
+
+DNS issue
+
+Wrong path rules
+
+8️⃣ ConfigMap / Secret missing
+
+App fails to start
+
+CrashLoopBackOff
+
+9️⃣ HPA not scaling
+
+Metrics server down
+
+Prometheus issue
+
+🔟 Persistent Volume full
+
+Disk full
+
+DB pods crash
