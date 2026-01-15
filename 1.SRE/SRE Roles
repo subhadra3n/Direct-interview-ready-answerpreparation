@@ -24,12 +24,20 @@ rollback is easy
 and recovery is faster.
 ___________________________________________________________________________________________________
 
+tell about your self:day to day tasks:
+In production, we perform regular health checks both manually and via automated monitoring.
+Daily, we verify node status, pod health, events, resource usage, services, and storage.
+We monitor dashboards and alerts from Prometheus/Grafana, Slack, or PagerDuty to detect issues like CrashLoopBackOff, high CPU, or pod failures.
+Automated scripts and cronjobs help to perform these checks timely and log results.
+If an alert is triggered, we investigate using kubectl describe and kubectl logs, classify severity, mitigate, and document incidents in an RCA template.
+Weekly and monthly, we review capacity, backups, security patches, and perform DR drills to ensure cluster reliability.
 
 
 
 
 
 
+__________________________________________________________________________________
 
 storing telling answer, below one gives if incident occurs how we solve them:
 
