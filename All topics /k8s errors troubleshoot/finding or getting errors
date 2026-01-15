@@ -1,0 +1,4 @@
+format:
+🚨 Alert: Pod javawebapp-xyz is in CrashLoopBackOff
+Namespace: prod
+Severity: Critical
