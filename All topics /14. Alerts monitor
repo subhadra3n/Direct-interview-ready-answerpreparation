@@ -7,6 +7,11 @@ After receiving the alert, I log into the bastion server, check the pod status u
 Based on logs, I identify root cause and apply fix.
 
 __________________________________________________
+
+In production, we faced pod crashes due to config issues, node failures, high memory usage causing OOMKilled, ingress misconfigurations,
+and image pull failures.
+We resolved them by checking logs, scaling pods, fixing configs, draining nodes, and rolling back deployments.
+
 Kubernetes Production Incidents
 1️⃣ Application Pod Crash (CrashLoopBackOff)
 
