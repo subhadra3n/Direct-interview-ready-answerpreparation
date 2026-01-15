@@ -1,0 +1,10 @@
+2. Recreate Strategy
+All old pods are terminated at once before new pods are started.
+
+1.❌ Downtime posRolling Update (Default Strategy)
+This strategy updates pods gradually, ensuring that some pods remain available during the update process.
+
+✔ No downtime ✔ Version overlap: New and old pods run together temporarily ✔ Ideal for production environmentssible ❌ 
+All pods stopped before new ones start ✔ Simple, clean rollout ✔ Used in dev/testing environments where downtime is acceptable
+
+
