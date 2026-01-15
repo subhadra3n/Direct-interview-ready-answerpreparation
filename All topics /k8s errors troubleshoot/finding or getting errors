@@ -2,3 +2,23 @@ format:
 🚨 Alert: Pod javawebapp-xyz is in CrashLoopBackOff
 Namespace: prod
 Severity: Critical
+
+
+step1---check pod name in alert
+step2:Login to cluster / bastion server
+step-3":Check that pod
+kubectl describe pod javawebapp-xyz -n prod
+step-4:Check logs
+kubectl logs javawebapp-xyz -n prod
+kubectl logs javawebapp-xyz -n prod --previous
+__________
+Alert received (Slack/Email)
+        ↓
+See pod name
+        ↓
+Login to server
+        ↓
+kubectl commands
+        ↓
+Find root cause
+
