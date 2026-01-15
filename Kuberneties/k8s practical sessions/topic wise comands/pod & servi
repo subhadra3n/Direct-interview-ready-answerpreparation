@@ -27,7 +27,7 @@ kubectl delete pod <pod-name>
 kubectl delete -f pod.yaml
 
 Restart pod
-kubectl delete pod <pod-name>
+kubectl delete pod <pod-name> -n (namespace)
 
 
 (Kubernetes recreates it if managed by Deployment)
