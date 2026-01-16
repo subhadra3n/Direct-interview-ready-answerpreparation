@@ -1,0 +1,48 @@
+SLA, SLO, SLI & Error Budget
+__________________________________________________---
+SLA (Service Level Agreement)
+SLA is a Service Level Agreement,IT is a business commitment made to customers that defines service availability and performance.
+(Example: 99.9% uptime per month.
+If we violate SLA, there may be financial penalties or service credits.)
+___________________________________________________________________________________________________________________________
+
+SLO (Service Level Objective)
+SLO is a Service Level Objective, It is a internal reliability target set by engineering teams to ensure we meet SLA.
+SLO is kept higher than SLA to provide a safety buffer and avoid SLA breach.
+Example: 99.95% successful API requests, P95 latency < 300ms.
+.-------------------------------------------------------------------------------------------------------
+
+SLI (Service Level Indicator)
+SLI is a Service Level Indicator, it is a actual metric used to check service performance.
+(Examples:
+______________________________________________________________________________________
+Success request percentage
+
+Error rate
+
+Latency
+
+Pod availability)
+
+SLIs are collected using Prometheus metrics and visualized in Grafana.
+
+Error Budget
+Error budget is the allowed failure based on SLO.
+
+Formula:
+
+Error Budget = 1 - SLO
+
+
+Example:
+
+SLO = 99.9%
+
+Error budget = 0.1%
+This means we can afford 43 minutes downtime per month.
+
+If error budget is exhausted, we:
+
+Stop risky deployments
+
+Focus on reliability fixes
