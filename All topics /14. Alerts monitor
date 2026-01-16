@@ -4,7 +4,7 @@ The alert contains pod name and namespace.
 
 After receiving the alert, I log into the bastion server, check the pod status using kubectl, describe the pod to see events, and analyze container logs.
 
-Based on logs, I identify root cause and apply fix.
+Based on logs, I identify root cause and  fix it. we update the ticket with RCA & Close the incident.
 
 __________________________________________________
 
