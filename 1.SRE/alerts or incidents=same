@@ -43,21 +43,17 @@ CrashLoopBackOff / Incident Investigation
 Check pod status
 kubectl get pods -n <namespace>
 Describe pod
-bash
-Copy code
+
 kubectl describe pod <pod-name> -n <namespace>
 Check logs
-bash
-Copy code
+
 kubectl logs <pod-name> -n <namespace>
 kubectl logs <pod-name> -n <namespace> --previous
 Restart pod if needed
-bash
-Copy code
+
 kubectl delete pod <pod-name> -n <namespace>
 Scale deployment
-bash
-Copy code
+
 kubectl scale deployment <deployment-name> --replicas=<n> -n <namespace>
 _________________________
 Automated Health Checks:
