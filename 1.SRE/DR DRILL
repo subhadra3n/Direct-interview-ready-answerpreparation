@@ -1,0 +1,182 @@
+def:
+A DR drill (Disaster Recovery drill) is a planned simulation where we test our disaster recovery strategy by assuming real outage scenarios 
+such as region failure, data center outage, or application crash. The objective is to verify that we can restore services within
+defined RTO and RPO targets.
+
+During the drill, we validate backups, trigger failover to the DR environment, bring up infrastructure using IaC tools like Terraform, 
+restore applications and databases, perform health checks, and monitor alerts. We measure recovery time, document gaps, and 
+update runbooks to improve reliability.
+
+Regular DR drills ensure business continuity, reduce downtime, and improve operational readiness during real disasters.
+______________________________________________________________________
+how we perform this:
+
+Step-by-Step DR Drill Procedure
+1️⃣ Define Objectives
+
+Identify critical applications & services
+
+Define RTO (Recovery Time Objective) and RPO (Recovery Point Objective)
+
+Decide drill type:
+
+Partial (single app)
+
+Full DR (entire region)
+
+2️⃣ Plan & Communicate
+
+Schedule drill (monthly/quarterly)
+
+Inform:
+
+Dev teams
+
+Business stakeholders
+
+Support teams
+
+Prepare DR runbook
+
+Take management approval
+
+3️⃣ Validate Backups
+
+Verify:
+
+Database snapshots
+
+EBS volume backups
+
+S3 replication
+
+Perform test restore in DR environment
+
+4️⃣ Simulate Disaster
+
+Intentionally:
+
+Stop primary services
+
+Block network
+
+Scale down cluster
+
+This mimics:
+
+Region outage
+
+Application failure
+
+5️⃣ Trigger Failover
+
+Switch traffic using:
+
+Route53 failover routing
+
+Load balancer DNS change
+
+Activate:
+
+DR region
+
+Standby cluster
+
+6️⃣ Restore Infrastructure
+
+Using Terraform/IaC:
+
+Create:
+
+VPC
+
+EKS / EC2
+
+RDS replicas
+
+Attach:
+
+Storage
+
+Security groups
+
+7️⃣ Restore Applications
+
+Deploy:
+
+Application pods
+
+ConfigMaps
+
+Secrets
+
+Restore:
+
+Database from snapshot
+
+Persistent volumes
+
+8️⃣ Validate Services
+
+Check:
+
+Application URLs
+
+API health
+
+DB connectivity
+
+Perform:
+
+Smoke testing
+
+Sample transactions
+
+9️⃣ Monitor & Alert Validation
+
+Confirm:
+
+Prometheus metrics
+
+Grafana dashboards
+
+Slack/PagerDuty alerts
+
+🔟 Measure RTO & RPO
+
+Track:
+
+Total recovery time
+
+Data loss window
+
+Compare with SLA targets
+
+1️⃣1️⃣ Failback (Optional)
+
+Switch traffic back to primary
+
+Sync data
+
+Restore normal operations
+
+1️⃣2️⃣ Documentation & Improvement
+
+Prepare:
+
+DR drill report
+
+RCA
+
+Identify:
+
+Gaps
+
+Automation improvements
+
+Update runbooks
+
+🔹 Short Interview Version
+
+We define scope and RTO/RPO, validate backups, simulate outage, trigger failover to DR site, restore infra using Terraform, 
+deploy applications, validate services, monitor alerts, measure recovery time, perform failback, and document findings.
