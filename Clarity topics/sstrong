@@ -2,7 +2,25 @@
 2.Jenkins
 3.Docker
 4.Ansible
+5.Project Architecture
+6.D/F B/W Devops & SRE
 ------______________________
 
 5.K8s
 6.ArgoCD
+7.Helm
+8.Terraform
+9.ArgoCD
+10.Docker, k8s Architecture
+11.Pod life cycle
+12.Monitoring
+13.Rolling updates, Blue green strategy, Rollback, Canary
+______________________________
+14.SRE ROLES
+15.DR Activity
+16.k8s errors trouble shooting
+17.Agile methodology
+18.Git branching strategy
+19.AWS services
+_____________________________
+
