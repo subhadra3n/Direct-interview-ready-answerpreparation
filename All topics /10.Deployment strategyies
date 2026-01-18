@@ -17,4 +17,17 @@ and CPU usage are closely monitored before increasing traffic to the new version
 If no issues are detected, the new version is gradually rolled out to more users in phases.
 This strategy reduces deployment risk, ensures smoother releases, and allows early detection of production issues.
 
-iii.Blue green Deployment
+iii.Blue green Deployment:
+Blue-Green Deployment is a strategy where two identical environments—Blue and Green—run simultaneously.
+One environment serves production traffic while the other remains idle.
+When the new version is deployed and tested in the idle environment, traffic is switched from the active environment to the idle one.
+This approach ensures minimal downtime, quick rollback, and safer production releases.
+___________________________________
+summary:
+In production, Canary Deployment gradually releases a new version to a small subset of users, allowing early detection of issues with
+minimal risk.
+Blue-Green Deployment maintains two identical environments and switches traffic instantly to the new version, providing near-zero downtime and
+very low risk.
+Rolling Update replaces old instances or pods in batches, ensuring continuous availability but with moderate risk if any batch fails.
+Overall, Blue-Green is most effective for critical systems requiring zero downtime, Canary is ideal for testing features safely, and 
+Rolling Updates work well for standard routine updates.
