@@ -11,5 +11,10 @@ In CI/CD pipelines, we handle builds, deployments, health checks, and automated 
 version quickly without manual intervention.
 ___________________-
 ii.Canary:
+Canary Deployment releases a new version of an application to a small subset of users or pods first.
+The rest of the users continue using the stable old version while we monitor key metrics like  error rate, latency, 
+and CPU usage are closely monitored before increasing traffic to the new version..
+If no issues are detected, the new version is gradually rolled out to more users in phases.
+This strategy reduces deployment risk, ensures smoother releases, and allows early detection of production issues.
 
 iii.Blue green Deployment
