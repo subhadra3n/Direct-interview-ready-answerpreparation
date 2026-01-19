@@ -52,12 +52,12 @@ kubectl logs
 Metrics from Prometheus
 
 For example, if pods are OOMKilled, I:
+I optimized resource requests and limits to allocate sufficient memory and prevent future crashes.
 
-Tune resource requests and limits
 
-Adjust HPA thresholds
+Optimize HPA thresholds  based on CPU/memory utilization patterns.
 
-Scale pods or nodes accordingly
+Scale pods horizontally or nodes vertically based on workload demand
 
 During deployments, I closely monitor canary releases. If I notice 5xx errors or latency spikes, I immediately rollback and collaborate 
 with developers to fix the issue.
