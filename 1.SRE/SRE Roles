@@ -44,7 +44,7 @@ Storage performance
 I actively review alerts from PagerDuty and Slack and prioritize incidents based on severity and business impact.
 
 When an incident occurs, I log in through the bastion server and analyze issues using:
-
+commands like
 kubectl describe
 
 kubectl logs
