@@ -29,16 +29,44 @@ ____________________
 In production, we perform regular health checks using monitoring tools llike prometheus & Grafana
 
 
-Daily, I monitor Prometheus and Grafana dashboards to verify node health, pod status, resource usage, services, and storage.
-I review alerts from PagerDuty or Slack and prioritize critical issues.
+Daily, I monitor Grafana dashboards to verify:
 
-If an incident occurs, I loginto the bastion server toI analyze logs and metrics using kubectl describe and kubectl logs. For example, if pods get OOMKilled, 
-I tune resource limits, adjust HPA, and scale nodes or pods accordingly.
+Node health
+
+Pod status
+
+CPU, memory, and disk utilization
+
+Service availability
+
+Storage performance
+
+I actively review alerts from PagerDuty and Slack and prioritize incidents based on severity and business impact.
+
+When an incident occurs, I log in through the bastion server and analyze issues using:
+
+kubectl describe
+
+kubectl logs
+
+Metrics from Prometheus
+
+For example, if pods are OOMKilled, I:
+
+Tune resource requests and limits
+
+Adjust HPA thresholds
+
+Scale pods or nodes accordingly
 
 During deployments, I closely monitor canary releases. If I notice 5xx errors or latency spikes, I immediately rollback and collaborate 
 with developers to fix the issue.
 
-I automate repetitive operational tasks using scripts and Terraform to reduce manual effort.
+To improve efficiency, I automate repetitive tasks using:
+
+Shell scripts
+
+Terraform for infrastructure provisioning
 
 Weekly and monthly, I review capacity, backups, security patches, and perform DR drills to ensure high availability and business continuity.
 
@@ -46,8 +74,6 @@ After every major incident, I perform Root Cause Analysis (RCA) by documenting w
 corrective actions, and preventive measures.
 
 I also review performance, capacity, and cloud cost to keep systems optimized.
-
-From a security perspective, I handle secret rotation, RBAC audits, and WAF monitoring to protect applications from malicious traffic.
 
 Finally, I continuously update runbooks with troubleshooting steps, alert handling procedures, rollback processes, and 
 lessons learned from incidents.
