@@ -27,36 +27,24 @@ ________________________________________________________________________________
 tell about your self:day to day tasks of SRE
 ____________________
 In production, we perform regular health checks using monitoring tools llike prometheus & Grafana
-
-
 Daily, I monitor Grafana dashboards to verify:
 
 Node health
-
 Pod status
-
 CPU, memory, and disk utilization
-
 Service availability
-
 Storage performance
 
 I actively review alerts from PagerDuty and Slack and prioritize incidents based on severity and business impact.
-
 When an incident occurs, I log in through the bastion server and analyze issues using:
 commands like
 kubectl describe
-
 kubectl logs
-
 Metrics from Prometheus
 
 For example, if pods are OOMKilled, I:
-I optimized resource requests and limits to allocate sufficient memory and prevent future crashes.
-
-
+I Adjust resource requests and limits to allocate sufficient memory and prevent future crashes.
 Optimize HPA thresholds  based on CPU/memory utilization patterns.
-
 Scale pods horizontally or nodes vertically based on workload demand
 
 During deployments, I closely monitor canary releases. If I notice 5xx errors or latency spikes, I immediately rollback and collaborate 
@@ -68,7 +56,8 @@ Shell scripts
 
 Terraform for infrastructure provisioning
 
-Weekly and monthly, I review capacity, backups, security patches, and perform DR drills to ensure high availability and business continuity.
+Weekly and monthly, I review memory utilization, backup status,security patch compliance,and perform DR drills to 
+ensure high availability and business continuity.
 
 After every major incident, I perform Root Cause Analysis (RCA) by documenting what happened, why it happened, business impact, 
 corrective actions, and preventive measures.
