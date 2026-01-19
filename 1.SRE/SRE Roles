@@ -61,9 +61,6 @@ ensure high availability and business continuity.
 
 After every major incident, I perform Root Cause Analysis (RCA) by documenting incident summary, root cause, 
 impact analysis, corrective actions, and preventive measures.
-
-I also review performance, capacity, and cloud cost to keep systems optimized.
-
 Finally, I continuously update runbooks with troubleshooting steps, alert handling procedures, rollback processes, and 
 lessons learned from incidents.
 
