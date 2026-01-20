@@ -59,9 +59,10 @@ Terraform for infrastructure provisioning
 Weekly and monthly, I review memory utilization, backup status,security patch compliance,and perform DR drills to 
 ensure high availability and business continuity.
 
+
 After every major incident, I perform Root Cause Analysis (RCA) by documenting incident summary, root cause, 
 impact analysis, corrective actions, and preventive measures.
-Finally, I continuously update runbooks with troubleshooting steps, alert handling procedures, rollback processes, and 
+ I continuously update runbooks with troubleshooting steps, alert handling procedures, rollback processes, and 
 lessons learned from incidents.
 
 
