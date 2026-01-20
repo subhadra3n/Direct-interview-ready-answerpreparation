@@ -67,8 +67,11 @@ I monitor pod health, troubleshoot failures, and provide a stable environment fo
 I also handle microservices deployments using YAML manifests and Helm charts, with ConfigMaps and Secrets for configuration, and use ClusterIP,
 LoadBalancer, and Ingress for service exposure. Autoscaling and rolling updates are configured to ensure performance and zero downtime.
 
-6.Reporting & Client Updates:
-"Additionally, I prepare monthly client reports that provide system reliability, security, performance, and backup success info."
+6.Additionally, I perform Root Cause Analysis (RCA) by documenting incident summaries, root causes, impact analysis,
+corrective actions, and preventive measures.
+
+I also continuously update runbooks with troubleshooting steps, alert handling procedures, rollback processes,
+and lessons learned from incidents.
 
 
 Thats all bout my profile thank you
