@@ -26,7 +26,7 @@ All Kubernetes manifests and Helm charts were stored in Git, (which acted as the
 2.Argo CD was configured to continuously monitor the Git repository.
 
 3..We used a single Argo CD instance to manage multiple Kubernetes environments like dev, QA, and production.
-Each environment had its own Argo CD application, connected to a specific Git branch or folder.
+Each environment had its own Argo CD application, connected to a specific Git branch or folder & the corresponding Kubernetes cluster.
 
 
 
