@@ -35,35 +35,35 @@ CPU, memory, and disk utilization
 Service availability
 Storage performance
 
-I actively review alerts from PagerDuty and Slack and prioritize incidents based on severity and business impact.
-When an incident occurs, I log in through the bastion server and analyze issues using:
-commands like
-kubectl describe
-kubectl logs
-Metrics from Prometheus
+I receive alerts from PagerDuty and Slack and prioritize incidents based on severity and business impact.
 
-For example, if pods are OOMKilled, I:
-I Adjust resource requests and limits to allocate sufficient memory and prevent future crashes.
-Optimize HPA thresholds  based on CPU/memory utilization patterns.
+When an incident occurs,alerts typically include details such as pod name, namespace, severity level, and error information.
+I securely access the Kubernetes cluster through a bastion host and troubleshoot issues using commands
+like kubectl describe and kubectl logs, and then take appropriate corrective actions.” 
+for example:
+if a pod is in a CrashLoopBackOff or OOMKilled state, I analyze the pod events and logs to identify the root cause.
+Based on the findings,
+
+I update resource requests and limits,to allocate sufficient memory and prevent future crashes.
+Optimize HPA thresholds  based on CPU/memory utilization patterns. or 
 Scale pods horizontally or nodes vertically based on workload demand
 
 During deployments, I closely monitor canary releases. If I notice 5xx errors or latency spikes, I immediately rollback and collaborate 
 with developers to fix the issue.
 
-To improve efficiency, I automate repetitive tasks using:
 
-Shell scripts
-
-Terraform for infrastructure provisioning
 
 Weekly and monthly, I review memory utilization, backup status,security patch compliance,and perform DR drills to 
 ensure high availability and business continuity.
 
 
-After every major incident, I perform Root Cause Analysis (RCA) by documenting incident summary, root cause, 
+After every incident, I perform Root Cause Analysis (RCA) by documenting incident summary, root cause, 
 impact analysis, corrective actions, and preventive measures.
  I continuously update runbooks with troubleshooting steps, alert handling procedures, rollback processes, and 
 lessons learned from incidents.
+
+ As an SRE we focus on  minimizing MTTR(mean time toi recovery), preventing recurring incidents, 
+and improving system reliability through proactive monitoring and automation.”
 
 
 
