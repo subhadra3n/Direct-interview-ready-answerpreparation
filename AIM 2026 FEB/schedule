@@ -1,0 +1,36 @@
+5AM-6AM
+Revision ALL Topics
+1.Self intro
+2.Jenkins
+3.Docker
+4.Terraform
+5.Argocd
+6.Ansible
+7.Helm
+8.SRE
+9.AWS
+10.Azure
+11.Architecture---Docker,k8s
+12.Agile methodology
+13.Monitoring
+_______________________________________________
+concentrate more -----1.prometheus how configure, where metrics is connected, rules
+                      2.Grafana ---Dashboards how we create from scratch 
+                         how we create data source
+                         _____________________________________________
+ _______________________________
+ ArgoCD ------Dahboard, practicall how we connect etc
+ _________________________________________________________
+ AWS Terms
+ Azure Terms
+ ________________________---
+ K8s Terms
+ _________________________-
+ sleepy time:
+ 1.jenkins file
+ 2.Docker file
+ 3.Ansible
+ 4.K8s yaml files
+ 5.Terraform files(AWS+Azure)
+ ______________________________________
+ commands
