@@ -14,17 +14,17 @@ Revision ALL Topics
 12.Agile methodology
 13.Monitoring
 _______________________________________________
-concentrate more -----1.prometheus how configure, where metrics is connected, rules
+1.concentrate more -----1.prometheus how configure, where metrics is connected, rules
                       2.Grafana ---Dashboards how we create from scratch 
                          how we create data source
                          _____________________________________________
  _______________________________
- ArgoCD ------Dahboard, practicall how we connect etc
+2. ArgoCD ------Dahboard, practicall how we connect etc
  _________________________________________________________
- AWS Terms
+3. AWS Terms
  Azure Terms
  ________________________---
- K8s Terms
+4. K8s Terms
  _________________________-
  sleepy time:
  1.jenkins file
