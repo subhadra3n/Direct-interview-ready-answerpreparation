@@ -1,0 +1,133 @@
+1.i need querry for running and pending pods:
+1️⃣ Count of Running Pods per Namespace
+count(kube_pod_status_phase{phase="Running", namespace="default"}) by (namespace)
+
+
+Explanation:
+
+kube_pod_status_phase → Pod phase metric (Pending, Running, Succeeded, Failed, Unknown)
+
+Filter phase="Running"
+__________________________________________________________
+2.2️⃣ Count of Pending Pods per Namespace
+count(kube_pod_status_phase{phase="Pending", namespace="default"}) by (namespace)
+_____________________________________
+3️⃣ Pending Pods per Node (Advanced)
+count(kube_pod_status_phase{phase="Pending", namespace="default"}) by (node)
+
+____________________________________________________________
+4️⃣ Running Pods per Deployment (Grafana Dynamic)
+count(kube_pod_status_phase{phase="Running", namespace="$namespace", pod=~"$deployment-.*"}) by (deployment)
+
+Use Grafana variables ($namespace, $deployment)
+
+Dynamically monitor pods for a specific deployment
+__________________________________________________________
+
+5️⃣ Pending Pod Alert (Example for Prometheus)
+- alert: PodPending
+  expr: count(kube_pod_status_phase{phase="Pending", namespace="default"}) > 0
+  for: 5m
+  labels:
+    severity: warning
+  annotations:
+    summary: "There are pending pods in default namespace"
+__________________________
+2.give me pql for pod monitoring
+1️⃣ CPU Usage per Pod
+sum(rate(container_cpu_usage_seconds_total{namespace="default", pod=~".+"}[5m])) by (pod)
+
+
+Explanation:
+
+container_cpu_usage_seconds_total → cumulative CPU time for container
+
+rate(...[5m]) → CPU usage per second over last 5 minutes
+
+sum by (pod) → sum across all containers in the pod
+
+Use case: Grafana panel for CPU utilization per pod.
+
+2️⃣ Memory Usage per Pod
+sum(container_memory_usage_bytes{namespace="default", pod=~".+"}) by (pod)
+
+
+Explanation:
+
+Shows memory used by all containers in a pod
+
+Use container_memory_working_set_bytes to exclude cache/buffers
+
+3️⃣ Pod Restarts (Critical Alert)
+increase(kube_pod_container_status_restarts_total{namespace="default"}[10m]) > 0
+
+
+Explanation:
+
+kube_pod_container_status_restarts_total → total restarts per container
+
+increase(...[10m]) > 0 → pod restarted in last 10 minutes
+
+Can trigger alert if pod is unstable
+
+4️⃣ Pods Not Ready
+kube_pod_status_ready{condition="false", namespace="default"} == 1
+
+
+Explanation:
+
+Checks pods with Ready=false
+
+Trigger alert if pod remains unready for for: 5m
+
+5️⃣ Pod CPU Saturation (%)
+100 * sum(rate(container_cpu_usage_seconds_total{namespace="default", pod=~".+"}[5m]))
+   / sum(kube_pod_container_resource_limits_cpu_cores{namespace="default", pod=~".+"}) by (pod)
+
+
+Explanation:
+
+Calculates CPU usage as percentage of pod CPU limit
+
+Great for SRE dashboards / alerts
+
+6️⃣ Pod Memory Saturation (%)
+100 * sum(container_memory_usage_bytes{namespace="default", pod=~".+"})
+   / sum(kube_pod_container_resource_limits_memory_bytes{namespace="default", pod=~".+"}) by (pod)
+
+
+Explanation:
+
+Memory usage as % of requested limit
+
+Avoids alerting on pods under heavy buffer/cache memory
+
+7️⃣ Network Traffic per Pod
+sum(rate(container_network_receive_bytes_total{namespace="default", pod=~".+"}[5m])) by (pod)
+
+
+Same for transmit: container_network_transmit_bytes_total
+
+Use case: Track bandwidth per pod / detect traffic spikes
+
+8️⃣ Disk Usage per Pod (if ephemeral storage used)
+sum(container_fs_usage_bytes{namespace="default", pod=~".+"}) by (pod)
+
+
+Use case: Alert if pods are filling ephemeral storage
+
+9️⃣ Pod Count per Namespace
+count(kube_pod_info{namespace="default"}) by (namespace)
+
+
+Use case: Monitor expected number of pods per namespace
+
+10️⃣ Pod CrashLoopBackOff Detection
+kube_pod_container_status_waiting_reason{reason="CrashLoopBackOff", namespace="default"}
+
+
+Use case: Alert if any pod enters CrashLoopBackOff
+Mention namespace filtering: namespace="default" or dynamic with Grafana variable $n
+_________________________
+
+
