@@ -1,3 +1,12 @@
+Cluster Memory Utilization Excluding Cache
+sum(
+  node_memory_MemTotal_bytes
+- node_memory_MemFree_bytes
+- node_memory_Cached_bytes
+- node_memory_Buffers_bytes
+)
+_________________________________
+
 1️⃣ Node Up / Down Status
 up{job="node-exporter"} == 0
 ______________________________
@@ -70,7 +79,7 @@ _____________________________________-
 Shows read/write operations per second
 
 7️⃣ Node Ready Condition (Kubernetes)
-kube_node_status_condition{condition="Ready", status="true"} == 1
+count(kube_node_status_condition{condition="Ready", status="true"} == 1)
 
 +++++++++++++++++++++++++++++++++++++++
 Explanation:
