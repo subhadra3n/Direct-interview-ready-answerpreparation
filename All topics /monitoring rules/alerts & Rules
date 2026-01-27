@@ -1,0 +1,67 @@
+@@@@@@@@@@@@@@@@@
+Targets are defined in scrape_configs either statically in in prometheus.yml or
+dynamically discovered via service discovery mechanisms like Kubernetes ServiceMonitor when using Prometheus Operator.
+_________________________________________________________________
+Target (app/node/pod)-----(-argets are defined in the Prometheus configuration file prometheus.yml under the scrape_configs section.
+
+                                     A target is any endpoint that exposes metrics (usually on /metrics) which Prometheus scrapes.)
+        ↓
+Prometheus scrapes metrics (pull model)
+        ↓
+Metrics stored in TSDB
+        ↓
+Alerting rules evaluated on metrics
+        ↓
+Alert fired (if threshold + duration met)
+        ↓
+Alertmanager
+        ↓
+Slack / PagerDuty / Email
+
+        ↓
+Prometheus scrapes metrics (pull model)
+        ↓
+Metrics stored in TSDB
+        ↓
+Alerting rules evaluated on metrics
+        ↓
+Alert fired (if threshold + duration met)
+        ↓
+Alertmanager
+        ↓
+Slack / PagerDuty / Email
+
+@@@@@@@@@@@@
+Prometheus continuously scrapes metrics from targets at fixed intervals, 
+stores them as time-series data, and then evaluates alerting rules on those stored metrics.
+If a rule condition stays beyond the defined threshold for the configured duration, 
+Prometheus fires an alert and sends it to Alertmanager, which then routes notifications to channels like Slack or PagerDuty.
+_____________________________________________________________________________________________
+
+Recording rules are used to precompute and store frequently used or expensive PromQL expressions as new time-series metrics.
+They improve Prometheus performance, make dashboards faster, and provide reusable, standardized metrics that can be used by both Grafana and alerting rules.
+
+Alerting rules are used to evaluate conditions on metrics and trigger alerts when thresholds or SLO conditions are violated. They do not store data; 
+
+instead, they send alerts to Alertmanager for notification, routing, and deduplication.
+
+In production, alerting rules should be built on top of recording rules, not on raw metrics. This keeps alerts fast, clean, and consistent, and 
+reduces load on Prometheus.
+
+
+
+
+
+
+
+
+_______________________________________
+1.what are Recording rules (deep dive)
+
+Recording rules are Prometheus rules that precompute frequently used or expensive PromQL queries and store their results as new time-series metrics.
+
+2.What are Alerting Rules in Prometheus?
+
+Alerting rules are Prometheus rules that continuously evaluate PromQL expressions and trigger alerts when defined conditions are met for a specified duration.
+
+When an alert fires, Prometheus sends it to Alertmanager, which handles notification, grouping, deduplication, and routing.
