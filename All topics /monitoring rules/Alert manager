@@ -1,5 +1,5 @@
 in this file we mention email-id, alerting rules------send alerts if exceeds this threshold value, give querry, seviarity
-
+put in alerts.yaml file
 values.yaml
 ------------
 
