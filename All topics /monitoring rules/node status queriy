@@ -1,0 +1,105 @@
+1️⃣ Node Up / Down Status
+up{job="node-exporter"} == 0
+______________________________
+
+Explanation:
+
+up metric → 1 if the target is reachable, 0 if down
+
+Filters node-exporter job
+
+Shows nodes that are down
+
+For running nodes:
+_________________________-
+up{job="node-exporter"} == 1
+_________________________________________-----------------------
+2️⃣ Node CPU Usage (%)
+100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)
+_______________________________________
+
+Explanation:
+
+CPU idle → subtract from 100 to get CPU used
+
+Aggregated by instance (node)
+
+3️⃣ Node Memory Usage (%)
+100 * (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes))
+
+______________________________________________________
+Explanation:
+
+Shows memory usage as a percentage
+
+MemAvailable accounts for buffers and cache
+
+4️⃣ Node Disk Usage (%)
+100 * (node_filesystem_size_bytes{mountpoint="/"} - node_filesystem_avail_bytes{mountpoint="/"}) / node_filesystem_size_bytes{mountpoint="/"}
+
+______________________________________________
+Explanation:
+
+Checks root / filesystem usage
+
+Can adjust mountpoint for other disks
+
+5️⃣ Node Network Traffic
+
+Received bytes per second:
+
+rate(node_network_receive_bytes_total{device!="lo"}[5m])
+
+_________________________________-
+Transmitted bytes per second:
+
+rate(node_network_transmit_bytes_total{device!="lo"}[5m])
+
+
+Explanation:
+
+Excludes loopback interface
+
+Helps detect network spikes
+
+6️⃣ Node Disk I/O
+rate(node_disk_reads_completed_total[5m])
+rate(node_disk_writes_completed_total[5m])
+
+_____________________________________-
+Shows read/write operations per second
+
+7️⃣ Node Ready Condition (Kubernetes)
+kube_node_status_condition{condition="Ready", status="true"} == 1
+
++++++++++++++++++++++++++++++++++++++++
+Explanation:
+
+True → node is ready
+
+False → node is NotReady
+
+For alerting:
+
+kube_node_status_condition{condition="Ready", status="true"} == 0
+
+______________________________________________________________-------------
+Fires alert if a node is down
+
+8️⃣ Node CPU Saturation / Load Average
+node_load1 / count(node_cpu_seconds_total{mode="system"}) by (instance)
+
+
+Normalizes load with CPU cores
+
+Useful to see if node is overloaded
+
+✅ Interview Tips
+
+up metric → simplest way to see node health
+
+kube_node_status_condition → for Kubernetes-aware monitoring
+
+Aggregate by instance or node label
+
+Combine CPU/Memory/Disk → node capacity dashboard
