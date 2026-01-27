@@ -1,0 +1,5 @@
+grafana dashboard creation answer:
+_____________________________________________
+I first add Prometheus as a data source, ensure Prometheus scrapes the metrics from all targets, then create panels using PromQL queries,
+optionally add variables for dynamic filtering, set thresholds
+and alerts for actionable metrics, organize panels in rows or grids, and finally save and version-control the dashboard for team collaboration.”
