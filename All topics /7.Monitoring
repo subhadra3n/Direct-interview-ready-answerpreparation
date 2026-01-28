@@ -1,31 +1,24 @@
 
-In our project, we use Prometheus to collect metrics and Grafana to visualize application and infrastructure health, 
-mainly focusing on Kubernetes and AWS environments. 
-Metrics Collection:
-Prometheus gathers data from Kubernetes nodes (using kube-state-metrics and node-exporter), applications via metrics endpoints, and 
-cloud resources like EC2 and Docker using exporters. We track CPU, memory, disk I/O, network, pod health, and key app metrics like latency and 
-error rates.
+1.In our project, we use Prometheus to collect metrics and Grafana to visualize application and infrastructure health.
+I have created Grafana dashboards by configuring Prometheus as a data source, writing PromQL queries, and also by importing existing dashboards
+using Grafana dashboard IDs.
 
-Visualization:
-Grafana connects to Prometheus and provides  dashboards for infrastructure, clusters, and apps. These dashboards help teams spot issues 
-quickly and monitor performance over time.
+2.Prometheus gathers metrics from Node Exporter, Blackbox Exporter, and kube-state-metrics, which are integrated with Prometheus as scrape targets.
 
-Alerting:
-Alerts are set up in Prometheus for things like high CPU or memory, crash loops, or latency spikes.
-These alerts are sent to Alertmanager, which handles grouping, deduplication, and routing based on 
-based on seviarity 
-critical production issues, alerts - are routed to:--pager duty
-warning alerts --are routed to:-email
-info alerts--are routed to:-slack
-Alertmanager integrates with Slack via Webhooks, Email via SMTP, and PagerDuty via API integration keys.
-Prometheus Alertmanager sends
-notifications to Slack, email, or PagerDuty—so the right people can act fast.
+3.We configure scrape targets in prometheus.yml using scrape_configs, either as static targets or via Kubernetes service discovery.
 
+4.We define Prometheus rules in separate YAML files, including recording rules to pre-compute frequently used metrics for improved performance.
 
-This integrated approach helps us detect problems early, reduce downtime, and deliver stable performance for all environments.
+5.We also define alerting rules to continuously evaluate conditions such as sustained CPU or memory pressure; these rule files are referenced from prometheus.yml.
 
+6.When an alert fires, Prometheus sends it to Alertmanager along with labels like pod, namespace, and severity.
 
-This ensures the right team gets notified immediately for faster incident response.
+7.Alertmanager handles grouping, deduplication, and routing of notifications.
+
+8.Alertmanager integrates with Slack via Webhooks, Email via SMTP, and PagerDuty via API integration keys.
+
+This integrated monitoring approach helps us detect issues early, reduce downtime, and ensure stable performance across environments, 
+enabling faster incident response by notifying the right teams immediately.
 ____________________
 dashboard queries:
 
