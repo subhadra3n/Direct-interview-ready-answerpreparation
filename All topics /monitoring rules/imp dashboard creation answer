@@ -7,15 +7,3 @@ ________________________________________________________________________________
 
 
 _______________________________________________________________
-
-“Yes, I have created Grafana dashboards by configuring Prometheus as a data source and writing PromQL queries,or by importing existing dashboards 
-using Grafana dashboard IDs.
-
-Prometheus scrapes metrics from exporters such as node-exporter, kube-state-metrics, and blackbox exporter.
-
-We define Prometheus rules in separate YAML files—both recording rules to pre-compute frequently used metrics for performance and 
-alerting rules to continuously evaluate conditions like sustained CPU or memory pressure. These rule files are referenced from prometheus.yml.
-
-When an alerting rule fires, Prometheus sends the alert to Alertmanager along with labels such as pod, namespace, and severity.
-Alertmanager then handles grouping, deduplication, and routing of notifications to channels like Slack, PagerDuty, or email
-so the on-call engineer can take action.”
