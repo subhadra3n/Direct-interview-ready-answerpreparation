@@ -1,0 +1,165 @@
+
+Dash board creation answer-
+“Yes, I have created Grafana dashboards by configuring Prometheus as a data source and writing PromQL queries,or by importing existing dashboards 
+using Grafana dashboard IDs.
+
+Prometheus scrapes metrics from exporters such as node-exporter, kube-state-metrics, and blackbox exporter.
+
+We define Prometheus rules in separate YAML files—both recording rules to pre-compute frequently used metrics for performance and 
+alerting rules to continuously evaluate conditions like sustained CPU or memory pressure. These rule files are referenced from prometheus.yml.
+
+When an alerting rule fires, Prometheus sends the alert to Alertmanager along with labels such as pod, namespace, and severity.
+Alertmanager then handles grouping, deduplication, and routing of notifications to channels like Slack, PagerDuty, or email
+so the on-call engineer can take action.”
+_______________________________________________
+
+tell about your self:day to day tasks of SRE
+____________________
+In production, we perform regular health checks using monitoring tools llike prometheus & Grafana
+Daily, I monitor Grafana dashboards to verify:
+
+Node health
+Pod status
+CPU, memory, and disk utilization
+Service availability
+Storage performance
+
+I receive alerts from PagerDuty and Slack and prioritize incidents based on severity and business impact.
+
+When an incident occurs,alerts typically include details such as pod name, namespace, severity level, and error information.
+I securely access the Kubernetes cluster through a bastion host and troubleshoot issues using commands
+like kubectl describe and kubectl logs, and then take appropriate corrective actions.” 
+for example:
+if a pod is in a CrashLoopBackOff or OOMKilled state, I analyze the pod events and logs to identify the root cause.
+Based on the findings,
+
+I update resource requests and limits,to allocate sufficient memory and prevent future crashes.
+Optimize HPA thresholds  based on CPU/memory utilization patterns. or 
+Scale pods horizontally or nodes vertically based on workload demand
+
+During deployments, I closely monitor canary releases. If I notice 5xx errors or latency spikes, I immediately rollback and collaborate 
+with developers to fix the issue.
+
+
+
+Weekly and monthly, I review memory utilization, backup status,security patch compliance,and perform DR drills to 
+ensure high availability and business continuity.
+
+
+After every incident, I perform Root Cause Analysis (RCA) by documenting incident summary, root cause, 
+impact analysis, corrective actions, and preventive measures.
+ I continuously update runbooks with troubleshooting steps, alert handling procedures, rollback processes, and 
+lessons learned from incidents.
+
+ As an SRE we focus on  minimizing MTTR(mean time toi recovery), preventing recurring incidents, 
+and improving system reliability through proactive monitoring and automation.”
+
+
+
+
+
+
+
+
+
+_______________________________________________________________________________________________
+_How we managed the incidents
+In production, we receive alerts through Slack or PagerDuty configured from Prometheus Alertmanager.
+The alert contains pod name and namespace.
+
+After receiving the alert, I log into the bastion server, check the pod status using kubectl, describe the pod to see events, and analyze container logs.
+
+Based on logs, I identify root cause and  fix it. we update the ticket with RCA & Close the incident.
+
+__________________________________________________
+
+In production, we faced pod crashes due to config issues, node failures, high memory usage causing OOMKilled, ingress misconfigurations,
+and image pull failures.
+We resolved them by checking logs, scaling pods, fixing configs, draining nodes, and rolling back deployments.
+
+Kubernetes Production Incidents
+1️⃣ Application Pod Crash (CrashLoopBackOff)
+
+App crashes due to:
+
+Wrong env variables
+
+DB connection failure
+
+Code bug
+
+Impact: Service unavailable
+
+2️⃣ Node NotReady
+
+Node goes down due to:
+
+Disk full
+
+Network issue
+
+Kernel panic
+
+Impact: Pods evicted
+
+3️⃣ High CPU / Memory usage
+
+Sudden traffic spike
+
+Memory leak in app
+
+Impact:
+
+Pod throttling
+
+OOMKilled
+
+4️⃣ Image Pull Failure
+
+Wrong image tag
+
+DockerHub limit
+
+Private registry auth issue
+
+5️⃣ Service Down
+
+Wrong selector
+
+Port mismatch
+
+Network policy blocking
+
+6️⃣ ETCD latency / failure
+
+Disk IO issue
+
+Snapshot failure
+
+Impact: Cluster unstable
+
+7️⃣ Ingress not routing traffic
+
+TLS cert expired
+
+DNS issue
+
+Wrong path rules
+
+8️⃣ ConfigMap / Secret missing
+
+App fails to start
+
+CrashLoopBackOff
+
+9️⃣ HPA not scaling
+
+Metrics server down
+
+Prometheus issue
+
+🔟 Persistent Volume full
+
+Disk full
+
+DB pods crash
