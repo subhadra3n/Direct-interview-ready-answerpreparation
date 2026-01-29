@@ -1,0 +1,13 @@
+vi Dockerfile
+___________-
+After writing & exit from docker file run thses commands
+1. docker build -f Dockerfile -t go-web-app .
+__________________________________________________
+for run the container from image:
+2. docker run -d -p 8080:8080 --name go-web-container go-web-app
+___________________________
+check docker container id----
+3.docker ps -a
+4.docker ps
+______________________________
+5.docker images
