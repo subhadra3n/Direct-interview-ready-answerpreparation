@@ -11,3 +11,23 @@ check docker container id----
 4.docker ps
 ______________________________
 5.docker images
+______________________
+while push image to docker hub:
+6.docker login -u devopssubbu
+password:
+_________________________________
+7.docker push devopssubbu/go-web-app:latest
+_____________________________________
+8.docker stop <container_id_or_name>
+____________________
+9.docker start <cont_id or cont_name>
+_____________________________________
+remove docker image
+10.docker rmi <image_id_or_name:tag>
+___________________________
+remove container-id
+11.docker rm <container_name_or_id>
+we can't directly remove image, if container is using this image---steps
+a.first stop container
+b.rm container
+c.delete image
