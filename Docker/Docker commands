@@ -1,4 +1,7 @@
-vi Dockerfile
+devopssubbu
+Anurag@21
+
+___________vi Dockerfile
 ___________-
 After writing & exit from docker file run thses commands
 1. docker build -f Dockerfile -t go-web-app .
