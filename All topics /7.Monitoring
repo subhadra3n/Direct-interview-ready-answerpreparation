@@ -11,7 +11,8 @@ and also importing existing dashboards using Grafana dashboard IDs.
 
 5. We define Prometheus rules in separate YAML files, including recording rules to pre-compute frequently used metrics for improved query performance.
 
-6. We also define alerting rules to continuously evaluate conditions such as sustained CPU or memory pressure; these rule files are referenced from prometheus.yml.
+6. We also define alerting rules to continuously evaluate conditions such as sustained CPU or memory pressure; 
+these rule files are referenced from prometheus.yml.
 
 7. When an alert fires, Prometheus sends it to Alertmanager along with labels like pod, namespace, and severity.
 
