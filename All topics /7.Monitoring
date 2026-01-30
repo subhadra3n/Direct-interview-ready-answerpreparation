@@ -1,27 +1,24 @@
+1. In our project, we use Prometheus to collect metrics and Grafana to visualize application and infrastructure health.
 
-1.In our project, we use Prometheus to collect metrics and Grafana to visualize application and infrastructure health.
+2. Prometheus gathers metrics from exporters such as Node Exporter, Blackbox Exporter, and kube-state-metrics, 
+which are configured as scrape targets in the prometheus.yml file, either as static targets or via Kubernetes service discovery.
 
+3. These exporters expose system, Kubernetes, and availability metrics, which Prometheus stores as time-series data.
 
-2.Prometheus gathers metrics from Node Exporter, Blackbox Exporter, and kube-state-metrics, which are integrated with Prometheus as scrape targets.
-Exporters give the data (like CPU: 30%, Memory: 40%). etc
-Prometheus stores this data with the time it was collected (this is called "timeseries data").
-3.We configure scrape targets in prometheus.yml using scrape_configs, either as static targets or via Kubernetes service discovery.
+4. I have created Grafana dashboards by configuring Prometheus as a data source, writing PromQL queries,
+and also importing existing dashboards using Grafana dashboard IDs.
 
-4.I have created Grafana dashboards by configuring Prometheus as a data source, writing PromQL queries, and also by importing existing dashboards
-using Grafana dashboard IDs.
+5. We define Prometheus rules in separate YAML files, including recording rules to pre-compute frequently used metrics for improved query performance.
 
-5..We define Prometheus rules in separate YAML files, including recording rules to pre-compute frequently used metrics for improved performance.
+6. We also define alerting rules to continuously evaluate conditions such as sustained CPU or memory pressure; these rule files are referenced from prometheus.yml.
 
-6.We also define alerting rules to continuously evaluate conditions such as sustained CPU or memory pressure; these rule files are referenced from prometheus.yml.
-Prometheus stores this data with the time it was collected (this is called "timeseries data").
-6.When an alert fires, Prometheus sends it to Alertmanager along with labels like pod, namespace, and severity.
+7. When an alert fires, Prometheus sends it to Alertmanager along with labels like pod, namespace, and severity.
 
-8.Alertmanager handles grouping, deduplication, and routing of notifications.
+8. Alertmanager handles grouping, deduplication, and routing of notifications.
 
-9.Alertmanager integrates with Slack via Webhooks, Email via SMTP, and PagerDuty via API integration keys.
+9. Alertmanager integrates with Slack via webhooks, Email via SMTP, and PagerDuty using API integration keys.
 
-This setup helps us detect issues early, reduce downtime, and respond to incidents faster across environments.”
-____________________
+This setup helps us detect issues early, reduce downtime, and respond to incidents faster across environments.
 dashboard queries:
 
 1.Node / Infrastructure Metrics
