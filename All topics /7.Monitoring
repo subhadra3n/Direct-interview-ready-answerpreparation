@@ -3,7 +3,8 @@
 2. Prometheus gathers metrics from exporters such as Node Exporter, Blackbox Exporter, and kube-state-metrics, 
 which are configured as scrape targets in the prometheus.yml file, either as static targets or via Kubernetes service discovery.
 
-3. These exporters expose system, Kubernetes, and availability metrics, which Prometheus stores as time-series data.
+3. These exporters expose system metrics, Kubernetes metrics, and availability metrics,
+Prometheus stores this data with the time it was collected as time-series data.
 
 4. I have created Grafana dashboards by configuring Prometheus as a data source, writing PromQL queries,
 and also importing existing dashboards using Grafana dashboard IDs.
