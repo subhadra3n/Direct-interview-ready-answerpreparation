@@ -16,7 +16,7 @@ these rule files are referenced from prometheus.yml.
 
 7. When an alert fires, Prometheus sends it to Alertmanager along with labels like pod, namespace, and severity.
 
-8. Alertmanager handles grouping, deduplication, and routing of notifications.
+8. Alertmanager handles grouping, deduplication, and routing  notifications to slack or pager duty.
 
 9. Alertmanager integrates with Slack via webhooks, Email via SMTP, and PagerDuty using API integration keys.
 
