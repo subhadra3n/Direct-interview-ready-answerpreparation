@@ -1,0 +1,50 @@
+3️⃣ Database Latency / Connection Exhaustion Incident
+
+
+
+“We had a backend system using a managed relational database, and over time the workload became more read-heavy. During peak hours,
+users started experiencing API timeouts.
+
+From an impact perspective, requests were backing up and application thread pools were getting blocked.
+
+Our monitoring showed database latency spikes, and we also saw that the database had reached its maximum connection limit.
+
+As an immediate fix, we temporarily scaled the database and tuned the application’s connection pool to prevent runaway connections.
+
+Longer term, we introduced read replicas and Redis caching, and moved expensive queries out of the critical request path.
+
+The key learning was understanding the system’s hot paths and monitoring them explicitly, rather than treating the database as an infinite resource.”
+_______________________________________________________________________________________________________
+3️⃣ Database Latency / Connection Exhaustion Incident
+
+Context
+
+RDS / Azure SQL / PostgreSQL backend
+
+Read-heavy workload increased
+
+Impact
+
+API timeouts
+
+Thread pools blocked
+
+Detection
+
+Latency metrics spiked
+
+DB connections maxed out
+
+Action
+
+Scaled DB temporarily
+
+Increased connection pool limits
+
+Introduced read replicas / caching (Redis)
+
+Resolution
+
+Latency normalized
+
+Throughput increased
