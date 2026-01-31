@@ -1,0 +1,45 @@
+4️⃣ Monitoring Blind Spot → Delayed Detection
+
+Context
+
+System appeared healthy
+
+But users complained
+
+Impact
+
+Partial outage unnoticed for X minutes
+
+Detection
+
+Support tickets before alerts 🤦‍♂️
+
+Action
+
+Root cause: Alerts based only on CPU, not user-facing SLIs
+
+Added latency + error-rate alerts
+
+Resolution
+
+Future incidents detected early
+
+Learning
+
+“We shifted from infra-based monitoring to SLI-driven alerting.”
+_____________________________________________________________________
+4️⃣ Monitoring Blind Spot → Delayed Detection
+
+
+“In one case, our dashboards looked healthy from an infrastructure perspective — CPU, memory, and disk were all green. However, users started complaining 
+about slow responses and failed requests.
+
+The problem was that the issue went unnoticed for several minutes because support tickets arrived before alerts, which is never a good sign.
+
+On investigation, we realized our alerts were based almost entirely on infrastructure metrics and not on user-facing signals.
+
+We addressed this by adding alerts on latency, error rate, and request success, aligned directly with our SLIs.
+
+After that change, similar issues were detected much earlier, often before users noticed.
+
+The major learning was shifting from infra-based monitoring to SLI-driven alerting, which significantly reduced detection time.”
