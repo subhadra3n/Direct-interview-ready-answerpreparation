@@ -1,8 +1,9 @@
-5️⃣ Security / Access Misconfiguration Incident
+2.5️⃣ Security / Access Misconfiguration Incident
 
 Storytelling answer:
 
-“We once tightened IAM and RBAC policies as part of a least-privilege initiative. Shortly after the change, deployments started 
+“We once tightened IAM and RBAC policies as part of a least-privilege initiative. Shortly after the change,
+deployments started 
 failing and some services couldn’t access required resources.
 
 The impact was limited but visible — health checks failed and new pods wouldn’t come up.
@@ -11,7 +12,8 @@ Logs showed authorization errors, confirming it was an access issue.
 
 We rolled back the policy immediately to restore service, then carefully identified the missing permissions.
 
-After the incident, we introduced staged permission testing, permission diff checks, and restricted access changes to defined change windows.
+After the incident, we introduced staged permission testing, permission diff checks, and 
+restricted access changes to defined change windows.
 
 The learning was that security changes are high-risk and need the same rigor as production code changes.”
 ___________________________________
