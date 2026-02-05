@@ -2,12 +2,15 @@
 
 Storytelling answer:
 
-1.We had a production system running on Kubernetes
+1. We had an application deployed on a Kubernetes cluster 
+in the production environment 
 that typically handled steady traffic. During a marketing campaign, traffic spiked far beyond normal levels.
-2.causing increased latency and 5xx errors with direct business impact.
+
+2.This caused increased latency and 5xx errors with direct business impact.
+
 Alerts were triggered by a latency SLO breach, even though CPU usage appeared normal.
 
-3. we found the issue, real bottleneck was connection pool exhaustion, while the HPA was scaling only on CPU. 
+3.i found the issue, real bottleneck was connection pool exhaustion, while the HPA was scaling only on CPU. 
 As an immediate mitigation, we increased replicas.
 
 4.We then updated the HPA to scale on request rate and latency metrics, 
