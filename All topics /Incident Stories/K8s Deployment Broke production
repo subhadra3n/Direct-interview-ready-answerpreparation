@@ -49,3 +49,4 @@ leading to a partial service outage.
 4.As a long-term preventive measure, we extended canary deployments to cover configuration changes, 
 added configuration validation checks in CI to catch missing or invalid values, and
 implemented automated rollback based on pod health indicators such as restart thresholds and readiness failures.
+thereby addressing the root cause and stabilizing the system.
