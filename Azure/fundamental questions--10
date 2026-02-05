@@ -63,7 +63,7 @@ Q6. What is a Virtual Network (VNet)?
 Answer:
 A VNet is a Virtal private network 
 It is logically isolated virtual n/w, where we can deploy & manage virtual m/cs securely.
-
+_____________________________________________________
 Q7. Difference between NSG and Azure Firewall?
 
 Answer:
@@ -73,6 +73,7 @@ Layer 4 (IP, Port)	Layer 7 (FQDN, URLs)
 Free	Paid
 Stateless	Stateful
 Applied at NIC/Subnet	Centralized firewall
+_________________________________
 Q8. What is Azure Load Balancer vs Application Gateway?
 
 Answer:
@@ -80,12 +81,12 @@ Answer:
 Load Balancer → Layer 4 (TCP/UDP), high performance
 
 Application Gateway → Layer 7 (HTTP/HTTPS), supports WAF, SSL termination, path-based routing
-
+_______________________________________
 Q9. What is Private Endpoint?
 
 Answer:
 Private Endpoint allows Azure services (Storage, SQL, Web Apps) to be accessed privately via VNet IP, eliminating public exposure.
-
+__________________________________
 4️⃣ Azure Storage
 Q10. Types of Azure Storage?
 
@@ -98,7 +99,7 @@ File Storage → SMB/NFS file shares
 Queue Storage → Messaging
 
 Table Storage → NoSQL key-value data
-
+________________________________________________
 Q11. Difference between Blob tiers?
 
 Answer:
@@ -108,13 +109,14 @@ Hot → Frequently accessed
 Cool → Infrequently accessed
 
 Archive → Long-term storage, cheapest, slow retrieval
+_________________________________________________
 
 5️⃣ Identity & Security (interview favorite)
 Q12. What is Azure Active Directory?
 
 Answer:
 Azure AD is a cloud identity and access management service providing authentication, authorization, SSO, MFA, and conditional access.
-
+_________________________________________________
 Q13. Difference between RBAC and Azure AD roles?
 
 Answer:
@@ -122,6 +124,7 @@ Answer:
 RBAC → Controls access to Azure resources
 
 Azure AD roles → Controls access to directory features (users, groups, apps)
+________________________________________________
 
 Q14. What is Managed Identity?
 
