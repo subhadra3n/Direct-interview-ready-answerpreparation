@@ -1,4 +1,15 @@
+az login-----
+_________________________________
 vnet:
 Vnet is a virtual n/w
 It  is  logically isolated virtual private network in Azure 
 where we can launch & manage cloud resources securely.
+__________________________________________________________________
+No Availability Zone in azure
+No igw in azure
+________________________
+Subnet (Azure)
+A subnet is a logical subdivision of an  Virtual Network (VNet) IP address range,
+used to organize resources, control traffic flow, and securely deploy virtual machines.
+______________________________________________________________________________-
+
