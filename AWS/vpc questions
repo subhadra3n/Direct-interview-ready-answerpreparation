@@ -8,10 +8,12 @@ used to organize resources, control traffic, and launch instances securely.
 _____________________
 what is public subnet
 public subnet has direct internet access through IGW,
-Instances launched in a public subnet can send and receive traffic from the internet IGW, typically used for web servers, bastion hosts, or load balancers.
+Instances launched in a public subnet can send and receive traffic from the internet IGW,
+typically used for web servers, bastion hosts, or load balancers.
 __________________
 what is private subnet
-private subnet in vpc doesn't have direct,Instances in a private subnet access the internetthrough a NAT Gateway or NAT instance in a public subnet. 
+private subnet in vpc doesn't have direct,Instances in a private subnet access the internetthrough a NAT Gateway 
+or NAT instance in a public subnet. 
 _______________________
 what is IGW
 IGW is attached to a VPC and, together with route tables, enables public subnets to send and receive traffic from the internet.
