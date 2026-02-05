@@ -1,0 +1,59 @@
+1️⃣ Production Outage due to Traffic Spike / Scaling Failure
+
+Storytelling answer:
+
+1.We had a production system running on Kubernetes
+that typically handled steady traffic. During a marketing campaign, traffic spiked far beyond normal levels.
+2.causing increased latency and 5xx errors with direct business impact.
+Alerts were triggered by a latency SLO breach, even though CPU usage appeared normal.
+
+3. we found the issue, real bottleneck was connection pool exhaustion, while the HPA was scaling only on CPU. 
+As an immediate mitigation, we increased replicas.
+
+4.We then updated the HPA to scale on request rate and latency metrics, 
+after which traffic stabilized and error rates dropped within minutes.
+________________
+
+5. CPU-based scaling alone was insufficient, 
+so we redesigned autoscaling around request-driven metrics and added load testing for peak events.
+____________________________________________________________________
+1️⃣ Production Outage due to Traffic Spike / Scaling Failure
+
+Context
+
+Application hosted on Kubernetes / EC2 / App Service
+
+Normal traffic suddenly spiked (campaign, cron, bot, partner integration)
+
+Impact
+
+Increased latency
+
+5xx errors
+
+Business impact (orders failed, users dropped)
+
+Detection
+
+Alert fired on latency SLO
+
+CPU looked fine but connection pool exhausted
+
+Action
+
+Increased replicas
+
+Tuned HPA (CPU → custom metrics like RPS or latency)
+
+Throttled abusive traffic
+
+Resolution
+
+Traffic stabilized
+
+Errors dropped within X minutes
+
+Learning (KEY)
+
+“We realized CPU-based scaling was insufficient. We moved to request-rate based scaling and introduced load testing for peak events.”
+
