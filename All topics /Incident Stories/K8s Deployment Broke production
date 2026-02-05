@@ -40,10 +40,8 @@ Storytelling answer:
 1.As a standard practice, we use canary deployments for application code changes to limit blast radius and
 prevent major outages.
 
-2.In this incident, a deployment went through our CI/CD pipeline that involved only configuration changes,
-specifically updates to a ConfigMap and environment variables. At that time,
-canary safeguards were not applied to configuration-only deployments, and
-the updated configuration was rolled out to all pods simultaneously.
+2.In this incident, the CI/CD pipeline deployed only configuration changes. At that time, canary deployments
+were not enabled for configuration-only changes, and the updated configuration was applied to all pods at once.
 
 3.Shortly after the deployment, multiple pods began entering a CrashLoopBackOff state, 
 leading to a partial service outage.
