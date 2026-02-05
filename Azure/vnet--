@@ -1,3 +1,4 @@
 vnet:
 Vnet is a virtual n/w
-It  is  logically isolated virtual private network in Azure that allows you to securely deploy and manage cloud resources, control IP addressing, routing, and network access.
+It  is  logically isolated virtual private network in Azure 
+where we can launch & manage cloud resources securely.
