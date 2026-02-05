@@ -7,13 +7,21 @@ A subnet is a logical subdivision of a VPC’s IP address range, placed within a
 used to organize resources, control traffic, and launch instances securely.
 _____________________
 what is public subnet
-public subnet has direct internet access through IGW,
-Instances launched in a public subnet can send and receive traffic through the IGW,
+A public subnet is a subnet whose route table has a route to an Internet Gateway (IGW).
+Instances launched in a public subnet can send and receive internet traffic through the IGW 
+if they have a public or Elastic IP address and appropriate security group/NACL rules.
 typically used for web servers, bastion hosts, or load balancers.
+
+
 __________________
 what is private subnet
 private subnet in vpc doesn't have direct,Instances in a private subnet access the internetthrough a NAT Gateway 
 or NAT instance in a public subnet. 
+
+A private subnet is a subnet in a VPC whose route table does not have a route to an Internet Gateway (IGW).
+Instances in a private subnet cannot receive inbound traffic directly from the internet.
+For outbound internet access (such as OS updates or package downloads), 
+instances in a private subnet route traffic through a NAT Gateway or NAT instance located in a public subnet.
 _______________________
 what is IGW
 IGW is attached to a VPC and, together with route tables, enables public subnets to send and receive traffic from the internet.
