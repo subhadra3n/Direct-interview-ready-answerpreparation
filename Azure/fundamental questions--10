@@ -1,0 +1,130 @@
+Azure Fundamentals (must-know)
+Q1. What is Azure Resource Manager (ARM)?
+
+Answer:
+Azure Resource Manager (ARM) is the deployment and management layer of Azure.
+It allows you to create, update, and delete Azure resources as a single logical unit (resource group) using templates,
+policies, RBAC, and tags.
+ARM ensures idempotent, repeatable, and
+declarative infrastructure provisioning.
+_____________________________________________
+Q2. What is a Resource Group?
+
+Answer:
+A Resource Group is a logical container that holds related Azure resources.
+Key points:
+
+Resources share the same lifecycle
+
+Can span multiple regions
+
+RBAC and policies are applied at RG level
+______________________________________________
+
+Q3. Difference between Subscription and Resource Group?
+
+Answer:
+
+Subscription → Billing & quota boundary
+
+Resource Group → Management & lifecycle boundary
+Subscriptions contain resource groups, which contain resources.
+__________________________________________________________
+2️⃣ Azure Compute
+Q4. Difference between VM Scale Sets and Availability Sets?
+
+Answer:
+
+Availability Set → Protects against hardware failure using fault & update domains
+
+VM Scale Set (VMSS) → Automatically scales VM instances based on load
+
+VMSS is preferred for autoscaling & cloud-native workloads.
+____________________________________________________
+Q5. What are Azure App Services?
+
+Answer:
+Azure App Service is a PaaS offering to host web apps, APIs, and background services without managing servers.
+It supports:
+
+Auto-scaling
+
+Built-in monitoring
+
+Deployment slots
+
+CI/CD integration
+_____________________________________________--------
+
+
+3️⃣ Azure Networking (very important)
+Q6. What is a Virtual Network (VNet)?
+
+Answer:
+A VNet is a Virtal private network 
+It is logically isolated virtual n/w, where we can deploy & manage virtual m/cs securely.
+
+Q7. Difference between NSG and Azure Firewall?
+
+Answer:
+
+NSG	Azure Firewall
+Layer 4 (IP, Port)	Layer 7 (FQDN, URLs)
+Free	Paid
+Stateless	Stateful
+Applied at NIC/Subnet	Centralized firewall
+Q8. What is Azure Load Balancer vs Application Gateway?
+
+Answer:
+
+Load Balancer → Layer 4 (TCP/UDP), high performance
+
+Application Gateway → Layer 7 (HTTP/HTTPS), supports WAF, SSL termination, path-based routing
+
+Q9. What is Private Endpoint?
+
+Answer:
+Private Endpoint allows Azure services (Storage, SQL, Web Apps) to be accessed privately via VNet IP, eliminating public exposure.
+
+4️⃣ Azure Storage
+Q10. Types of Azure Storage?
+
+Answer:
+
+Blob Storage → Unstructured data
+
+File Storage → SMB/NFS file shares
+
+Queue Storage → Messaging
+
+Table Storage → NoSQL key-value data
+
+Q11. Difference between Blob tiers?
+
+Answer:
+
+Hot → Frequently accessed
+
+Cool → Infrequently accessed
+
+Archive → Long-term storage, cheapest, slow retrieval
+
+5️⃣ Identity & Security (interview favorite)
+Q12. What is Azure Active Directory?
+
+Answer:
+Azure AD is a cloud identity and access management service providing authentication, authorization, SSO, MFA, and conditional access.
+
+Q13. Difference between RBAC and Azure AD roles?
+
+Answer:
+
+RBAC → Controls access to Azure resources
+
+Azure AD roles → Controls access to directory features (users, groups, apps)
+
+Q14. What is Managed Identity?
+
+Answer:
+Managed Identity allows Azure resources to authenticate securely to other Azure services without storing credentials.
+It uses Azure AD behind the scenes.
