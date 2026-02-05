@@ -37,14 +37,17 @@ ___________________________________________________________________________--
 
 Storytelling answer:
 
-“In one incident, a new deployment was rolled out through our CI/CD pipeline. The change involved an update to a config map and environment variables.
+“In one incident, a new deployment was rolled out through our CI/CD pipeline. 
+The change involved an update to a config map and environment variables.
 
 Shortly after deployment, several pods started going into CrashLoopBackOff, leading to a partial outage.
 
-We were alerted via a spike in pod restart counts, and when we checked the logs and kubectl describe, it was clear that a required configuration value was missing, 
+We were alerted via a spike in pod restart counts, and when we checked the logs and kubectl describe,
+it was clear that a required configuration value was missing, 
 causing the application to fail on startup.
 
-The immediate action was to roll back the deployment, which restored service quickly. To prevent further impact, we temporarily disabled auto-deployments until 
+The immediate action was to roll back the deployment, which restored service quickly. To prevent further impact,
+we temporarily disabled auto-deployments until 
 we understood the root cause.
 
 Once stable, we introduced canary deployments, added config validation as part of CI, and automated rollback conditions.
