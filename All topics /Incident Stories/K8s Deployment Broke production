@@ -37,23 +37,17 @@ ___________________________________________________________________________--
 
 Storytelling answer:
 
-As a standard practice, we use canary deployments for application code changes to limit blast radius and
+1.As a standard practice, we use canary deployments for application code changes to limit blast radius and
 prevent major outages.
 
-In this incident, a deployment went through our CI/CD pipeline that involved only configuration changes, 
-specifically updates to a ConfigMap and environment variables. At that time, 
-canary safeguards were not applied to configuration-only deployments, and the updated configuration was rolled out 
-to all pods simultaneously.
+2.In this incident, a deployment went through our CI/CD pipeline that involved only configuration changes,
+specifically updates to a ConfigMap and environment variables. At that time,
+canary safeguards were not applied to configuration-only deployments, and
+the updated configuration was rolled out to all pods simultaneously.
 
-Shortly after the deployment, several pods began entering a CrashLoopBackOff state, 
+3.Shortly after the deployment, multiple pods began entering a CrashLoopBackOff state, 
 leading to a partial service outage.
-We were alerted by a sudden spike in pod restart counts. Upon investigation using 
-application logs and kubectl describe,
-we identified that a required configuration value was missing, causing the application to fail during startup.
 
-The immediate mitigation was to roll back the configuration change, which restored service quickly. 
-To prevent further impact, we temporarily disabled auto-deployments while we conducted a root cause analysis.
-
-As a long-term preventive measure, we extended canary deployments to cover configuration changes, 
-added configuration validation checks in CI to catch missing or invalid values, and implemented
-automated rollback based on pod health indicators such as restart thresholds and readiness failures.
+4.As a long-term preventive measure, we extended canary deployments to cover configuration changes, 
+added configuration validation checks in CI to catch missing or invalid values, and
+implemented automated rollback based on pod health indicators such as restart thresholds and readiness failures.
