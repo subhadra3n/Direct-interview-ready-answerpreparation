@@ -1,0 +1,25 @@
+🟦 E-Series (Memory Optimized)
+VM Size	vCPU	RAM
+E2s_v5	2	16 GB
+E4s_v5	4	32 GB
+E8s_v5	8	64 GB
+
+👉 Databases & in-memory systems
+
+🧠 Golden Ratios (Same Logic as AWS)
+Workload Need	Azure Series	RAM per vCPU
+Bursty	B	Variable
+Balanced	D	~4 GB
+CPU-heavy	F	~2 GB
+Memory-heavy	E	~8 GB
+🎯 Azure Interview One-Liner
+
+“In Azure production, we mainly use B, D, F, and E series —
+B for burstable workloads, D for general-purpose apps, F for compute-intensive services, and E for memory-heavy databases.”
+
+🏆 Cloud-Agnostic Mental Model (Very Important)
+Workload	AWS	Azure
+Burstable	T	 B
+General	 M   D
+Compute	 C	F
+Memory	 R	E
