@@ -1,0 +1,18 @@
+| Instance Family           | Example Types     | CPU Model                | vCPU Range | Memory per vCPU | Typical RAM Range | Performance Nature | Common Production Use                   |
+| ------------------------- | ----------------- | ------------------------ | ---------- | --------------- | ----------------- | ------------------ | --------------------------------------- |
+| **T (Burstable)**         | t3, t3a, t4g      | Burstable (credit-based) | 2 – 48     | ~2 GB           | 1 GB – 192 GB     | Variable / Spiky   | Web servers, APIs, Dev/QA, Bastion      |
+| **M (General Purpose)**   | m5, m6i, m7i, m6g | Fixed, sustained         | 2 – 128    | ~4 GB           | 8 GB – 512 GB     | Stable / Balanced  | App servers, Middleware, K8s nodes      |
+| **C (Compute Optimized)** | c5, c6i, c7i, c6g | Fixed, high-clock        | 2 – 128    | ~2 GB           | 4 GB – 256 GB     | CPU-intensive      | Batch jobs, CI/CD, High-throughput APIs |
+| **R (Memory Optimized)**  | r5, r6i, r7i, r6g | Fixed, memory-optimized  | 2 – 128    | ~8 GB           | 16 GB – 1 TB+     | RAM-intensive      | Databases, Redis, Elasticsearch         |
+____________________________________________________________
+
+One-Glance Mental Model
+Workload Type	Best Family
+Spiky / low baseline	T
+Default backend	M
+CPU-heavy	C
+Memory-heavy	R
+🎯 Interview-Ready Summary
+
+“In production, we mainly standardize on T, M, C, and R families.
+T for bursty workloads, M for general-purpose applications, C for compute-intensive services, and R for memory-heavy databases.”
