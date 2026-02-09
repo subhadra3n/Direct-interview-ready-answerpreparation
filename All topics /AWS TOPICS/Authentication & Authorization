@@ -3,8 +3,11 @@ _________________________________________________________
 Authentication is about verifying identity — who the user, service, or application is.
 Authorization is about permissions — what actions that identity is allowed to perform on which resources.
 
-In AWS, authentication is handled using IAM, STS, or SSO, while authorization is controlled using IAM policies, resource policies, and SCPs.
-In Azure, authentication is done via Azure AD (Entra ID), and authorization is enforced using Azure RBAC roles.
+In AWS, authentication is handled using IAM identities such as users, groups, and roles,
+while authorization is controlled through IAM policies, resource-based policies, and Service Control Policies (SCPs).
+
+In Azure, authentication is performed using Azure Active Directory (now Entra ID) for users, groups, and service principals, and 
+authorization is enforced using Azure RBAC roles assigned at different scopes.
 
 Authentication always happens first; authorization happens after identity is verified.
 ________________________________________________________-
