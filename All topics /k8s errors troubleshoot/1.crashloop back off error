@@ -39,3 +39,14 @@ Startup probe failed
 6.check image & startup commands-----------Confirm the correct image, tag, entrypoint, and command are used.
   (Image and startup commands can be verified using kubectl describe pod or kubectl get pod -o yaml by checking the image, command, and args fields.)
   fix issue & redeploy.
+_________________________________________-
+| Exit Code | Meaning           | Common Cause          |
+| --------- | ----------------- | --------------------- |
+| 1         | Generic error     | App failure           |
+| 137       | OOMKilled         | Memory exceeded       |
+| 139       | Segfault          | App bug               |
+| 143       | SIGTERM           | Graceful shutdown     |
+| 126       | Permission issue  | Script not executable |
+| 127       | Command not found | Wrong ENTRYPOINT      |
+| 0         | Completed         | Wrong workload type   |
+
