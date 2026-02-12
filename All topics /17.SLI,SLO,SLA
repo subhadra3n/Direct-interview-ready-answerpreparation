@@ -1,6 +1,6 @@
 1.SLI,
 SLI (Service Level Indicator) is a quantitative measurement of a service’s performance or reliability in a production environment.
-It represents the actual metric we track to understand how the system is performing.
+t helps track whether a service meets its expected standards
 
 We typically measure things like:
 Percentage of successful requests
