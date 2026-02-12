@@ -1,0 +1,33 @@
+SLI,
+SLI (Service Level Indicator) is a quantitative measurement of a service’s performance or reliability in a production environment.
+It represents the actual metric we track to understand how the system is performing.
+
+We typically measure things like:
+Percentage of successful requests
+Response time (latency)
+Uptime / availability
+Error rate
+
+Example:
+
+Out of 1,00,000 requests, 99,900 were successful.
+
+So availability = 99.9%
+
+That measurement is the SLI.
+_________________________________________________________________________________________
+SLO:
+SLO (Service Level Objective) is the internal reliability target defined for a specific SLI over a given time period. 
+It represents the expected level of service performance that the engineering team commits to maintain.
+SLOs guide monitoring, alerting strategies, and error budget management to ensure we balance reliability with feature delivery.
+
+Example:
+If our SLO is 99.9%, we have a 0.1% error budget. If we exceed that, we focus on stability instead of new releases.
+
+
+
+__________________________________________________________________________________________________
+SLA:
+SLA (Service Level Agreement) is a formal agreement between the service provider and the customer.
+It defines the guaranteed level of service, such as uptime or response time.
+It also includes penalties or compensation if the agreed targets are not met.
