@@ -1,1 +1,55 @@
+1. What is Amazon EFS?
+Writing
 
+“Amazon EFS is a scalable, fully managed network file system that allows multiple EC2 instances to share files simultaneously. It provides shared storage and automatically scales as data grows.”
+
+✅ 2. What type of storage is EFS?
+Writing
+
+“EFS is a shared file storage service based on NFS protocol. It allows multiple instances to read and write data concurrently.”
+
+✅ 3. Difference between EBS and EFS?
+Writing
+
+“EBS is block storage attached to a single instance, while EFS is shared file storage accessible by multiple instances at the same time.”
+
+✅ 4. How does EFS scale?
+Writing
+
+“EFS automatically scales storage capacity and performance as files are added or removed, without manual provisioning.”
+
+✅ 5. Is EFS regional or AZ-specific?
+Writing
+
+“EFS is a regional service and is accessible across multiple Availability Zones, improving high availability.”
+
+✅ 6. What protocol does EFS use?
+Writing
+
+“EFS uses the NFS (Network File System) protocol, typically NFSv4.”
+
+✅ 7. When would you use EFS?
+Writing
+
+“EFS is used when multiple servers need shared access to files, such as web content, container storage, or analytics workloads.”
+
+✅ 8. How is EFS secured?
+Writing
+
+“EFS is secured using security groups, IAM policies, encryption at rest with KMS, and encryption in transit using TLS.”
+
+✅ 9. What are EFS performance modes?
+Writing
+
+“EFS supports General Purpose mode for low latency and Max I/O mode for high throughput workloads.”
+
+✅ 10. What are EFS storage classes?
+Writing
+
+“EFS has Standard and Infrequent Access storage classes. Lifecycle policies automatically move unused files to reduce cost.”
+
+⭐ Bonus SRE Scenario Question
+Q: Your shared application is slow using EFS. How do you troubleshoot?
+Writing
+
+“I check EFS throughput and latency metrics in CloudWatch, verify performance mode, inspect network connectivity, and ensure security groups allow NFS traffic. If needed, I optimize workload or switch performance mode.”
