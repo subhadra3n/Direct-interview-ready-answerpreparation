@@ -1,0 +1,318 @@
+1. Core SRE Concepts (must be very strong)
+
+Key concepts to revise:
+
+SLA vs SLO vs SLI (practical examples)
+
+Error budgets
+
+Incident management & RCA
+
+High availability & fault tolerance
+
+Monitoring vs Observability
+
+Reliability vs scalability
+
+Load balancing & autoscaling
+
+Chaos engineering basics
+
+Common questions:
+
+What is SRE and how is it different from DevOps?
+
+How do you design a highly available system?
+
+What is an error budget and why is it important?
+
+How do you handle a production outage?
+
+Tell me about a major incident you resolved.
+
+How do you reduce MTTR?
+
+✅ 2. Kubernetes (very important — expect scenarios)
+
+You already practiced troubleshooting — now expect deeper questions.
+
+Concepts to revise:
+
+Pod lifecycle & scheduling
+
+Requests vs limits
+
+HPA / VPA / Cluster Autoscaler
+
+Services, Ingress, DNS
+
+ConfigMaps & Secrets
+
+NetworkPolicies
+
+StatefulSets vs Deployments
+
+Node failures & eviction
+
+Rolling updates & rollbacks
+
+Common questions:
+
+How does Kubernetes schedule pods?
+
+Difference between HPA and VPA?
+
+How do you troubleshoot CrashLoopBackOff?
+
+What happens when a node fails?
+
+How does service discovery work?
+
+How do you debug a slow Kubernetes app?
+
+Explain Kubernetes architecture.
+
+✅ 3. Linux & System Fundamentals
+
+SREs must be strong in Linux.
+
+Concepts to revise:
+
+CPU, memory, disk, networking basics
+
+top, ps, netstat, ss, lsof
+
+systemd & logs
+
+File permissions
+
+Process management
+
+Disk space & inode issues
+
+Common questions:
+
+How do you troubleshoot high CPU usage?
+
+How do you check memory leaks?
+
+What happens when disk is full?
+
+How do you debug a slow server?
+
+✅ 4. Cloud (AWS/Azure basics — GlobalLogic likes cloud knowledge)
+
+Concepts to revise:
+
+VPC networking
+
+Load balancers
+
+IAM roles
+
+Auto scaling
+
+Storage (EBS, S3, etc.)
+
+Security groups vs NACL
+
+Common questions:
+
+How do you design a scalable cloud architecture?
+
+How do you secure cloud infrastructure?
+
+Difference between public and private subnet?
+
+✅ 5. Monitoring & Observability
+
+Concepts to revise:
+
+Prometheus architecture
+
+Grafana dashboards
+
+Alerting strategies
+
+Logs vs metrics vs traces
+
+Golden signals (latency, traffic, errors, saturation)
+
+Common questions:
+
+How does Prometheus scrape metrics?
+
+How do you design alerts?
+
+What metrics do you monitor for microservices?
+
+✅ 6. CI/CD & Automation
+
+Concepts to revise:
+
+Jenkins/GitHub Actions basics
+
+Docker fundamentals
+
+Infrastructure as Code (Terraform basics)
+
+Deployment strategies
+
+Common questions:
+
+How do you automate deployments?
+
+What is blue-green deployment?
+
+How do you rollback a bad release?
+
+✅ 7. Scenario-Based Questions (very common in 2nd round)
+
+Expect real production situations:
+
+Website is slow — how do you troubleshoot?
+
+Pods are crashing after deployment — what do you check?
+
+Database latency increased — what steps?
+
+Traffic spike — how do you scale?
+
+Memory leak in production — what do you do?
+
+👉 Interviewers want to see structured thinking, not perfect answers.
+
+✅ How to answer like a senior SRE
+
+Use this framework:
+
+👉 Observe → Diagnose → Fix → Prevent
+
+Example:
+
+“First I observe metrics and logs, then diagnose the root cause, apply a fix, and finally implement preventive measures to avoid recurrence.”
+
+This sounds very professional.
+
+If you want, I can give you next:
+
+✅ Top 25 SRE interview questions with ready answers
+✅ Mock interview simulation
+✅ Most asked GlobalLogic SRE scenarios
+✅ 2-hour crash revision guide
+
+👉 Tell me what you want to focus on.
+
+give me questions & answers for all above mentioned concepts
+
+That’s a big ask — and perfect for interview prep 👍
+I’ll give you high-impact, interview-ready Q&A, not textbook theory.
+
+👉 These are the most asked SRE 2nd-round questions, grouped by topic.
+👉 Answers are easy to speak + technical enough for senior panel.
+
+✅ 1. Core SRE Concepts
+Q1. What is SRE and how is it different from DevOps?
+
+Answer:
+
+Writing
+
+“SRE applies software engineering principles to operations to improve reliability, scalability, and automation. DevOps focuses on collaboration and faster delivery, while SRE focuses on reliability using SLIs, SLOs, and error budgets. In short, DevOps is culture, SRE is an implementation model for reliability.”
+
+Q2. What are SLA, SLO, and SLI?
+Writing
+
+“SLI is a metric that measures service performance like latency or error rate. SLO is the target value for that metric, such as 99.9% availability. SLA is a formal agreement with customers that includes penalties if SLOs are not met.”
+
+Q3. What is an error budget?
+Writing
+
+“Error budget is the acceptable amount of failure allowed within an SLO. It balances innovation and reliability — if the error budget is exhausted, we stop releasing new features and focus on stability.”
+
+Q4. How do you handle a production outage?
+Writing
+
+“I follow a structured approach: detect the issue using monitoring, assess impact, mitigate quickly to restore service, communicate with stakeholders, then perform RCA and implement preventive fixes.”
+
+✅ 2. Kubernetes
+Q5. How does Kubernetes schedule pods?
+Writing
+
+“The scheduler selects a node based on resource availability, constraints, and policies. It filters nodes that meet requirements and scores them to choose the best fit.”
+
+Q6. Difference between HPA and VPA?
+Writing
+
+“HPA scales the number of pods based on CPU or custom metrics, while VPA adjusts CPU and memory resources of individual pods.”
+
+Q7. What happens when a node fails?
+Writing
+
+“The node becomes NotReady, and Kubernetes reschedules pods to healthy nodes if replicas exist. Stateful workloads may need manual recovery depending on storage.”
+
+Q8. How do you troubleshoot CrashLoopBackOff?
+Writing
+
+“I run kubectl describe pod and kubectl logs to find errors, check resource limits, config issues, and health probes, then fix and redeploy.”
+
+✅ 3. Linux
+Q9. How do you troubleshoot high CPU usage?
+Writing
+
+“I use top or htop to identify processes, analyze logs, check resource contention, and optimize or scale the workload.”
+
+Q10. What happens when disk is full?
+Writing
+
+“Applications may fail to write logs or data, causing crashes. I check disk usage with df and du, clean unnecessary files, and implement log rotation.”
+
+✅ 4. Cloud (AWS/Azure)
+Q11. Difference between security groups and NACL?
+Writing
+
+“Security groups are stateful firewall rules applied to instances, while NACLs are stateless and applied at subnet level.”
+
+Q12. Public vs private subnet?
+Writing
+
+“A public subnet has a route to an Internet Gateway. A private subnet accesses the internet through a NAT gateway.”
+
+✅ 5. Monitoring
+Q13. How does Prometheus work?
+Writing
+
+“Prometheus uses a pull model to scrape metrics from targets, stores them as time-series data, and uses PromQL for querying and alerting.”
+
+Q14. What are the four golden signals?
+Writing
+
+“Latency, traffic, errors, and saturation — these indicate service health and performance.”
+
+✅ 6. CI/CD & Automation
+Q15. What is blue-green deployment?
+Writing
+
+“Two identical environments exist: one live and one idle. We deploy to the idle environment and switch traffic after validation.”
+
+Q16. How do you rollback a bad release?
+Writing
+
+“I use versioned deployments or Kubernetes rollout undo to revert to the previous stable version quickly.”
+
+✅ 7. System Design Scenario
+Q17. How do you design a highly available system?
+Writing
+
+“I design for redundancy across zones, use load balancing, auto-scaling, monitoring, failover mechanisms, and distributed storage to eliminate single points of failure.”
+
+Q18. Website is slow — what do you do?
+Writing
+
+“I check metrics for CPU, memory, latency, and errors, analyze logs, identify bottlenecks in app, database, or network, then scale or optimize accordingly.”
+
+⭐ Most Important Behavioral Question
+Q19. Tell me about a major incident you handled
+Writing
+
+“In a production incident, I first stabilized the system, communicated updates, identified root cause using metrics and logs, implemented a fix, and later documented RCA with preventive actions.”
