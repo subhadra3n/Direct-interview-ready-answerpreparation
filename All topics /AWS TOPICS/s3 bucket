@@ -1,1 +1,53 @@
+1. What is Amazon S3?
+Writing
 
+“Amazon S3 is an object storage service used to store and retrieve unlimited data with high durability, scalability, and availability.”
+
+✅ 2. What is an S3 bucket?
+Writing
+
+“An S3 bucket is a container that stores objects like files and metadata in S3.”
+
+✅ 3. What is S3 durability and availability?
+Writing
+
+“S3 provides 99.999999999% durability by storing data redundantly across multiple Availability Zones.”
+
+✅ 4. What are S3 storage classes?
+Writing
+
+“S3 storage classes optimize cost and performance, such as Standard, Intelligent-Tiering, Standard-IA, Glacier, and Deep Archive.”
+
+✅ 5. What is versioning in S3?
+Writing
+
+“Versioning keeps multiple versions of an object, helping recover from accidental deletion or overwrite.”
+
+✅ 6. How do you secure an S3 bucket?
+Writing
+
+“We secure S3 using IAM policies, bucket policies, encryption, and blocking public access.”
+
+✅ 7. What is an S3 lifecycle policy?
+Writing
+
+“Lifecycle policies automatically move objects to cheaper storage classes or delete them to reduce cost.”
+
+✅ 8. What is S3 replication?
+Writing
+
+“S3 replication automatically copies objects to another bucket in the same or different region for backup or disaster recovery.”
+
+✅ 9. Difference between S3 and EBS?
+Writing
+
+“S3 is object storage accessed via API, while EBS is block storage attached to EC2 instances.”
+
+✅ 10. What is S3 encryption?
+Writing
+
+“S3 supports encryption at rest using SSE-S3, SSE-KMS, and encryption in transit using HTTPS.”
+
+⭐ Bonus SRE Scenario Question
+Q: Your application cannot upload files to S3. How do you troubleshoot?
+**“I check IAM permissions, bucket policies, network connectivity, region mismatch, and CloudTrail logs to identify access issues.”**
