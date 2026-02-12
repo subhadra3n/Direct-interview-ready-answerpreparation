@@ -1,4 +1,4 @@
-SLI,
+1.SLI,
 SLI (Service Level Indicator) is a quantitative measurement of a service’s performance or reliability in a production environment.
 It represents the actual metric we track to understand how the system is performing.
 
@@ -16,7 +16,7 @@ So availability = 99.9%
 
 That measurement is the SLI.
 _________________________________________________________________________________________
-SLO:
+2.SLO:
 SLO (Service Level Objective) is the internal reliability target defined for a specific SLI over a given time period. 
 It represents the expected level of service performance that the engineering team commits to maintain.
 SLOs guide monitoring, alerting strategies, and error budget management to ensure we balance reliability with feature delivery.
@@ -27,7 +27,7 @@ If our SLO is 99.9%, we have a 0.1% error budget. If we exceed that, we focus on
 
 
 __________________________________________________________________________________________________
-SLA:
+3.SLA:
 SLA (Service Level Agreement) is a formal agreement between the service provider and the customer.
 It defines the guaranteed level of service, such as uptime or response time.
 It also includes penalties or compensation if the agreed targets are not met.
@@ -42,29 +42,29 @@ RTO → Acceptable downtime
 
 MTTR – Mean Time To Recovery
 ________________________________________________________________________________________________________
-MTTR:
+4.MTTR:
 “MTTR is the average time taken to restore service after a failure. Lower MTTR indicates faster incident response and 
 stronger operational maturity.”
 
 while Customers may tolerate occasional failures, but they expect quick recovery.
 “We reduce MTTR through automation, good monitoring, incident runbooks, and post-incident reviews.”
 ___________________________________________________________________________________
-MTBF:
+5.MTBF:
 MTBF (Mean Time Between Failures) is the average time between system failures. A higher MTBF indicates a more stable and resilient system,
 meaning failures occur less frequently.
 We improve MTBF by strengthening system design, implementing redundancy, and performing proactive monitoring and preventive maintenance.
 __________________________________________________________________________________________-
-Error budjet:
+6.Error budjet:
 Error Budget is the amount of allowable failure or downtime defined by a service’s SLO over a specific time period. 
 It represents how much unreliability the system can tolerate while still meeting its reliability target.
 If we exhaust the error budget, we pause new feature releases and focus on improving system stability and reliability.
 Error budgets help teams balance innovation and reliability by enabling controlled risk while protecting customer experience.
 ___________________________________________________________________________________________
-RPO;
+7.RPO;
 RPO (Recovery Point Objective) defines the maximum acceptable amount of data loss measured in time after a failure.
 It helps determine backup frequency and data protection strategies to minimize business impact.
 ____________________________________________________________________________
-RTO:
+8.RTO:
 RTO (Recovery Time Objective) defines the maximum acceptable downtime after a failure. 
 It helps guide disaster recovery planning, automation, and restoration procedures to ensure rapid service recovery.
 _____________________________________________________________________
