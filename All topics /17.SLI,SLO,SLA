@@ -31,3 +31,45 @@ SLA:
 SLA (Service Level Agreement) is a formal agreement between the service provider and the customer.
 It defines the guaranteed level of service, such as uptime or response time.
 It also includes penalties or compensation if the agreed targets are not met.
+__________________________________________________________________________-
+MTBF → How stable the system is
+
+Error Budget → How much failure is allowed
+
+RPO → Acceptable data loss
+
+RTO → Acceptable downtime
+
+MTTR – Mean Time To Recovery
+________________________________________________________________________________________________________
+MTTR:
+“MTTR is the average time taken to restore service after a failure. Lower MTTR indicates faster incident response and 
+stronger operational maturity.”
+
+while Customers may tolerate occasional failures, but they expect quick recovery.
+“We reduce MTTR through automation, good monitoring, incident runbooks, and post-incident reviews.”
+___________________________________________________________________________________
+MTBF:
+MTBF (Mean Time Between Failures) is the average time between system failures. A higher MTBF indicates a more stable and resilient system,
+meaning failures occur less frequently.
+We improve MTBF by strengthening system design, implementing redundancy, and performing proactive monitoring and preventive maintenance.
+__________________________________________________________________________________________-
+Error budjet:
+Error Budget is the amount of allowable failure or downtime defined by a service’s SLO over a specific time period. 
+It represents how much unreliability the system can tolerate while still meeting its reliability target.
+If we exhaust the error budget, we pause new feature releases and focus on improving system stability and reliability.
+Error budgets help teams balance innovation and reliability by enabling controlled risk while protecting customer experience.
+___________________________________________________________________________________________
+RPO;
+RPO (Recovery Point Objective) defines the maximum acceptable amount of data loss measured in time after a failure.
+It helps determine backup frequency and data protection strategies to minimize business impact.
+____________________________________________________________________________
+RTO:
+RTO (Recovery Time Objective) defines the maximum acceptable downtime after a failure. 
+It helps guide disaster recovery planning, automation, and restoration procedures to ensure rapid service recovery.
+_____________________________________________________________________
+D/f of rto & rpo:
+
+RPO defines the maximum acceptable data loss after a failure, while RTO defines the maximum acceptable time to restore the system.
+RPO focuses on data protection, while RTO focuses on service restoration time. Together, they guide disaster recovery planning and 
+business continuity strategies.
