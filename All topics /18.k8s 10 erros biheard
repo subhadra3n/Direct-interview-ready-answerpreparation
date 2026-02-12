@@ -1,0 +1,150 @@
+**“For any Kubernetes issue, I follow a consistent troubleshooting workflow:**
+
+**1. Check pod status** – Run `kubectl get pods` to identify failing or stuck pods.
+**2. Describe the resource** – Use `kubectl describe pod/service/node` to read Events and find the root error.
+**3. Check logs** – Run `kubectl logs` to see application or container errors.
+**4. Verify resources** – Inspect CPU/memory limits, requests, and node health.
+**5. Check networking** – Validate Services, Endpoints, DNS, and NetworkPolicies.
+**6. Inspect cluster components** – Review node status and system pods like CoreDNS or kubelet.
+**7. Fix & validate** – Apply the fix, redeploy, and monitor until stable.”**
+________--
+single line remember:
+**“Get → Describe → Logs → Resources → Network → Fix → Verify.”**
+
+_________________________________________________________________________________________-
+1.Image pull back off--------
+“If a pod is stuck in ImagePullBackOff state, I first troubleshoot by running kubectl describe pod <pod-name> 
+and checking the Events section to identify the exact error. 
+If the error shows ‘unauthorized,’ it usually means Kubernetes 
+cannot authenticate with the private registry due to invalid or missing credentials. In that case, I update or recreate the imagePullSecret
+with correct credentials, or verify IAM roles/permissions for the nodes.
+After fixing the authentication issue, I restart the pod and confirm that the image pulls successfully.”
+
+steps:
+kubectl describe pod pod-name-----events section---check error
+update credentials in secrets or Verify IAM roles/permissions
+________________________________________________________
+2.OOMKilled
+
+**“If a pod is in CrashLoopBackOff and shows OOMKilled, I run `kubectl describe pod` to confirm it exceeded its memory limit. 
+This means the container used more memory than Kubernetes allowed.**
+
+**To fix it, I follow three simple steps:**
+
+1. **Check memory limits** in the manifest and increase them if needed.
+2. **Tune the application memory** — for Java, keep `-Xmx` around 75–80% of the container limit.
+3. **Monitor usage** and right-size using metrics or VPA.
+
+**Then I redeploy the pod and verify it runs stable under load.”**
+________________________________________________________________________
+3.Config Errors
+**“503 error → check endpoints → if `<none>` → fix Service selector & pod labels to match.”**
+
+**“If a pod is in CrashLoopBackOff and logs show a FileNotFoundException for a config file,
+I first check the logs using `kubectl logs` and confirm it’s a configuration mounting issue.
+This usually means the application cannot access the ConfigMap file inside the container.**
+
+**To troubleshoot, I follow a structured approach:**
+
+1. **Verify the volumeMount path** in the container matches the exact path expected by the application.
+2. **Check the ConfigMap reference** in the volumes section and ensure the name is correct and exists.
+3. **Confirm mount behavior** — if the ConfigMap is mounted over an directory that already has files, it can hide existing files.
+In that case, I use `subPath` to mount only the required file.
+
+**After correcting the mount configuration, I redeploy the pod and verify the application starts successfully.”**
+
+_____________________________________________________________________________________
+4.503 Service Unavailable (Selector Mismatch)
+
+**“If I get a 503 Service Unavailable after setting up an Ingress and Service,
+I suspect a Service-to-pod connectivity issue. I run `kubectl get endpoints <service-name>`. 
+If the ENDPOINTS show `<none>`, it means the Service cannot find any matching pods.**
+
+**I then verify the label matching:**
+
+1. **Check the Service selector** under `spec.selector` in the Service YAML.
+2. **Check the pod template labels** under `metadata.labels` inside the Deployment spec (not the Deployment’s top-level labels).
+3. **Ensure both match exactly**, because even a small typo will prevent the Service from routing traffic.
+
+**After fixing the labels, I redeploy and confirm the endpoints populate and traffic flows correctly.”**
+________________________________________________________________________________
+5.The "Zombie" Node (NodeNotReady)
+**“Node NotReady → SSH to node → check kubelet logs → free disk/memory → fix eviction & garbage collection.”**
+
+**“If several pods show an Unknown state and a node is NotReady, I treat it as a node health issue. 
+I first run `kubectl get nodes` to confirm the node status, then SSH into the affected node and check kubelet logs
+using `journalctl -u kubelet`. Errors like disk pressure or out-of-memory indicate resource exhaustion at the OS level.**
+
+**To resolve it, I take both immediate and long-term actions:**
+
+1. **Immediate fix:** Free up resources by clearing disk space — for example running image cleanup commands or removing large log files 
+in `/var/log`.
+2. **Permanent fix:** Configure kubelet eviction thresholds so Kubernetes can evict pods gracefully before the node becomes unresponsive.
+3. **Prevention:** Ensure image garbage collection policies are enabled to automatically manage disk usage.
+
+**After remediation, I verify the node returns to Ready state and confirm pods are rescheduled and stable.”**
+______________________________________________________________________________________
+6.The DNS Identity Crisis (CoreDNS
+Issues)
+**“DNS error → test with nslookup pod → check CoreDNS pods/logs → scale or increase memory.”**
+
+**“If services can’t resolve DNS names, I test with a temporary pod using nslookup. 
+Then I check CoreDNS pods and logs. If overloaded, I scale CoreDNS or increase memory and retest.”**
+____________________________________________________________________________________________________________---
+7.The "Stuck" Finalizer (Namespace Deletion)
+
+ **“Namespace stuck Terminating → check finalizers → find stuck resource → remove finalizer → namespace deletes.”**
+ ___________
+
+ **“If a namespace is stuck in Terminating state after deletion, I check it using `kubectl get namespace <ns> -o yaml` and look for finalizers. 
+ This means Kubernetes is waiting for some resource inside the namespace to clean up, but it’s stuck or orphaned.**
+
+**I troubleshoot by listing remaining resources with `kubectl get all -n <ns>` and identify what’s blocking deletion — often a PVC or CRD. 
+If a resource is stuck, I edit it using `kubectl edit` and manually remove the entries under the finalizers section.**
+
+**Once saved, Kubernetes completes the cleanup and the namespace deletes successfully.”**
+_____________________________________________________________________---
+8.The CPU Throttling Mystery The Problem:
+**“Slow app + low CPU → check CPU throttling → relax CPU limits → increase requests for stability.”**
+
+______________
+**“If an application is slow but CPU usage looks low, I suspect CPU throttling. 
+I check CPU throttling metrics in Prometheus or inspect CPU behavior inside the container. Even if the node has idle CPU, 
+Kubernetes can throttle the container when it tries to burst beyond its CPU limit.**
+
+**To fix this, I review CPU resource settings. For bursty workloads, I avoid very strict CPU limits.
+I set a strong CPU request to guarantee baseline performance and use a higher or flexible limit to allow spikes. 
+This reduces throttling from the Linux CFS scheduler and improves latency.”**
+______________________________________________________---
+9.The Pending Pod (Resource Exhaustion)
+**“Pod Pending → check describe events → insufficient resources → scale nodes or optimize requests.”**
+_________________
+**“If new pods are stuck in Pending state, I run `kubectl describe pod` and check Events. 
+If I see ‘Insufficient CPU or memory,’ it means the cluster doesn’t have enough resources to schedule the pod.**
+
+**To resolve it, I take two actions:**
+
+1. **Scale the cluster** by adding worker nodes or enabling Cluster Autoscaler.
+2. **Optimize resource requests** by reviewing CPU/memory requests and reducing over-provisioning so pods can be scheduled efficiently.
+
+**After scaling or tuning requests, I verify the pods move to Running state.”**
+______________________________________________
+10.The DatabaseTimeout (NetworkPolicy)
+**“DB timeout → check NetworkPolicy → allow egress + verify cloud security group.”**
+_________________
+**“If the application is running but cannot connect to an external database and shows a connection timeout,
+I first suspect a network restriction. I check whether a NetworkPolicy was recently applied to the namespace, 
+because once a policy exists, Kubernetes blocks all traffic that isn’t explicitly allowed.**
+
+**To fix it, I verify the NetworkPolicy has the correct egress rule allowing traffic to the database IP range and port. 
+I also check the cloud security group and ensure the Kubernetes node or pod CIDR is allowed in the database’s inbound rules.**
+
+**After updating network rules, I retest connectivity and confirm the application can reach the database.”**
+
+
+
+
+
+
+
+
