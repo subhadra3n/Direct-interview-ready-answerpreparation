@@ -1,7 +1,10 @@
 **“Incident management and RCA are related but serve different purposes.**
 
-**Incident management** is the real-time process of detecting, responding to, and restoring service during a production issue. 
-The main goal is to minimize downtime and impact on users. It focuses on quick mitigation, communication, and recovery.
+**“Incident management is the process of detecting an issue, prioritize the incident,
+and responding quickly to restore service.
+if it is A production outage is treated as a P1 incident and requires immediate action such as rollback to previous stable version, 
+while a P2 incident has moderate impact and is handled with high priority. 
+The main goal is to minimize downtime and user impact through rapid recovery and effective communication.”**
 
 **Root Cause Analysis (RCA)** happens after the incident is resolved.
 Its goal is to identify the underlying cause of the failure and implement preventive actions so it doesn’t happen again.
