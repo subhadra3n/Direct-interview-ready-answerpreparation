@@ -73,3 +73,21 @@ D/f of rto & rpo:
 RPO defines the maximum acceptable data loss after a failure, while RTO defines the maximum acceptable time to restore the system.
 RPO focuses on data protection, while RTO focuses on service restoration time. Together, they guide disaster recovery planning and 
 business continuity strategies.
+_________________________________
+Who will measure these all metrics & how--
+Prometheus and Grafana with Node Exporter and Blackbox Exporter can measure many SLIs. 
+Node Exporter provides infrastructure metrics like CPU and memory usage. 
+Blackbox Exporter measures uptime and latency from an external perspective. For application-level SLIs like success rate and error rate,
+we instrument the application using Prometheus client libraries or collect metrics from service meshes and API gateways.
+_________________________________________________________________
+Dynamic scraping without manual"
+Dynamic scraping in Kubernetes is achieved using Kubernetes service discovery and the Prometheus Operator.
+We use ServiceMonitors and PodMonitors to automatically discover applications based on labels. 
+When new pods or services are created or scaled, Prometheus automatically scrapes them without manual configuration.
+_______________________________________________________________________
+Prometheus works end-to-end using a pull-based model, where it scrapes metrics from instrumented applications, exporters, service meshes,
+and API gateways through HTTP endpoints. In Kubernetes environments, Prometheus integrates with the Kubernetes API for service discovery,
+automatically detecting pods and services as scrape targets. Service meshes and API gateways provide additional telemetry such as request rate, 
+latency, and error metrics without requiring application code changes. The collected metrics are stored as time-series data
+in Prometheus’s TSDB, where they are indexed and 
+compressed for efficient storage. PromQL is then used to query these metrics for visualization in Grafana and alerting through Alertmanager.
