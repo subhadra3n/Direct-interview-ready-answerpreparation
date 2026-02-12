@@ -1,1 +1,50 @@
+1. What is Amazon EBS?
+**“Amazon EBS is a persistent block storage service for EC2 instances. 
+It behaves like a virtual hard disk that stores operating systems, databases, and application data, and 
+it remains intact even if the instance is stopped.”**
+________________________________________________________
+2.Is EBS storage ephemeral or persistent?
+**“EBS is persistent storage. Data remains even after the EC2 instance is stopped or restarted, unlike instance store which is ephemeral.”**
+
+_______________________________________
+3.Can we attach one EBS volume to multiple EC2 instances?
+**“By default, an EBS volume can be attached to only one EC2 instance at a time.
+However, EBS Multi-Attach allows certain volume types to be attached to multiple instances in the same Availability Zone.”**
+____________________________
+4.What are the main EBS volume types?
+**“The main EBS volume types are GP3/GP2 (general purpose SSD), IO1/IO2 (provisioned IOPS for high performance), 
+ST1 (throughput optimized HDD), and SC1 (cold HDD for infrequent access).”**
+___________________________________
+5.What is an EBS snapshot?
+**“An EBS snapshot is a backup of an EBS volume stored in Amazon S3.
+Snapshots are incremental and used for disaster recovery and volume restoration.”**
+_______________________________________________________________
+6.Can we resize an EBS volume?
+**“Yes, EBS volumes can be resized without downtime using Elastic Volumes. After resizing, we extend the filesystem inside the OS.”**
+
+______________________________
+7.. What happens to EBS when an EC2 instance is terminated?
+**“By default, the root EBS volume is deleted on termination, but this behavior can be changed. 
+Additional attached volumes are not deleted automatically unless configured.”**
+________________________________________________
+8.Difference between EBS and Instance Store?
+**“EBS is persistent network storage, while instance store is temporary local storage. 
+Instance store data is lost when the instance stops or terminates.”**
+__________________________________________________
+9.9. How do you improve EBS performance?
+**“We improve performance by choosing SSD volume types, provisioning higher IOPS, using EBS-optimized instances,
+and distributing workloads across multiple volumes using RAID.”**
+____________________
+10.Can EBS volumes be attached across Availability Zones?
+**“No, an EBS volume is limited to a single Availability Zone. To use it in another AZ, we create a snapshot and restore it there.”**
+
+_____________________________
+11.How do you back up EBS volumes?
+**“We back up EBS volumes using snapshots, which can be automated using AWS Backup or lifecycle policies.”**
+________________________--
+12.What is EBS encryption?
+**“EBS encryption protects data at rest and in transit using AWS KMS keys. It secures volumes, snapshots, and data transfers.”**
+
+
+
 
