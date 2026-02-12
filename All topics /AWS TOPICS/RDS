@@ -1,1 +1,58 @@
+1. What is Amazon RDS?
 
+
+“Amazon RDS is a managed relational database service that automates tasks like backups,
+patching, scaling, and failover, allowing us to focus on application development.”
+
+✅ 2. What databases does RDS support?
+
+
+“RDS supports MySQL, PostgreSQL, MariaDB, Oracle, SQL Server, and Amazon Aurora.”
+
+✅ 3. What is Multi-AZ in RDS?
+
+
+“Multi-AZ deployment creates a standby replica in another Availability Zone for automatic failover and high availability.”
+
+✅ 4. What is an RDS Read Replica?
+
+
+“A Read Replica is a read-only copy of the database used to offload read traffic and improve performance.”
+
+✅ 5. Difference between Multi-AZ and Read Replica?
+
+
+“Multi-AZ is for high availability and failover, while Read Replicas are for scaling read performance.”
+
+✅ 6. How does RDS backup work?
+
+
+“RDS provides automated backups and manual snapshots stored in S3, enabling point-in-time recovery.”
+
+✅ 7. What happens during RDS failover?
+
+
+“If the primary instance fails, RDS automatically promotes the standby to primary with minimal downtime.”
+
+✅ 8. How do you secure an RDS database?
+
+
+“We secure RDS using VPC isolation, security groups, IAM authentication, and encryption at rest and in transit.”
+
+✅ 9. Can RDS scale?
+
+
+“Yes, RDS supports vertical scaling by changing instance size and horizontal scaling using Read Replicas.”
+
+✅ 10. What is Amazon Aurora?
+
+
+“Aurora is a high-performance, cloud-native relational database compatible with MySQL and PostgreSQL,
+offering better scalability and availability than standard RDS engines.”
+
+⭐ Bonus SRE Scenario Question
+Q: Your RDS database is slow in production. How do you troubleshoot?
+
+
+“I check CloudWatch metrics like CPU, memory, IOPS, and connections, analyze slow query logs, optimize queries,
+and scale the instance or add read replicas if needed.”
