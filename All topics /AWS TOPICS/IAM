@@ -1,1 +1,60 @@
+1. What is AWS IAM?
+
+
+“AWS IAM is a service that controls authentication and authorization in AWS. It allows us to securely manage users, roles, and permissions to access AWS resources.”
+
+✅ 2. What is the difference between authentication and authorization?
+
+
+“Authentication verifies who you are, while authorization determines what actions you are allowed to perform.”
+
+✅ 3. What are IAM users?
+
+
+“IAM users are identities created for individuals or applications that need access to AWS resources.”
+
+✅ 4. What are IAM roles?
+
+
+“IAM roles are permission sets that AWS services or users can assume temporarily to access resources without long-term credentials.”
+
+✅ 5. What are IAM policies?
+
+
+“IAM policies are JSON documents that define permissions by allowing or denying actions on AWS resources.”
+
+✅ 6. Difference between IAM roles and policies?
+
+
+“A role is an identity with permissions, while a policy is a document that defines those permissions.”
+
+✅ 7. What is the principle of least privilege?
+
+
+“It means granting only the minimum permissions required to perform a task, reducing security risks.”
+
+✅ 8. What is an IAM group?
+
+
+“An IAM group is a collection of users that share the same permissions through attached policies.”
+
+✅ 9. What is an IAM trust policy?
+
+
+“A trust policy defines who is allowed to assume an IAM role.”
+
+✅ 10. How do EC2 instances access AWS services securely?
+
+
+“EC2 instances use IAM roles to securely access AWS services without storing credentials.”
+
+✅ 11. What is MFA in IAM?
+
+
+“Multi-Factor Authentication adds an extra security layer by requiring a second verification factor.”
+
+⭐ Bonus SRE Scenario Question
+Q: A developer accidentally got full admin access. What do you do?
+**“I immediately revoke excessive permissions, apply least privilege policies, audit IAM access,
+and enable monitoring with CloudTrail.”**
 
