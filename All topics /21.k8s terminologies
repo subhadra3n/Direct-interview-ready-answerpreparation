@@ -79,3 +79,43 @@ Taints are applied to nodes to repel certain pods. Pods without matching tolerat
 Tolerations
 
 Tolerations allow pods to run on nodes with matching taints. They enable controlled placement of special workloads.
+______________________________________________________________
+1.How do you achieve zero-downtime deployments?
+
+Using rolling updates, readiness probes, proper replica counts, and canary deployments. 
+I also use PodDisruptionBudgets to maintain availability.
+__________________________-
+2.Explain Kubernetes storage architecture
+
+Kubernetes uses Persistent Volumes (PV) and Persistent Volume Claims (PVC) for storage abstraction. 
+Storage classes enable dynamic provisioning through CSI drivers.
+__________________________
+3.What are Kubernetes controllers?
+
+Controllers continuously monitor cluster state and reconcile it to match the desired state.
+Examples include Deployment controller, ReplicaSet controller, and Node controller.
+_______________________________---------
+4.How do you secure a Kubernetes cluster?
+
+I implement RBAC, network policies, pod security standards, 
+secrets management, image scanning, and TLS encryption. I also restrict API access and enable audit logging.
+_______________________________________
+5.. What is CNI and why is it important?
+
+CNI (Container Network Interface) is a plugin system that provides pod networking.
+It enables communication between pods and external networks. Examples include Calico and Flannel.
+______________________________________--
+6.ifference between StatefulSet and Deployment?
+
+Deployment is used for stateless applications with interchangeable pods. StatefulSet is for stateful apps
+requiring stable network identity, persistent storage, and ordered scaling, like databases.
+___________________________________________________________________
+7. How does Kubernetes networking work?
+
+Kubernetes uses a flat networking model where each pod gets a unique IP. CNI plugins handle pod networking,
+kube-proxy manages service routing, and services provide stable access using ClusterIP, NodePort, or LoadBalancer.
+_____________________________________
+8.What is etcd and why is it critical?
+
+etcd is a distributed key-value store that holds cluster state. 
+If etcd fails, the cluster cannot function properly, so backups and HA setup are critical.
