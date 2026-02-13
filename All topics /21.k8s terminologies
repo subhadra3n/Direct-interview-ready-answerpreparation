@@ -101,10 +101,18 @@ Cordon marks a node as unschedulable, preventing new pods from being placed on i
 Uncordon
 
 Uncordon makes the node schedulable again, allowing new pods to be assigned.
-
+________________________________________________
 Drain
-
+procedure:
 Drain safely evicts all pods from a node and prepares it for maintenance or shutdown, while respecting pod disruption budgets.
+
+“kubectl drain is used to safely prepare a node for maintenance by marking it unschedulable and evicting existing pods.
+Pods managed by controllers like Deployments or StatefulSets are automatically rescheduled to other available nodes, 
+while standalone pods are deleted. During the drain, Kubernetes removes evicted pods from Service endpoints, so they stop serving traffic, 
+and PodDisruptionBudgets are respected to maintain application availability. 
+DaemonSet pods are not evicted by default. This ensures that node maintenance can be performed without impacting overall cluster stability.” ✅
+
+_______________________________________________________________
 
 Scheduling Control
 Taints
