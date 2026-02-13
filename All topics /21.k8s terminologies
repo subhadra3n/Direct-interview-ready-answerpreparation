@@ -50,18 +50,22 @@ Anti-Affinity
 
 Anti-affinity ensures pods are scheduled away from certain nodes or other pods. It is mainly used for high availability,
 spreading replicas across different nodes or zones to avoid single points of failure.
-
+_____________________________________________
 Health Checks
 Liveness Probe
 
-A liveness probe checks if a container is still running properly. If it fails repeatedly,
-Kubernetes restarts the container automatically to recover from crashes or deadlocks.
+Liveness probe checks if the container is alive. 
+If it’s stuck or crashed, Kubernetes restarts it. Checks start after initialDelaySeconds and repeat every periodSeconds.”
 
+initialDelaySeconds → Time to wait after container starts before the first check.
+
+periodSeconds → How often to perform the check.
+_______________________________________________________________________
 Readiness Probe
 
-A readiness probe checks whether the container is ready to serve traffic. If it fails, 
-Kubernetes removes the pod from the service load balancer until it becomes healthy again.
-
+“Readiness probe tells if a pod can handle requests. If it’s not ready, Kubernetes stops sending traffic until it’s healthy.”
+Checks start after an initial delay and repeat periodically; if it’s not ready, traffic won’t go to the pod.”
+__________________________________________
 Resource Management
 Requests
 
