@@ -1,0 +1,81 @@
+Kubernetes Cluster
+4
+
+A Kubernetes cluster is a group of nodes that run containerized applications. 
+It consists of a control plane (API server, scheduler, controller manager) and worker nodes that run pods. 
+The control plane manages scheduling and orchestration, while nodes execute workloads.
+
+Node
+
+A node is a worker machine (VM or physical server) in a Kubernetes cluster that runs pods.
+Each node contains kubelet, container runtime, and kube-proxy to manage networking and container execution.
+
+Scheduling Concepts
+Affinity
+
+Affinity is a scheduling rule that tells Kubernetes to place pods on nodes that match specific labels.
+It helps ensure pods run on preferred or required nodes based on performance, locality, or hardware requirements.
+
+Anti-Affinity
+
+Anti-affinity ensures pods are scheduled away from certain nodes or other pods. It is mainly used for high availability,
+spreading replicas across different nodes or zones to avoid single points of failure.
+
+Health Checks
+Liveness Probe
+
+A liveness probe checks if a container is still running properly. If it fails repeatedly,
+Kubernetes restarts the container automatically to recover from crashes or deadlocks.
+
+Readiness Probe
+
+A readiness probe checks whether the container is ready to serve traffic. If it fails, 
+Kubernetes removes the pod from the service load balancer until it becomes healthy again.
+
+Resource Management
+Requests
+
+Requests define the minimum CPU and memory guaranteed to a container. Kubernetes uses requests for scheduling decisions.
+
+Limits
+
+Limits define the maximum resources a container can use. If exceeded, the container may be throttled (CPU) or killed (memory).
+
+Autoscaling
+HPA (Horizontal Pod Autoscaler)
+4
+
+HPA automatically scales the number of pod replicas based on metrics like CPU or custom metrics. 
+It ensures applications handle variable load efficiently.
+
+Cluster Autoscaler
+
+Cluster Autoscaler automatically adds or removes nodes based on pod scheduling needs. If pods cannot be scheduled due to lack of resources, 
+it adds nodes; if nodes are underutilized, it removes them.
+
+VPA (Vertical Pod Autoscaler)
+
+VPA automatically adjusts CPU and memory requests/limits of containers based on usage. It optimizes resource allocation without changing
+pod count.
+
+Node Maintenance Commands
+Cordon
+
+Cordon marks a node as unschedulable, preventing new pods from being placed on it, while existing pods continue running.
+
+Uncordon
+
+Uncordon makes the node schedulable again, allowing new pods to be assigned.
+
+Drain
+
+Drain safely evicts all pods from a node and prepares it for maintenance or shutdown, while respecting pod disruption budgets.
+
+Scheduling Control
+Taints
+
+Taints are applied to nodes to repel certain pods. Pods without matching tolerations cannot be scheduled on that node.
+
+Tolerations
+
+Tolerations allow pods to run on nodes with matching taints. They enable controlled placement of special workloads.
