@@ -9,13 +9,43 @@ Node
 
 A node is a worker machine (VM or physical server) in a Kubernetes cluster that runs pods.
 Each node contains kubelet, container runtime, and kube-proxy to manage networking and container execution.
-
+_____________________________________________________________________
 Scheduling Concepts
-Affinity
+Affinity y is an advanced scheduling feature that controls where pods are placed in a cluster.
+we have pod affinity & node affinity
+Node affinity
+Node affinity is a rule that constrains pods to run on specific nodes based on node labels. 
+It allows Kubernetes to schedule pods on nodes that meet certain hardware, performance, or location requirements.
+Types of Node Affinity
+a) RequiredDuringSchedulingIgnoredDuringExecution (Hard Rule)
+The pod must be scheduled on matching nodes, otherwise it stays pending.
 
-Affinity is a scheduling rule that tells Kubernetes to place pods on nodes that match specific labels.
-It helps ensure pods run on preferred or required nodes based on performance, locality, or hardware requirements.
+_______________________
+PreferredDuringSchedulingIgnoredDuringExecution (Soft Rule)
 
+Kubernetes tries to place the pod on preferred nodes but can choose others if needed.
+________________________________________________________________
+Pod affinity:
+. Pod Affinity
+
+Pod affinity ensures that pods are scheduled close to other pods with matching labels,
+typically within the same node or availability zone to improve communication performance.
+HARD Rule:
+. Hard Rule (RequiredDuringSchedulingIgnoredDuringExecution)
+
+
+A hard pod affinity rule is mandatory. Kubernetes must schedule the pod on a node that satisfies the affinity condition.
+If no matching node exists, the pod remains in Pending state.
+##If no node has a matching backend pod, scheduling fails.
+____________-
+Soft Rule (PreferredDuringSchedulingIgnoredDuringExecution)
+📌 Interview Definition
+
+A soft pod affinity rule is a preference.
+Kubernetes tries to schedule the pod according to the rule, but if it cannot, it still schedules the pod elsewhere.
+Hard affinity rules can cause pods to stay pending if cluster resources are limited. 
+In production, we mostly use soft affinity unless strict placement is required, to avoid availability issues.
+________________________________________________
 Anti-Affinity
 
 Anti-affinity ensures pods are scheduled away from certain nodes or other pods. It is mainly used for high availability,
