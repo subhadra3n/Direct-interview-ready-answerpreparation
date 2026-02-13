@@ -28,7 +28,7 @@ ________________________________________________________________
 Pod affinity:
 . Pod Affinity
 
-Pod affinity ensures that pods are scheduled close to other pods with matching labels,
+Pod affinity is a scheduling rule, that ensures the pods are scheduled close to other pods with matching labels,
 typically within the same node or availability zone to improve communication performance.
 HARD Rule:
 . Hard Rule (RequiredDuringSchedulingIgnoredDuringExecution)
