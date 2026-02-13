@@ -14,7 +14,7 @@ Scheduling Concepts
 Affinity y is an advanced scheduling feature that controls where pods are placed in a cluster.
 we have pod affinity & node affinity
 Node affinity
-Node affinity is a rule that constrains pods to run on specific nodes based on node labels. 
+“Node affinity is a rule that restricts pods to run on specific nodes based on node labels.”
 It allows Kubernetes to schedule pods on nodes that meet certain hardware, performance, or location requirements.
 Types of Node Affinity
 a) RequiredDuringSchedulingIgnoredDuringExecution (Hard Rule)
