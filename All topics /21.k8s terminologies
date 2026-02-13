@@ -55,7 +55,8 @@ Health Checks
 Liveness Probe
 
 Liveness probe checks if the container is alive. 
-If it’s stuck or crashed, Kubernetes restarts it. Checks start after initialDelaySeconds and repeat every periodSeconds.”
+If it’s stuck or crashed, Kubernetes restarts it. Checks start after initialDelaySeconds (as defined in the YAML file )
+and repeat every periodSeconds.”
 
 initialDelaySeconds → Time to wait after container starts before the first check.
 
