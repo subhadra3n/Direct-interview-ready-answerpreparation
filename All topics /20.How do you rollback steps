@@ -1,0 +1,78 @@
+“When a deployment fails, first we detect the issue using monitoring alerts. 
+We pause further rollouts to limit impact, analyze logs to confirm the root cause, and
+immediately roll back to the last stable version using Kubernetes rollout undo or CI/CD redeployment. 
+After rollback, we validate system stability and conduct a post-incident review to prevent recurrence.”
+___________________________________________________________________________________________---
+Kubernetes Rollback Procedure (With Commands)
+Step 1: Check Deployment Status
+
+
+First confirm the issue:
+
+Using Kubernetes:
+
+kubectl get pods
+kubectl get deployments
+kubectl describe pod <pod-name>
+kubectl get events --sort-by=.metadata.creationTimestamp
+
+
+👉 Look for: CrashLoopBackOff, ImagePull errors, failed readiness probes.
+
+Step 2: Check Logs to Confirm Failure
+kubectl logs <pod-name>
+kubectl logs <pod-name> --previous
+
+
+If multiple containers:
+
+kubectl logs <pod-name> -c <container-name>
+
+
+👉 This confirms if the issue came from the new deployment.
+
+Step 3: Check Rollout History
+4
+kubectl rollout history deployment <deployment-name>
+
+
+Check rollout status:
+
+kubectl rollout status deployment <deployment-name>
+
+
+👉 Identify last stable revision number.
+
+Step 4: Pause the Broken Deployment
+kubectl rollout pause deployment <deployment-name>
+
+
+👉 Stops further rollout damage.
+
+Step 5: Execute Rollback
+4
+
+Rollback to previous version:
+
+kubectl rollout undo deployment <deployment-name>
+
+
+Or rollback to a specific revision:
+
+kubectl rollout undo deployment <deployment-name> --to-revision=<number>
+
+Step 6: Verify Rollback Success
+kubectl get pods
+kubectl rollout status deployment <deployment-name>
+kubectl get svc
+
+
+Run health check:
+
+kubectl port-forward svc/<service-name> 8080:80
+
+
+👉 Confirm application is working.
+
+Step 7: Resume Deployment
+kubectl rollout resume deployment <deployment-name>
