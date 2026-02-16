@@ -17,7 +17,7 @@ So availability = 99.9%
 That measurement is the SLI.
 _________________________________________________________________________________________
 2.SLO:
-SLO (Service Level Objective) is the internal reliability target defined for a specific SLI over a given time period. 
+SLO (Service Level Objective) is the internal reliability target set for a specific SLI over a given time period. 
 It represents the expected level of service performance that the engineering team commits to maintain.
 SLOs guide monitoring, alerting strategies, and error budget management to ensure we balance reliability with feature delivery.
 
