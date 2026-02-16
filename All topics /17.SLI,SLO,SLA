@@ -18,7 +18,7 @@ That measurement is the SLI.
 _________________________________________________________________________________________
 2.SLO:
 SLO (Service Level Objective) is the internal reliability target set for a specific SLI over a given time period. 
-It represents the expected level of service performance that the engineering team commits to maintain.
+It represents the expected level of service performance that  team commits to maintain.
 SLOs guide monitoring, alerting strategies, and error budget management to ensure we balance reliability with feature delivery.
 
 Example:
@@ -42,14 +42,14 @@ RTO → Acceptable downtime
 
 MTTR – Mean Time To Recovery
 ________________________________________________________________________________________________________
-4.MTTR:
+4.MTTR:( Mean Time To Recovery)
 “MTTR is the average time taken to restore service after a failure. Lower MTTR indicates faster incident response and 
 stronger operational maturity.”
 
 while Customers may tolerate occasional failures, but they expect quick recovery.
 “We reduce MTTR through automation, good monitoring, incident runbooks, and post-incident reviews.”
 ___________________________________________________________________________________
-5.MTBF:
+5.MTBF:Mean Time Between Failures
 MTBF (Mean Time Between Failures) is the average time between system failures. A higher MTBF indicates a more stable and resilient system,
 meaning failures occur less frequently.
 We improve MTBF by strengthening system design, implementing redundancy, and performing proactive monitoring and preventive maintenance.
