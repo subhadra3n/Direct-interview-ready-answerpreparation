@@ -17,7 +17,12 @@ _____________________________________
 Routing &Dns
 nslookup google.com
 ip addr
-
+________________
+sar used to monitor ---CPU, memory, I/O, and network.
+sar------sar -u 1 5---cpu
+sar -r 1 5-------memory
+sar -b 1 5------i/o statastics
+sar -n DEV 1 5----i/o  & transfer stats
 ______________________________
 File Transfer Commands
 1️⃣ Copy file to remote server
