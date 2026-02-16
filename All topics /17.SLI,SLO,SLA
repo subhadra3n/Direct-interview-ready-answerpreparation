@@ -62,10 +62,13 @@ Error budgets help teams balance innovation and reliability by enabling controll
 ___________________________________________________________________________________________
 7.RPO;
 RPO (Recovery Point Objective) defines the maximum acceptable amount of data loss measured in time after a failure.
+RPO focuses on data protection
+
 It helps determine backup frequency and data protection strategies to minimize business impact.
 ____________________________________________________________________________
 8.RTO:
-RTO (Recovery Time Objective) defines the maximum acceptable downtime after a failure. 
+RTO (Recovery Time Objective) defines the maximum acceptable downtime after a failure. RTO focuses on service restoration time
+
 It helps guide disaster recovery planning, automation, and restoration procedures to ensure rapid service recovery.
 _____________________________________________________________________
 D/f of rto & rpo:
