@@ -1,0 +1,89 @@
+1.cpu measure---------TOP, HTOP,uptime, mpstat, cat /proc/cpuinfo,lscpu
+____________________________________________________________________
+2.memory:---------Free -h, vmstat,cat /proc/meminfo,swapon --show----check swap mem
+_________________________________________
+3.Disk------IOstat, df -h , du -sh,
+list block devices---lsblk
+_________________________________________
+4.I/O bottleneck---iostat, iotop,top, vmstat----when disk is slow
+______________________________________________-
+n/w troubleshoot
+app not reachable/pod not connecting
+curl,ping,wget,ports & conn
+netstat -tulpn
+ss -tulpn
+lsof -i :80----check which process is using port
+_____________________________________
+Routing &Dns
+nslookup google.com
+ip addr
+
+______________________________
+File Transfer Commands
+1️⃣ Copy file to remote server
+scp file.txt user@remote_ip:/path/
+
+2️⃣ Copy folder to remote server
+scp -r folder/ user@remote_ip:/path/
+
+3️⃣ Copy file from remote to local
+scp user@remote_ip:/path/file.txt /local/path/
+
+4️⃣ Copy between two remote servers
+scp user1@server1:/path/file user2@server2:/path/
+
+5️⃣ Use custom SSH port
+scp -P 2222 file.txt user@ip:/path/
+
+6️⃣ Copy using SSH key authentication
+scp -i key.pem file.txt user@ip:/path/
+
+🔹 Rsync Commands
+1️⃣ Copy file (local → remote)
+rsync file.txt user@remote_ip:/path/
+
+2️⃣ Copy folder
+rsync -avz folder/ user@remote_ip:/path/
+
+3️⃣ Remote → Local
+rsync -avz user@remote_ip:/path/folder/ /local/path/
+
+4️⃣ Delete extra files in destination
+rsync -avz --delete src/ user@remote_ip:/dest/
+
+5️⃣ Rsync with SSH key and port
+rsync -avz -e "ssh -i key.pem -p 22" folder/ user@ip:/path/
+____________________________________________________________________
+🔹 Log Troubleshooting
+View logs
+tail -f /var/log/messages
+tail -f /var/log/syslog
+journalctl -xe
+_________________________________________________
+Search logs
+grep -i error file.log
+tail -f app.log | grep error
+________________________________________________
+🔹 Process Troubleshooting
+Check running process
+ps -ef | grep nginx
+top
+htop
+________________________________________
+Kill process
+kill -9 PID
+
+Find large files
+find / -type f -size +500M
+___________________________________
+🔹 Service Management
+Check service status
+systemctl status nginx
+_______________________________
+🔹 Archive & Compression
+Extract tar file
+tar -xvf file.tar
+__________________________
+Create compressed backup
+tar -cvzf backup.tar.gz /directory/
+____________________________________
