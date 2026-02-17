@@ -1,26 +1,30 @@
-1,Self
-2.Jenkins
-3.Docker
-4.Ansible
-5.Project Architecture
-6.D/F B/W Devops & SRE
-------______________________
-
-5.K8s
-6.ArgoCD
-7.Helm
-8.Terraform
-9.ArgoCD
-10.Docker, k8s Architecture
-11.Pod life cycle
-12.Monitoring
-13.Rolling updates, Blue green strategy, Rollback, Canary
-______________________________
-14.SRE ROLES
-15.DR Activity
-16.k8s errors trouble shooting
-17.Agile methodology
-18.Git branching strategy
-19.AWS services
-_____________________________
+Biheard every day----------Definitely will crack SRE/ DEvops Role
+1.Self intro
+2.Docker
+3.Jenkins
+4.Helm
+5.ArgoCD
+6.All files
+__________________________
+7.Ansible
+8.Agile methodology
+9.D/F SRE & Devops
+10.Incident management
+11.Monitoring, monitor tems
+12.SLI,SLO,SLA,MTTR,MTBR,RTO,RTA
+___________________________________---
+13.Terraform
+14.Ingress
+15.Project Architecture 
+16.All tools Architecture(Docker,K8s)
+17.Rollback process
+18.Deployment strategy
+_____________________________________
+19.K8s terms
+20.pod life cycle
+21.k8s errors & incident management issue resolve
+22.AWS terms
+23.Git branching strategy
+24.DR Activity
+25.Azure services
 
