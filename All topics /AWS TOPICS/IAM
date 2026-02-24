@@ -14,9 +14,10 @@
 “IAM users are identities created for individuals or applications that need access to AWS resources.”
 
 ✅ 4. What are IAM roles?
-
-
-“IAM roles are permission sets that AWS services or users can assume temporarily to access resources without long-term credentials.”
+1.IAM role is an  identity that defines a set of permissions through attached policies.
+2.It does not have long-term credentials;instead it provides temporary credentials via AWS STS when assumed by trusted entities.
+3.Roles are commonly used for service-to-service access, cross-account access, and federated authentication, 
+following the principle of least privilege.”
 
 ✅ 5. What are IAM policies?
 
