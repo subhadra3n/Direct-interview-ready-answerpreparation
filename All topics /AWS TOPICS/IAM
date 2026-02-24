@@ -15,10 +15,15 @@
 
 ✅ 4. What are IAM roles?
 1.IAM role is an  identity that defines a set of permissions through attached policies.
-2.It does not have long-term credentials;instead it provides temporary credentials via AWS STS when assumed by trusted entities.
+2.It does not have long-term credentials;instead it provides temporary credentials via AWS Security Token Service
+when assumed by trusted entities.
 3.Roles are commonly used for service-to-service access, cross-account access, and federated authentication, 
 following the principle of least privilege.”
-
+________________
+what is aws STS
+AWS STS (Security Token Service) is a service in AWS that provides temporary security credentials to access AWS resources. These 
+credentials are short-lived and are issued when an IAM role is assumed. STS enhances security by eliminating the need for long-term access keys.
+________________________________________________________
 ✅ 5. What are IAM policies?
 
 
