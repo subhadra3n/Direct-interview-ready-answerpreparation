@@ -26,8 +26,12 @@ credentials are short-lived and are issued when an IAM role is assumed. STS enha
 ________________________________________________________
 ✅ 5. What are IAM policies?
 
-
-“IAM policies are JSON documents that define permissions by allowing or denying actions on AWS resources.”
+1.IAM policy in AWS is a JSON-based permission document that defines allowed or denied actions on specific resources. 
+2.Policies can be identity-based or resource-based and support fine-grained access control using conditions. 
+3.In production environments, policies are designed 
+following least privilege, often ---leveraging managed policies, 
+                                     inline policies, and condition keys to enforce security and compliance requirements.
+___________________________________________________________________________
 
 ✅ 6. Difference between IAM roles and policies?
 
