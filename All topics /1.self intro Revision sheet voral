@@ -35,7 +35,7 @@ comming to My roles & responsibilities.
 
 o   I am responsible for monitoring infrastructure health by logging into the system and performing regular health checks.
 o	We use Prometheus to collect the metrics and Grafana to visuallize the application & infra health, integrated with Node Exporter and Blackbox, to track system metrics and application health.
-o	If any alerts or incidents occur, I analyze them and take appropriate action.
+o	If any alerts or incidents occur, I analyze logs, identify the root cause,and take appropriate action.
 o	& my next task is to -----
 2.	and we also 
 o	--manage and maintain CI/CD pipelines, ensuring smooth deployment and delivery processes.
