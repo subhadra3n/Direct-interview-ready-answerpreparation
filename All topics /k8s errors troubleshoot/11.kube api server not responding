@@ -1,0 +1,13 @@
+kube-apiserver Not Responding
+Problem
+
+kubectl commands failing.
+
+Check
+
+systemctl status kubelet
+docker ps | grep kube-apiserver
+
+Check logs
+
+journalctl -u kubelet
