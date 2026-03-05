@@ -1,0 +1,118 @@
+RBAC:
+
+RBAC in Kubernetes controls access to resources using Roles/ClusterRoles and RoleBindings/ClusterRoleBindings.
+A Role provides permissions within a namespace, while a ClusterRole provides permissions across the entire cluster.
+RoleBinding – Grants the permissions defined in a Role to a user, group, or service account within a namespace.
+
+ClusterRoleBinding – Grants ClusterRole permissions across the entire cluster.
+_____________________________________________
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: devops-sa
+  namespace: dev
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: pod-reader
+  namespace: dev
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get","list","watch"]--------verbs define actions that can be performed on a resourse
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: pod-reader-binding
+  namespace: dev
+subjects:
+- kind: ServiceAccount
+  name: devops-sa
+  namespace: dev
+
+roleRef:
+  kind: Role
+  name: pod-reader
+  apiGroup: rbac.authorization.k8s.io
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: node-reader
+rules:
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs: ["get","list","watch"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: node-reader-binding
+subjects:
+- kind: ServiceAccount
+  name: devops-sa
+  namespace: dev
+
+roleRef:
+  kind: ClusterRole
+  name: node-reader
+  apiGroup: rbac.authorization.k8s.io
+
+______________________________________________________________________
+| Verb                 | Action                     |
+| -------------------- | -------------------------- |
+| **get**              | Read a specific resource   |
+| **list**             | List resources             |
+| **watch**            | Monitor changes            |
+| **create**           | Create new resource        |
+| **update**           | Modify existing resource   |
+| **patch**            | Partial update             |
+| **delete**           | Delete resource            |
+| **deletecollection** | Delete multiple resources  |
+| **exec**             | Execute command inside pod |
+| **proxy**            | Access service proxy       |
+
+
+
+
+
+_________________________________________________________________________
+
+What This YAML Does
+1️⃣ ServiceAccount
+
+Creates a service account called devops-sa in the dev namespace.
+
+2️⃣ Role
+
+Gives permission to:
+
+get pods
+
+list pods
+
+watch pods
+
+Inside dev namespace only.
+
+3️⃣ RoleBinding
+
+Connects the Role → ServiceAccount.
+
+4️⃣ ClusterRole
+
+Gives permission to read nodes at cluster level.
+
+5️⃣ ClusterRoleBinding
+
+Attaches ClusterRole → ServiceAccount.
