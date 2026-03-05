@@ -1,0 +1,11 @@
+DNS Resolution Failure
+Problem
+
+Pods cannot resolve services.
+
+Check
+kubectl exec -it <pod> -- nslookup kubernetes.default
+
+Check CoreDNS
+
+kubectl get pods -n kube-system
