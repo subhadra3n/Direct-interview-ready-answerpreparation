@@ -1,0 +1,12 @@
+Deployment Update Failure
+Problem
+
+New pods failing.
+
+Check
+kubectl rollout status deployment <name>
+kubectl describe deployment <name>
+
+Rollback
+
+kubectl rollout undo deployment <name>
