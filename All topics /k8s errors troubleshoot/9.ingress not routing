@@ -1,0 +1,12 @@
+Ingress Not Routing
+Problem
+
+Ingress returns 404.
+
+Check
+
+kubectl describe ingress
+
+Check controller
+
+kubectl get pods -n ingress-nginx
