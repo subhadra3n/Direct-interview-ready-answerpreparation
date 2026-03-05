@@ -1,0 +1,12 @@
+Node Not Ready
+Problem
+
+Node shows NotReady.
+
+Check
+kubectl get nodes
+kubectl describe node <node>
+
+Check kubelet
+
+systemctl status kubelet
