@@ -15,3 +15,17 @@ ii.Node selector mismatch
 iii.Taints without tolerations
 
 iv.PVC not bound
+______________________________
+Pod Stuck in Pending State
+
+The pod is created but not scheduled to a node.
+
+Common Causes
+
+Insufficient CPU or memory
+
+Node selector mismatch
+
+Taints and tolerations
+
+PVC not bound
