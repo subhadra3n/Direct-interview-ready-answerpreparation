@@ -39,21 +39,22 @@ o	If any alerts or incidents occur, I analyze logs, identify the root cause,and 
 o	& my next task is to -----
 2.	and we also 
 o	--manage and maintain CI/CD pipelines, ensuring smooth deployment and delivery processes.
-         --We have multiple pipelines for different applications. I verify whether scheduled builds are successful or failed.
+         --We have multiple pipelines for different applications. I regularly monitor scheduled builds.
         -- If any build fails,I check Jenkins console output logs, identify the issue,
-          fix the pipeline or code related problem and trigger the build again.
+          fix the pipeline configuration or code related problem and trigger the build again.
 o        --I review and modify pipelines as per project requirements, ensuring reliability and performance.
 o	--And For new projects, we write a declarative pipeline script to define and create the required stages."
-3.	         multi-Cloud Infrastructure Management (AWS,Azure,GCP):
+3.	         I also work on multi-cloud infrastructure across AWS, Azure, and GCP.:
           in this AWS, we 
           
            i  --  set up infrastructure for various envs such as dev, testing, staging, and production environments."
-              -- I also monitor multi-cloud infrastructure daily, I check EC2 instance status, load balancer health check, 
+              -- I  monitor infrastructure daily, I check EC2 instance status, load balancer health check, 
                 auto scaling group status and CloudWatch alarms.
-              --If any CPU or memory alert comes, I login to server, check logs,
-                check running services and restart the service if needed. I also verify security groups,
-                IAM roles and storage if there is any issue.
-          ii.Based on project requirements, we automate the installation and configuration of pre-required softwares using Ansible. In d/f environments
+              --If any CPU or memory alerts occurs, I login to server, check logs,system metrics,
+                check running services and resolve the issue.
+               I also verify security groups, IAM roles and storage if there is any issue.
+          ii.Based on project requirements, we automate the installation and configuration of pre-required softwares using Ansible. 
+In various environments
          
 & we also work on automation 
 4.	
