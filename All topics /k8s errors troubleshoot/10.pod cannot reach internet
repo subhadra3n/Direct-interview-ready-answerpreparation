@@ -1,0 +1,12 @@
+Pod Cannot Reach Internet
+Problem
+
+Outbound traffic blocked.
+
+Check
+
+CNI plugin
+
+Network policies
+
+Node routing
