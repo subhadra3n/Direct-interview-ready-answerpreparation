@@ -29,15 +29,8 @@ with overall  3.6 years of experience in the DevOps domain.
 along with automating infrastructure.
 
 
-4.My technical skill set includes creating and maintaining CI/CD pipelines using Jenkins,"Multi-cloud infrastructure management on AWS, Azure,
-and GCP with Terraform."
-I automate software installation configuration management using Ansible, we acheive container orchestration,Auto scaling,self healing and 
-lb with Kubernetes,monitor infrastructure with Prometheus and Grafana,and 
-shell scripting for automating repetitive tasks.
-
-
-6.Currently, I’m working on an eCommerce project that follows a microservices architect with 55+ micro services,we manage cart & notifications micro services.
-comming to My roles & responsibilities (include managing and deploying Java-based applications with a fully automated CI/CD pipeline using Jenkins.)
+4.Currently, I’m working on an eCommerce project that follows a microservices architect with 55+ micro services,we manage cart & notifications micro services.
+comming to My roles & responsibilities.
 
 
 o   I am responsible for monitoring infrastructure health by logging into the system and performing regular health checks.
@@ -45,13 +38,21 @@ o	We use Prometheus to collect the metrics and Grafana to visuallize the applica
 o	If any alerts or incidents occur, I analyze them and take appropriate action.
 o	& my next task is to -----
 2.	and we also 
-o	manage and maintain CI/CD pipelines, ensuring smooth deployment and delivery processes.
-o	I review and modify pipelines as per project requirements, ensuring reliability and performance.
-o	And For new projects, we write a declarative pipeline script to define and create the required stages."
-3.	multi-Cloud Infrastructure Management (AWS,Azure,GCP):
+o	--manage and maintain CI/CD pipelines, ensuring smooth deployment and delivery processes.
+         --We have multiple pipelines for different applications. I verify whether scheduled builds are successful or failed.
+        -- If any build fails,I check Jenkins console output logs, identify the issue,
+          fix the pipeline or code related problem and trigger the build again.
+o        --I review and modify pipelines as per project requirements, ensuring reliability and performance.
+o	--And For new projects, we write a declarative pipeline script to define and create the required stages."
+3.	         multi-Cloud Infrastructure Management (AWS,Azure,GCP):
           in this AWS, we 
           
-           i    set up infrastructure for various envs such as dev, testing, staging, and production environments."
+           i  --  set up infrastructure for various envs such as dev, testing, staging, and production environments."
+              -- I also monitor multi-cloud infrastructure daily, I check EC2 instance status, load balancer health check, 
+                auto scaling group status and CloudWatch alarms.
+              --If any CPU or memory alert comes, I login to server, check logs,
+                check running services and restart the service if needed. I also verify security groups,
+                IAM roles and storage if there is any issue.
           ii.Based on project requirements, we automate the installation and configuration of pre-required softwares using Ansible. In d/f environments
          
 & we also work on automation 
@@ -63,9 +64,11 @@ automated alerts,significantly reducing manual effort.
 
 
 5.In k8s, we creating and managing existing clusters as per project req to ensure high availability and stability. 
-I monitor pod health, troubleshoot failures, and provide a stable environment for users and clients.
+I monitor pod health,node status and deployments & troubleshoot failures, and provide a stable environment for users and clients.
 I also handle microservices deployments using YAML manifests and Helm charts, with ConfigMaps and Secrets for configuration, and use ClusterIP,
 LoadBalancer, and Ingress for service exposure. Autoscaling and rolling updates are configured to ensure performance and zero downtime.
+--If any pod is in crashloop backoff  state or not running, I check pod logs, describe the pod, find the root cause and redeploy the application.
+Sometimes I update deployment yaml files, change image version, or scale the application based on requirement.
 
 6.Additionally, I perform Root Cause Analysis (RCA) by documenting incident summaries, root causes, impact analysis,
 corrective actions, and preventive measures.
