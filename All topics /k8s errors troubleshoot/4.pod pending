@@ -1,0 +1,17 @@
+2️⃣ Pod Pending
+Problem
+
+Pod stuck in Pending.
+
+Troubleshoot
+kubectl describe pod <pod>
+
+Possible Issues:
+
+i.No node resources
+
+ii.Node selector mismatch
+
+iii.Taints without tolerations
+
+iv.PVC not bound
