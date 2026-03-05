@@ -2,6 +2,13 @@
 crashloop back off happens when a container repeateldly crashes Kubernetes keeps trying to restart it. 
 it occurs due to
 wrong commands,  failing liveness or readiness probes, resource limits being exceeded or application erroes
+(1️⃣ Application error
+2️⃣ Wrong environment variables
+3️⃣ Database connection failure
+4️⃣ Liveness probe failure
+5️⃣ Missing config/secret
+6️⃣ Port already in use
+7️⃣ OOMKilled)
 
 Troubleshoot CrashLoopBackOff
 
