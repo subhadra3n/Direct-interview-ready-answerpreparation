@@ -1,0 +1,16 @@
+Service Not Working
+Problem
+
+Service cannot reach pods.
+
+Check:
+kubectl get svc
+kubectl get endpoints
+Fix
+
+Correct selector.
+
+Example
+
+selector:
+  app: nginx
