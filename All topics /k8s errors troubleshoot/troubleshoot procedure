@@ -1,0 +1,30 @@
+✅ Pro Tip for CKA Exam
+
+Always follow this troubleshooting order:
+
+1️⃣ kubectl get
+2️⃣ kubectl describe
+3️⃣ kubectl logs
+4️⃣ kubectl exec
+
+This solves 80% of Kubernetes issues.
+
+kubectl get pods -A
+kubectl describe pod <pod>
+kubectl logs <pod>
+kubectl get events
+kubectl get svc
+kubectl get endpoints
+kubectl get nodes
+kubectl top nodes
+kubectl auth can-i
+______________________________________
+kubectl get pods -A
+kubectl describe pod
+kubectl logs
+kubectl get events
+kubectl get svc
+kubectl get endpoints
+kubectl get pvc
+kubectl get pv
+kubectl auth can-i
