@@ -17,6 +17,6 @@ ___________________
 what is istio?
 
 “Istio is a service mesh platform that runs on Kubernetes to control and secure communication between microservices. 
-It works using Envoy sidecar proxies that intercept all service traffic, forming the data plane, 
-while the Istio control plane manages routing rules, security policies, and configurations. This enables features like traffic management,
-mTLS encryption, load balancing, retries, circuit breaking, and observability with tools like Prometheus and Grafana.”
+It provides traffic management, security through mutual TLS Transport Layer Security (mutual Transport Layer Security----mTLS),
+and observability like metrics, logs, and tracing.
+Istio uses sidecar proxies (Envoy) deployed with each service to control network communication without modifying application code.
