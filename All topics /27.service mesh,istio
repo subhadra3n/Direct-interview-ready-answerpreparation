@@ -15,8 +15,11 @@ What is Sidecar Pattern?
 In service mesh, an Envoy proxy runs as a sidecar container to intercept and manage all network traffic for that service.”
 ___________________
 what is istio?
+“Istio is an open-source service mesh platform that runs on Kubernetes to manage, control, and secure communication between microservices.
 
-“Istio is a service mesh platform that runs on Kubernetes to control and secure communication between microservices. 
-It provides traffic management, security through mutual TLS Transport Layer Security (mutual Transport Layer Security----mTLS),
-and observability like metrics, logs, and tracing.
-Istio uses sidecar proxies (Envoy) deployed with each service to control network communication without modifying application code.
+Istio uses sidecar proxies called Envoy that are deployed alongside each service to handle network communication without
+modifying the application code.
+
+It provides capabilities such as traffic management, security through mutual TLS (mTLS), and observability features like metrics, 
+
+logs, and distributed tracing.”
