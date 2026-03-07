@@ -1,0 +1,22 @@
+API GATEWAY:
+Manages external traffic from users to services
+
+Service mesh:
+Service Mesh manages internal communication between microservices inside the cluster.”
+___________
+what is service mesh:
+“A Service Mesh is an infrastructure layer used in microservices architecture to manage service-to-service communication. 
+It works using sidecar proxies 
+like Envoy to handle traffic routing, load balancing, security with mTLS, observability, and fault tolerance without modifying application code.”
+___________
+What is Sidecar Pattern?
+
+“Sidecar pattern means deploying a helper container alongside the application container inside the same pod.
+In service mesh, an Envoy proxy runs as a sidecar container to intercept and manage all network traffic for that service.”
+___________________
+what is istio?
+
+“Istio is a service mesh platform that runs on Kubernetes to control and secure communication between microservices. 
+It works using Envoy sidecar proxies that intercept all service traffic, forming the data plane, 
+while the Istio control plane manages routing rules, security policies, and configurations. This enables features like traffic management,
+mTLS encryption, load balancing, retries, circuit breaking, and observability with tools like Prometheus and Grafana.”
